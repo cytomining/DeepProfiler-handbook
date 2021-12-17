@@ -1,7 +1,8 @@
 # Installation
 
-## Subheading 1
+## Cloning the repository
 
+:     A code block
 
 :::{note}
 Here is a note!
