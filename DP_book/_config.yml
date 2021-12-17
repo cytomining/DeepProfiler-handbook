@@ -1,0 +1,5 @@
+# in _config.yml
+title: "DeepProfiler Handbook"
+logo: images/DP_logo.svg
+execute:
+  execute_notebooks: "off"
