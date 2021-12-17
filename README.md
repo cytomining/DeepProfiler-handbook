@@ -13,6 +13,8 @@ Check out [the Jupyter Book website](https://jupyterbook.org/start/your-first-bo
 
 General organization of a Jupyter book can be found [here](https://jupyterbook.org/start/overview.html#anatomy-of-a-book)
 
+[Guide to special content blocks](https://jupyterbook.org/content/content-blocks.html#special-content-blocks) (notes, warnings, panels, code blocks)
+
 ## Sources for compiling this documentation
 * DeepProfiler Github Wiki [google sheet](https://docs.google.com/document/d/1BQ2imZwqLPsbpOKNzW8qP-4MLNCWma_rVSzE1y8PnIk/edit#heading=h.wf1ucu3byolj)
 * Jamboree Day [Error log](https://docs.google.com/document/d/1d8VmzqOpY-USZ-RLOf2weWt15qjADqGYL-bPp73a6rE/edit#heading=h.57l1bp40b4wm)
