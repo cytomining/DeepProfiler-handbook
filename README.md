@@ -1,3 +1,5 @@
+[![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](<YOUR URL HERE>)
+
 # DeepProfiler-handbook (WIP)
 Documentation for installation and use of DeepProfiler (Jupyter Book)
 
