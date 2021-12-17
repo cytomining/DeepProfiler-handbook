@@ -1,8 +1,8 @@
 # In _toc.yml
 format: jb-book
-root: docs/Installation
+#root: docs/Installation
 chapters:
-#- file: docs/Installation
+- file: docs/Installation
 #- file: docs/Project_structure
 #- file: docs/Config_file
 #- file: docs/Training
