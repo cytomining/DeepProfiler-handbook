@@ -1,6 +1,6 @@
 # In _toc.yml
 format: jb-book
-#root: docs/Installation
+root: docs/landing-page
 chapters:
 - file: docs/Installation
 #- file: docs/Project_structure
