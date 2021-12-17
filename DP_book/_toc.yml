@@ -1,0 +1,12 @@
+# In _toc.yml
+format: jb-book
+root: docs/landing-page
+chapters:
+- file: docs/Installation
+- file: docs/Project_structure
+- file: docs/Config_file
+- file: docs/Training
+- file: docs/Profiling
+- file: docs/Aggregating
+- file: docs/Process_features
+- file: docs/Tutorial_example_data
