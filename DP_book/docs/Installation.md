@@ -18,6 +18,12 @@ Here, we assume you are using Ubuntu, so first make sure that your python instal
 sudo apt update
 sudo apt install python3 python3-pip
 ```
+
+```{code-cell} ipython3
+---
+print("MN\x1b[39m")
+```
+
 We strongly advise using a virtual environment for DeepProfiler. This will help not to interfere with system-wide installed python packages. [Virtualenv](https://pypi.org/project/virtualenv/) can be installed with the following command:
 
 ```
