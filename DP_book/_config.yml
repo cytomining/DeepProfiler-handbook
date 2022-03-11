@@ -6,9 +6,9 @@
 #######################################################################################
 # Book settings
 title                       : DeepProfiler Handbook
-author                      : Michael Bornholdt, Yu Han, Rebecca Senft (in alphabetical order)
+author                      : Michael Bornholdt, Juan Caicedo, Yu Han, Moshkov Nikita, Rebecca Senft (in alphabetical order)
 copyright                   : "2022"  # Copyright year to be placed in the footer
-logo                        : "banner.png"  # A path to the book logo
+logo                        : "images/banner.png"  # A path to the book logo
 # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
 exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
 # Auto-exclude files not in the toc
@@ -73,13 +73,13 @@ launch_buttons:
   notebook_interface        : classic  # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
   jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
-  thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
+  thebe                     : true  # Add a thebe button to pages (requires the repository to run on Binder)
   colab_url                 : "" # The URL of Google Colab (https://colab.research.google.com)
 
 repository:
   url                       : https://github.com/cytomining/DeepProfiler-handbook.git  # The URL to your book's repository
   path_to_book              : "DP_book/docs"  # A path to your book's folder, relative to the repository root.
-  branch                    : master  # Which branch of the repository should be used when creating links
+  branch                    : main  # Which branch of the repository should be used when creating links
 
 #######################################################################################
 # Advanced and power-user settings

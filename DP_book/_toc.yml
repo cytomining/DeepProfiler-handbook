@@ -1,12 +1,12 @@
-# In _toc.yml
 format: jb-book
-root: docs/landing-page
+root: docs/Home
 chapters:
-- file: docs/Installation
-#- file: docs/Project_structure
-#- file: docs/Config_file
-#- file: docs/Training
-#- file: docs/Profiling
-#- file: docs/Aggregating
-#- file: docs/Process_features
-#- file: docs/Tutorial_example_data
+- file: docs/1. Install DeepProfiler
+- file: docs/2. Project structure
+- file: docs/3. The configuration file
+- file: docs/4. Train a model and profile cells
+- file: docs/5. Aggregating profiles
+- file: docs/6. Processing DeepProfiler features
+- file: docs/7. Run example data
+- file: docs/8. Run example data (CPJUMP1)
+- file: docs/test_page
