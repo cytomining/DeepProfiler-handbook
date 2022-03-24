@@ -2,18 +2,15 @@
 
 # DeepProfiler-handbook (WIP)
 Documentation for installation and use of DeepProfiler (Jupyter Book)
+Website available HERE (LINK)
 
-## Structure of this book
-TBD
 
 ## Information on Jupyter books (for contributing)
-Make sure you `pip install -U jupyter-book`
 
-Check out [the Jupyter Book website](https://jupyterbook.org/start/your-first-book.html) for details on how to make a Jupyter book and see various features.
-
-General organization of a Jupyter book can be found [here](https://jupyterbook.org/start/overview.html#anatomy-of-a-book)
-
-[Guide to special content blocks](https://jupyterbook.org/content/content-blocks.html#special-content-blocks) (notes, warnings, panels, code blocks)
+1. Fork the repo
+2. Change the markdown documents in DeepProfiler-Handbook/docs. Here's a [guide to special content blocks for Jupyter Books](https://jupyterbook.org/content/content-blocks.html#special-content-blocks) (notes, warnings, panels, code blocks)
+3. Submit a pull request 
+4. Once changes have been pushed to this repo, the book will automatically re-build and the website will automatically deploy
 
 ## Sources for compiling this documentation
 * DeepProfiler Github Wiki [google sheet](https://docs.google.com/document/d/1BQ2imZwqLPsbpOKNzW8qP-4MLNCWma_rVSzE1y8PnIk/edit#heading=h.wf1ucu3byolj)
