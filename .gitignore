@@ -1,4 +1,5 @@
 #ignore the build folder (should be kept on a separate branch)
-**_build/
+#**_build/
+
 #ignore dsstore
 .DS_Store
