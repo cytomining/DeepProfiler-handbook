@@ -42,12 +42,11 @@
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -226,7 +225,7 @@
 <p>DeepProfiler aims to use deep learning and representation learning for extracting phenotypic information from microscopy images of cells. This guide describes how to install and run DeepProfiler using the provided example data. After completing this guide, you should have a running version of DeepProfiler, and a general understanding of how to structure your data to use this software, as well as the output that it produces.</p>
 <div class="figure align-default" id="home-fig">
 <img alt="../_images/image1.png" src="../_images/image1.png" />
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Flowchart of the inputs and outputs of DeepProfiler.</span><a class="headerlink" href="#home-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Flowchart showing the inputs and outputs of DeepProfiler.</span><a class="headerlink" href="#home-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>In a nutshell, DeepProfiler requires three types of input: 1) microscopy images, 2) metadata describing the organization of images in an experiment, and 3) metadata files indicating the locations of single cells in images. Then, DeepProfiler can be run in two modes: 1) training a neural network model that learns to extract features from images, and 2) profiling single cells by running an existing model. The output of DeepProfiler during training is a model file with the learned parameters of a neural network, which can be shared or later reused. During profiling, DeepProfiler creates files with single-cell feature embeddings for the images listed in the metadata file.</p>
 <p>What DeepProfiler does not do: 1) it does not identify the location of single cells or segment cells from the images. These locations need to be obtained using other software, such as <a class="reference external" href="https://cellprofiler.org/">CellProfiler</a> or <a class="reference external" href="https://www.ilastik.org/">Ilastik</a>. 2) DeepProfiler does not create aggregated profiles of cell populations. The single-cell feature embeddings need to be processed separately to perform the corresponding downstream analysis, using tools such as <a class="reference external" href="https://github.com/cytomining/pycytominer">pycytominer</a>. We include a short tutorial for creating aggregated profiles with pycytominer in Section 5.</p>
