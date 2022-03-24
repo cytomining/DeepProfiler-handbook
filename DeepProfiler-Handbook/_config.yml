@@ -5,7 +5,7 @@
 
 #######################################################################################
 # Book settings
-title                       : DeepProfiler Handbook
+title                       : Handbook
 author                      : Michael Bornholdt, Juan Caicedo, Yu Han, Moshkov Nikita, Rebecca Senft (in alphabetical order)
 copyright                   : "2022"  # Copyright year to be placed in the footer
 logo                        : "images/banner.png"  # A path to the book logo
@@ -26,23 +26,6 @@ execute:
   allow_errors              : false # If `False`, when a code cell raises an error the execution is stopped, otherwise all cells are always run.
   stderr_output             : show  # One of 'show', 'remove', 'remove-warn', 'warn', 'error', 'severe'
 
-#######################################################################################
-# Parse and render settings
-parse:
-  myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
-    # - amsmath
-    - colon_fence
-    # - deflist
-    - dollarmath
-    # - html_admonition
-    # - html_image
-    - linkify
-    # - replacements
-    # - smartquotes
-    - substitution
-    - tasklist
-  myst_url_schemes: [mailto, http, https] # URI schemes that will be recognised as external URLs in Markdown links
-  myst_dmath_double_inline: true  # Allow display math ($$) within an inline context
 
 #######################################################################################
 # HTML-specific settings
@@ -60,6 +43,7 @@ html:
   comments:
     hypothesis              : false
     utterances              : false
+  #google_analytics_id: UA-XXXXXXXXX-X
 
 #######################################################################################
 # LaTeX-specific settings
@@ -73,13 +57,13 @@ launch_buttons:
   notebook_interface        : classic  # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
   jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
-  thebe                     : true  # Add a thebe button to pages (requires the repository to run on Binder)
+  thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
   colab_url                 : "" # The URL of Google Colab (https://colab.research.google.com)
 
 repository:
   url                       : https://github.com/cytomining/DeepProfiler-handbook.git  # The URL to your book's repository
-  path_to_book              : "DP_book/docs"  # A path to your book's folder, relative to the repository root.
-  branch                    : master  # Which branch of the repository should be used when creating links
+  path_to_book              : "DeepProfiler-Handbook/docs"  # A path to your book's folder, relative to the repository root.
+  branch                    : main  # Which branch of the repository should be used when creating links
 
 #######################################################################################
 # Advanced and power-user settings
