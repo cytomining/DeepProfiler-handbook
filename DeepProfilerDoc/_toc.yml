@@ -1,6 +1,6 @@
 format: jb-book
-root: docs/Home
-chapters:
+root: docs/Welcome to DeepProfiler
+chapters: 
 - file: docs/1. Install DeepProfiler
 - file: docs/2. Project structure
 - file: docs/3. The configuration file
@@ -8,5 +8,3 @@ chapters:
 - file: docs/5. Aggregating profiles
 - file: docs/6. Processing DeepProfiler features
 - file: docs/7. Run example data
-- file: docs/8. Run example data (CPJUMP1)
-- file: docs/test_page
