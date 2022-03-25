@@ -3,6 +3,7 @@
 # DeepProfiler Handbook
 Documentation for installation and use of DeepProfiler (Jupyter Book)
 Website available [HERE](https://cytomining.github.io/DeepProfiler-handbook/)
+
 <img width="1466" alt="image" src="https://user-images.githubusercontent.com/28116530/160191277-07a1491e-f81a-4ab0-9722-8348322516a8.png">
 
 
