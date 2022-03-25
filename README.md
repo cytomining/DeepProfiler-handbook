@@ -1,6 +1,6 @@
 [![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](https://cytomining.github.io/DeepProfiler-handbook/)
 
-# DeepProfiler-handbook (WIP)
+# DeepProfiler Handbook
 Documentation for installation and use of DeepProfiler (Jupyter Book)
 Website available [HERE](https://cytomining.github.io/DeepProfiler-handbook/)
 
