@@ -7,7 +7,7 @@ Website available [HERE](https://cytomining.github.io/DeepProfiler-handbook/)
 
 
 ## How to contribute changes
-### Commenting on the documentation: 
+### 1. Commenting on the documentation: 
 
 We've enabled Hypothesis for providing comments directly on the documentation website. To leave a comment, just highlight some text and select Annotate:
 
@@ -19,7 +19,7 @@ To see others' comments, open the Hypothesis panel with the arrow in the upper r
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/28116530/160192346-c37582e6-082a-404b-8efd-e782f23e6588.png">
 
 
-### Directly editing the book files:
+### 2. Directly editing the book files:
 1. Fork the repo
 2. Change the markdown documents in DeepProfiler-Handbook/docs. Here's a [guide to special content blocks for Jupyter Books](https://jupyterbook.org/content/content-blocks.html#special-content-blocks) (notes, warnings, panels, code blocks)
 3. Submit a pull request 
