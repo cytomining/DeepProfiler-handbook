@@ -3,10 +3,23 @@
 # DeepProfiler Handbook
 Documentation for installation and use of DeepProfiler (Jupyter Book)
 Website available [HERE](https://cytomining.github.io/DeepProfiler-handbook/)
+<img width="1466" alt="image" src="https://user-images.githubusercontent.com/28116530/160191277-07a1491e-f81a-4ab0-9722-8348322516a8.png">
 
 
-## Information on Jupyter books (for contributing)
+## How to contribute changes
+### Commenting on the documentation: 
 
+We've enabled Hypothesis for providing comments directly on the documentation website. To leave a comment, just highlight some text and select Annotate:
+
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/28116530/160192271-16de7a2a-fbd9-433c-9324-61963fa6bfc6.png">
+
+
+To see others' comments, open the Hypothesis panel with the arrow in the upper right corner of the screen: 
+
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/28116530/160192346-c37582e6-082a-404b-8efd-e782f23e6588.png">
+
+
+### Directly editing the book files:
 1. Fork the repo
 2. Change the markdown documents in DeepProfiler-Handbook/docs. Here's a [guide to special content blocks for Jupyter Books](https://jupyterbook.org/content/content-blocks.html#special-content-blocks) (notes, warnings, panels, code blocks)
 3. Submit a pull request 
