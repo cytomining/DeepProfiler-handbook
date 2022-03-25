@@ -10,7 +10,7 @@ Website available [HERE](https://cytomining.github.io/DeepProfiler-handbook/)
 ## How to contribute changes
 ### 1. Commenting on the documentation: 
 
-We've enabled Hypothesis for providing comments directly on the documentation website. To leave a comment, just highlight some text and select Annotate:
+We've enabled Hypothesis for providing comments directly on the documentation website. To leave a comment, just highlight some text and select Annotate. Note that you must sign up for a free Hypothesis account (will prompt you when you try to annotate):
 
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/28116530/160192271-16de7a2a-fbd9-433c-9324-61963fa6bfc6.png">
 
