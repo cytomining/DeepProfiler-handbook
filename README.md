@@ -1,8 +1,8 @@
-[![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](<YOUR URL HERE>)
+[![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](https://cytomining.github.io/DeepProfiler-handbook/)
 
 # DeepProfiler-handbook (WIP)
 Documentation for installation and use of DeepProfiler (Jupyter Book)
-Website available HERE (LINK)
+Website available [HERE](https://cytomining.github.io/DeepProfiler-handbook/)
 
 
 ## Information on Jupyter books (for contributing)
@@ -10,7 +10,7 @@ Website available HERE (LINK)
 1. Fork the repo
 2. Change the markdown documents in DeepProfiler-Handbook/docs. Here's a [guide to special content blocks for Jupyter Books](https://jupyterbook.org/content/content-blocks.html#special-content-blocks) (notes, warnings, panels, code blocks)
 3. Submit a pull request 
-4. Once changes have been pushed to this repo, the book will automatically re-build and the website will automatically deploy
+4. Once changes have been pushed to this repo, the book will automatically re-build and the website will automatically deploy with the new changes
 
 ## Sources for compiling this documentation
 * DeepProfiler Github Wiki [google sheet](https://docs.google.com/document/d/1BQ2imZwqLPsbpOKNzW8qP-4MLNCWma_rVSzE1y8PnIk/edit#heading=h.wf1ucu3byolj)
