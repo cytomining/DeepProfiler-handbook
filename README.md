@@ -8,9 +8,18 @@ Website available [HERE](https://cytomining.github.io/DeepProfiler-handbook/)
 
 
 ## How to contribute changes
-### 1. Commenting on the documentation: 
 
-We've enabled Hypothesis for providing comments directly on the documentation website. To leave a comment, just highlight some text and select Annotate. Note that you must sign up for a free Hypothesis account (will prompt you when you try to annotate):
+### 1. Directly editing the book files:
+1. Fork the repo
+2. Change the markdown documents in DeepProfiler-Handbook/docs. Here's a [guide to special content blocks for Jupyter Books](https://jupyterbook.org/content/content-blocks.html#special-content-blocks) (notes, warnings, panels, code blocks)
+3. Submit a pull request 
+4. Once changes have been pushed to this repo, the book will automatically re-build and the website will automatically deploy with the new changes
+
+### 2. Submit an issue 
+
+### 2. Commenting on the documentation: 
+
+For times where we want to have a discussion _in context_ of the JupyterBook, we've enabled Hypothesis for providing comments directly on the documentation website. To leave a comment, just highlight some text and select Annotate. Note that you must sign up for a free Hypothesis account (will prompt you when you try to annotate). **In general, we prefer you submit an issue instead**
 
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/28116530/160192271-16de7a2a-fbd9-433c-9324-61963fa6bfc6.png">
 
@@ -18,13 +27,6 @@ We've enabled Hypothesis for providing comments directly on the documentation we
 To see others' comments, open the Hypothesis panel with the arrow in the upper right corner of the screen: 
 
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/28116530/160192346-c37582e6-082a-404b-8efd-e782f23e6588.png">
-
-
-### 2. Directly editing the book files:
-1. Fork the repo
-2. Change the markdown documents in DeepProfiler-Handbook/docs. Here's a [guide to special content blocks for Jupyter Books](https://jupyterbook.org/content/content-blocks.html#special-content-blocks) (notes, warnings, panels, code blocks)
-3. Submit a pull request 
-4. Once changes have been pushed to this repo, the book will automatically re-build and the website will automatically deploy with the new changes
 
 ## Sources for compiling this documentation
 * DeepProfiler Github Wiki [google sheet](https://docs.google.com/document/d/1BQ2imZwqLPsbpOKNzW8qP-4MLNCWma_rVSzE1y8PnIk/edit#heading=h.wf1ucu3byolj)
