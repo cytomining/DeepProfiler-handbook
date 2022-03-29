@@ -14,7 +14,7 @@ From the page you want to change on the web documentation:
 1. At the top of the page, you can click the GitHub icon
 2. You can submit an issue or directly edit the markdown of the page:
 
-<img width="800" alt="image" src="https://user-images.githubusercontent.com/28116530/160652616-1e1e02db-0abe-402e-b70d-bf2b70d0408a.png">
+![image](https://user-images.githubusercontent.com/28116530/160653594-78fff726-4328-4757-9e70-4f3701564536.png)
 
 ### Submit a PR
 1. Fork the repo
