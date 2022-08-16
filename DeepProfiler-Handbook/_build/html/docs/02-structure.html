@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2. Project structure &#8212; Handbook</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. The configuration file" href="03-config.html" />
+    <link rel="prev" title="1. Install DeepProfiler" href="01-install.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/banner.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Handbook</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00-welcome.html">
+                    Welcome to DeepProfiler
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-install.html">
+   1. Install DeepProfiler
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Project structure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-config.html">
+   3. The configuration file
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-train-infer.html">
+   4. Train a model and profile cells
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-aggregate.html">
+   5. Aggregating profiles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-process.html">
+   6. Processing DeepProfiler features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-example.html">
+   7. Run example data
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/cytomining/DeepProfiler-handbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/cytomining/DeepProfiler-handbook/issues/new?title=Issue%20on%20page%20%2Fdocs/02-structure.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/cytomining/DeepProfiler-handbook/edit/main/DeepProfiler-Handbook/docs/02-structure.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/docs/02-structure.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initialize-your-project">
+   <strong>
+    2.1 Initialize your project
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-project-data">
+   <strong>
+    2.2 Add project data
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-index-csv-file">
+   <strong>
+    2.3 The index.csv file
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#masking-cells">
+   <strong>
+    2.4 Masking cells
+   </strong>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>2. Project structure</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initialize-your-project">
+   <strong>
+    2.1 Initialize your project
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-project-data">
+   <strong>
+    2.2 Add project data
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-index-csv-file">
+   <strong>
+    2.3 The index.csv file
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#masking-cells">
+   <strong>
+    2.4 Masking cells
+   </strong>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="project-structure">
+<h1>2. Project structure<a class="headerlink" href="#project-structure" title="Permalink to this headline">#</a></h1>
+<p>After installing DeepProfiler on your machine, the next step is to create a project directory structure that holds your data with the required inputs and space for generated outputs.</p>
+<section id="initialize-your-project">
+<h2><strong>2.1 Initialize your project</strong><a class="headerlink" href="#initialize-your-project" title="Permalink to this headline">#</a></h2>
+<p>In the following sections, we assume that you have an Ubuntu environment and a user account named “ubuntu”. Make sure to replace the example path (<code class="docutils literal notranslate"><span class="pre">/home/ubuntu</span></code>) with the directories that you are using in practice. Go to your base path and create an empty directory for your project (called <code class="docutils literal notranslate"><span class="pre">project</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span>
+<span class="n">mkdir</span> <span class="n">project</span>
+</pre></div>
+</div>
+<p>Go back to the DeepProfiler to initialize the contents of your new project directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">DeepProfiler</span>
+<span class="n">python3</span> <span class="n">deepprofiler</span> <span class="o">--</span><span class="n">root</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span> <span class="o">--</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">json</span> <span class="n">setup</span>
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Note</p>
+<p>Note that the root project directory needs to exist before running this command.</p>
+<p>Also, the root and the config file flags are always required, and the config file does not need to exist for the <code class="docutils literal notranslate"><span class="pre">setup</span></code> command to run. The experiment name is optional.</p>
+</div>
+<p>The following is the expected output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Using</span> <span class="n">TensorFlow</span> <span class="n">backend</span><span class="o">.</span>
+<span class="n">Directory</span> <span class="n">exists</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">locations</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">config</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">images</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">metadata</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">pretrained</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">intensities</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">compressed</span><span class="o">/</span><span class="n">images</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">compressed</span><span class="o">/</span><span class="n">metadata</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">results</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">results</span><span class="o">/</span><span class="n">checkpoint</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">results</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">results</span><span class="o">/</span><span class="n">summaries</span><span class="o">/</span>
+<span class="n">Creating</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span><span class="n">results</span><span class="o">/</span><span class="n">features</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Resulting in a directory structure like this:</p>
+<figure class="align-default" id="dir-fig">
+<a class="reference internal image-reference" href="../_images/image2.png"><img alt="../_images/image2.png" src="../_images/image2.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Illustration of the project directory structure expected by DeepProfiler.</span><a class="headerlink" href="#dir-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="tip admonition">
+<p class="admonition-title">Note</p>
+<p>You can create this directory structure manually if you want, but make sure you follow these conventions because DeepProfiler expects these directories to exist and does not explicitly validate if that is the case.</p>
+</div>
+</section>
+<section id="add-project-data">
+<h2><strong>2.2 Add project data</strong><a class="headerlink" href="#add-project-data" title="Permalink to this headline">#</a></h2>
+<p>The directories created in the previous step are empty, so your next task is to put your project data in the right place. A small example dataset can be obtained from our web servers, so you can test and debug DeepProfiler issues easily. Follow these steps to download the example data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">imaging</span><span class="o">-</span><span class="n">platform</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">deepprofiler</span><span class="o">-</span><span class="n">examples</span><span class="o">/</span><span class="n">example</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xzf</span> <span class="n">example</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>The example dataset contains a few images from the <a class="reference external" href="https://bbbc.broadinstitute.org/BBBC021">BBBC021 collection</a>, together with the necessary files to configure the DeepProfiler project. Copy the essential data to the corresponding input directories, including the provided configuration file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">-</span><span class="n">R</span> <span class="n">example</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="n">BBBC021</span><span class="o">-</span><span class="n">small</span><span class="o">/</span><span class="n">images</span><span class="o">/*</span> <span class="n">project</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">images</span><span class="o">/</span>
+<span class="n">cp</span> <span class="n">example</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="n">BBBC021</span><span class="o">-</span><span class="n">small</span><span class="o">/</span><span class="n">metadata</span><span class="o">/*</span> <span class="n">project</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">metadata</span><span class="o">/</span>
+<span class="n">cp</span> <span class="o">-</span><span class="n">R</span> <span class="n">example</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="n">BBBC021</span><span class="o">-</span><span class="n">small</span><span class="o">/</span><span class="n">locations</span><span class="o">/*</span> <span class="n">project</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">locations</span><span class="o">/</span>
+<span class="n">cp</span> <span class="n">example</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">json</span> <span class="n">project</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">config</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>More information about some of these files can be found below.</p>
+</section>
+<section id="the-index-csv-file">
+<h2><strong>2.3 The index.csv file</strong><a class="headerlink" href="#the-index-csv-file" title="Permalink to this headline">#</a></h2>
+<p>The index.csv file (located in _project/inputs/metadata/index.csv) _is critical for running DeepProfile. It follows a comma-separated-values format with a header, contains information about the experiment, and lists all images in your project. DeepProfiler uses this file to guide image sampling for running learning algorithms, and to find the images that we want to process. This file is expected to contain metadata to identify the context of images in the physical experiment that produced them, for instance, identifiers of plates, wells and fields of view (Figure 3). DeepProfiler assumes that each row in the file represents one (multi-channel) field of view. The following list indicates the columns that the index.csv file is expected to have:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Plate</span></code>: Name or identifier of the plate (i.e., highest level of experimental organization), e.g. Week1_22124. The field header cannot be renamed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Well</span></code>: Position in the plate, e.g. B08 (i.e., middle level of organization within plates). The field header cannot be renamed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Site</span></code>: A microscope acquires images in different sites within each well (i.e., lowest level organization within wells). For instance, sites may cover a 4x4 grid or a 9x9 grid, depending on resolution and other factors. The site identifier for each image goes here, e.g. s3. The field header cannot be renamed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Plate_Map_Name</span></code>: Name or identifier of the plate layout used, e.g. Week1. The field header cannot be renamed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Channel_Name</span></code>: Relative path to the image file of each channel. An experiment may have multiple imaging channels (i.e., colors) and DeepProfiler assumes that each channel is stored in a separate image file (all channels stored in the same file is not currently supported). Therefore, to put together all the channels of a single image, the index.csv file will need to have multiple <em>channel_name</em> columns. These columns can be renamed as necessary, and should point to the corresponding image files using a path relative to the root directory. For example, an assay with DNA, Actin, and Tubulin stains will have three channel columns named accordingly, with entries in each column pointing to the corresponding image file. The field may have different names.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Treatment</span></code>: We assume that cells in a well have been treated in a biologically meaningful way or represent different experimental conditions. This column keeps track of that information, which may have other names (in the provided example data, it is called “Compound_Concentration”). It is useful as an identifier of the type of biological experiment, treatment, perturbation or condition of cells observed in the images. This column must be a biologically meaningful label that could be used by DeepProfiler for training purposes. May have different names.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Replicate</span></code>: Number or identifier indicating which repetition of the treatment an image corresponds to.</p></li>
+</ol>
+<p>These are the minimum columns required in the index file. You can append more columns with information specific to your experiment as needed, to keep track of other metadata in your project. Notice that the order of columns is not important, as long as these are available. The meaning of the columns can be interpreted differently according to your problem, for instance, instead of plates, you may be interested in subjects or patients. However, the three levels of organization (plate, well, site) are expected, even if you don’t explicitly use it (e.g. set wells to a constant string if it does not apply to your data). The name of certain columns can be changed as well and later associated with the expected information in the configuration file <a class="reference external" href="#heading=h.5i3187icaj4t">(Section 3</a>).</p>
+<figure class="align-default" id="plate-fig">
+<img alt="../_images/image3.png" src="../_images/image3.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Schematic of plates, wells and sites, which are three metadata fields required by DeepProfiler in the index.csv file.</span><a class="headerlink" href="#plate-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Example of index.csv file:</p>
+<img alt="index file" class="align-center" src="../_images/image4.png" />
+</section>
+<section id="masking-cells">
+<h2><strong>2.4 Masking cells</strong><a class="headerlink" href="#masking-cells" title="Permalink to this headline">#</a></h2>
+<p>The pixels in an image that belong to cells can be identified using segmentation algorithms, such as those available in <a class="reference external" href="https://cellprofiler.org/">CellProfiler</a>. The segmentation boundaries can be stored as binary images with the outlines of cells in white on a black background. These outlines can be used in DeepProfiler to mask cells and isolate the content of single cells for training neural networks and computing features. This may be useful for projects where the structure of single cells determines the phenotype of interest. In our experience, masking cells can sometimes reduce the performance of learning algorithms in identifying phenotypic information. If cell context is necessary for the study of phenotypic variations in your dataset, we recommend you skip cell masking.</p>
+<p>To mask cells, you first need to segment them using an external tool like <a class="reference external" href="https://cellprofiler.org/">CellProfiler</a> or <a class="reference external" href="https://www.ilastik.org/">Ilastik</a> and save the binary image of their outlines. Save these images in the <code class="docutils literal notranslate"><span class="pre">input/outlines</span></code> directory. Next, you need to create a csv file with the list of the outline images with three additional columns: plate, well and site. Save this file in the <code class="docutils literal notranslate"><span class="pre">input/metadata</span></code> directory. The final step is to update the configuration file (<a class="reference external" href="#heading=h.5i3187icaj4t">Section 3</a>) to let DeepProfiler know that you want to use these outlines for masking the cells. Specifically, the <code class="docutils literal notranslate"><span class="pre">mask_objects</span> </code>setting under <code class="docutils literal notranslate"><span class="pre">locations</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">true</span></code> in the configuration file to use masks (more details below).</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="01-install.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">1. Install DeepProfiler</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="03-config.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3. The configuration file</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Michael Bornholdt, Juan Caicedo, Yu Han, Moshkov Nikita, Rebecca Senft (in alphabetical order)<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
