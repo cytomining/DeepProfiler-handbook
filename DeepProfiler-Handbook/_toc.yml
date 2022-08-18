@@ -1,10 +1,10 @@
 format: jb-book
-root: docs/Welcome to DeepProfiler
-chapters: 
-- file: docs/1. Install DeepProfiler
-- file: docs/2. Project structure
-- file: docs/3. The configuration file
-- file: docs/4. Train a model and profile cells
-- file: docs/5. Aggregating profiles
-- file: docs/6. Processing DeepProfiler features
-- file: docs/7. Run example data
+root: docs/00-welcome
+chapters:
+- file: docs/01-install
+- file: docs/02-structure
+- file: docs/03-config
+- file: docs/04-train-infer
+- file: docs/05-aggregate
+- file: docs/06-process
+- file: docs/07-example
