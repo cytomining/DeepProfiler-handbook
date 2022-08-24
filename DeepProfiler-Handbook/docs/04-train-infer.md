@@ -29,7 +29,7 @@ The `--config filename.json` parameter points to the name of a file from /inputs
 ```
 
 
-### Profiling from a self-trained model:
+### Profiling with self-trained model:
 
 After training your own model, you can profile your data using the checkpoints from the training:
 
@@ -45,10 +45,20 @@ The _profile_ section of your config should look something like this:
 ```
 
 
-When profiling from a model pre-trained on ImageNet images, the ‘checkpoint’ simply is replaced with “None”.
+### Profiling with pre-trained model: 
 
+When profiling from a model pre-trained on ImageNet images, the ‘checkpoint’ simply is replaced with “None” and ‘use_pretrained_input_size’ is set according to the chosen model.
 
+The _profile_ section of your config should look something like this (example for _EfficientNet-B0_ model):
 
+```
+"profile": {
+      "use_pretrained_input_size" : 224,
+      "feature_layer": "avg_pool",
+      "checkpoint": "None",
+      "batch_size": 128
+    }
+```
 
 
 ## **Optional project-dependent functions:**
