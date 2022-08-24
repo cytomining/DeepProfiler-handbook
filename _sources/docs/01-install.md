@@ -99,8 +99,8 @@ Options:
   --gpu TEXT          GPU device id (the id can be checked with nvidia-smi)
   --exp TEXT          Name of experiment, this folder will be created in project_root/outputs/
   --logging TEXT      Path to file with comet.ml API key (filename in project_root/inputs/config/)
-  --sample TEXT       Name of the folder with single-cell sample (output for sample-sc command, input for training with sampled crop generator or online labels crop generator)
-  --metadata TEXT	Metadata filename
+  --single-cells TEXT       Name of the folder with single-cell dataset (output for export-sc command, input for training with sampled crop generator or online labels crop generator)
+  --metadata TEXT	    Metadata filename, for exporting or profiling it is a filename for project_root/inputs/metadata/, for training with sampled crop generator or online labels crop generator the filename in project_root/outputs/<single-cell-dataset>/
   --help              Show this message and exit.
 
 
