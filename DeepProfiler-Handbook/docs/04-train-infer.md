@@ -9,6 +9,9 @@ After configuring the project, running DeepProfiler is straightforward. There ar
 
 If using a pretrained model, skip this step and move to 4.2 directly.
 
+
+The minimal command for training can look like:
+
 ```
 python3 deepprofiler --root=/home/ubuntu/project/ --config filename.json train
 ```
