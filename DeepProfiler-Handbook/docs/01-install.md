@@ -96,7 +96,7 @@ Options:
   --root PATH         Root directory for DeepProfiler experiment
   --config TEXT       Path to existing config file (filename in project_root/inputs/config/)
   --cores INTEGER     Number of CPU cores for parallel processing (all=0) for prepare command
-  --gpu TEXT          GPU device id (the id can be checked with nvidia-smi)
+  --gpu INTEGER          GPU device id (the id can be checked with nvidia-smi)
   --exp TEXT          Name of experiment, this folder will be created in project_root/outputs/
   --logging TEXT      Path to file with comet.ml API key (filename in project_root/inputs/config/)
   --single-cells TEXT       Name of the folder with single-cell dataset (output for export-sc command, input for training with sampled crop generator or online labels crop generator)
@@ -105,14 +105,13 @@ Options:
 
 
 Commands:
-  download-bbbc021
-  prepare
-  profile
-  setup
-  split
-  train
-  traintf2
-  export-sc
+  export-sc export crops of single-cells for training
+  prepare   run illumination correction and compression
+  profile   run feature extraction
+  setup     initialize folder structure of DeepProfiler project
+  split     split metadata into multiple parts
+  train     train a model
+  traintf2  train a model with TensorFlow 2 dataset
 ```
 
 
