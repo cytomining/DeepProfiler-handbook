@@ -358,13 +358,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#profiling-with-self-trained-model">
-     Profiling with self-trained model:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#profiling-with-pre-trained-model">
-     Profiling with pre-trained model:
+    <a class="reference internal nav-link" href="#profiling-from-a-self-trained-model">
+     Profiling from a self-trained model:
     </a>
    </li>
   </ul>
@@ -410,13 +405,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#profiling-with-self-trained-model">
-     Profiling with self-trained model:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#profiling-with-pre-trained-model">
-     Profiling with pre-trained model:
+    <a class="reference internal nav-link" href="#profiling-from-a-self-trained-model">
+     Profiling from a self-trained model:
     </a>
    </li>
   </ul>
@@ -444,7 +434,6 @@ title="Print to PDF"
 <section id="train-a-model">
 <h2><strong>4.1 Train a model:</strong><a class="headerlink" href="#train-a-model" title="Permalink to this headline">#</a></h2>
 <p>If using a pretrained model, skip this step and move to 4.2 directly.</p>
-<p>The minimal command for training can look like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">deepprofiler</span> <span class="o">--</span><span class="n">root</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span> <span class="o">--</span><span class="n">config</span> <span class="n">filename</span><span class="o">.</span><span class="n">json</span> <span class="n">train</span>
 </pre></div>
 </div>
@@ -458,8 +447,8 @@ title="Print to PDF"
 <p class="admonition-title">Note</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">filename.json</span></code> parameter points to the name of a file from /inputs/config folder.</p>
 </div>
-<section id="profiling-with-self-trained-model">
-<h3>Profiling with self-trained model:<a class="headerlink" href="#profiling-with-self-trained-model" title="Permalink to this headline">#</a></h3>
+<section id="profiling-from-a-self-trained-model">
+<h3>Profiling from a self-trained model:<a class="headerlink" href="#profiling-from-a-self-trained-model" title="Permalink to this headline">#</a></h3>
 <p>After training your own model, you can profile your data using the checkpoints from the training:</p>
 <p>The <em>profile</em> section of your config should look something like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;profile&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -469,19 +458,7 @@ title="Print to PDF"
     <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="profiling-with-pre-trained-model">
-<h3>Profiling with pre-trained model:<a class="headerlink" href="#profiling-with-pre-trained-model" title="Permalink to this headline">#</a></h3>
-<p>When profiling from a model pre-trained on ImageNet images, the ‘checkpoint’ simply is replaced with “None” and ‘use_pretrained_input_size’ is set according to the chosen model.</p>
-<p>The <em>profile</em> section of your config should look something like this (example for <em>EfficientNet-B0</em> model):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;profile&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">&quot;use_pretrained_input_size&quot;</span> <span class="p">:</span> <span class="mi">224</span><span class="p">,</span>
-      <span class="s2">&quot;feature_layer&quot;</span><span class="p">:</span> <span class="s2">&quot;avg_pool&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;checkpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">128</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
+<p>When profiling from a model pre-trained on ImageNet images, the ‘checkpoint’ simply is replaced with “None”.</p>
 </section>
 </section>
 <section id="optional-project-dependent-functions">
