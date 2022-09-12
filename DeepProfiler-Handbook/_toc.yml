@@ -3,8 +3,10 @@ root: docs/00-welcome
 chapters:
 - file: docs/01-install
 - file: docs/02-structure
-- file: docs/03-config
-- file: docs/04-train-infer
-- file: docs/05-aggregate
-- file: docs/06-process
-- file: docs/07-example
+- file: docs/03-images
+- file: docs/04-metadata
+- file: docs/05-config
+- file: docs/06-train-infer
+- file: docs/07-aggregate
+- file: docs/08-process
+- file: docs/09-example
