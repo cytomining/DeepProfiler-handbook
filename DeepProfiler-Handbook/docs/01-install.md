@@ -3,9 +3,24 @@
 We recommend installing DeepProfiler from source, which will give you flexibility to adjust code and configurations, for instance when testing new models or for adjusting advanced training settings. The instructions in this section assist you with installing DeepProfiler from source in a Linux environment. The provided code snippets assume the use of Ubuntu but any Linux distribution can work for installing DeepProfiler; just make sure your environment is configured accordingly.
 
 We strongly advise you use a virtual environment for DeepProfiler. This will help avoid interference with system-wide installed python packages. Below contains some basic instructions for getting started using virtualenv or conda to manage virtual environments in Linux:
+````{dropdown} **Virtual environment quickstart**
+::::{tab-set}
 
-`````{dropdown} **Virtual environment quickstart:**
+:::{tab-item} Label1
+Content 1
+:::
+
+:::{tab-item} Label2
+Content 2
+:::
+
+::::
+````
+
+````{dropdown} **Virtual environment quickstart**
 We will present tips on managing environments with virtualenv and conda. 
+
+1. Installation
 
 ````{tab-set}
 ```{tab-item} virtualenv
@@ -38,7 +53,7 @@ source ./deepprofenv/bin/activate
 Conda instructions
 ```
 ````
-`````
+````
 
 ## **1.1 Clone the repository**
 
