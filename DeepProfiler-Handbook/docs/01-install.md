@@ -27,6 +27,7 @@ Next, create a virtual environment for DeepProfiler in the current directory:
 virtualenv -p python3 deepprofenv
 ```
 ````
+
 ````{tab-item} conda
 ```{code-block}
 conda create --name deepprofenv python=3.8 
@@ -42,13 +43,13 @@ Finally, activate your virtual environment:
 source ./deepprofenv/bin/activate
 ```
 ````
+
 ````{tab-item} conda
 ```{code-block}
 conda activate deepprofenv
 ```
 ````
 `````
-
 ``````
 
 
