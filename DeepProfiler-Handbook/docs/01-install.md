@@ -13,17 +13,13 @@ Installation
 ````{tab-item} virtualenv
 
 ```{code-block}
-
 sudo install virtualenv
-
 ```
 
 ````
 
 ````{tab-item} conda
-
-a = 1;
-
+See [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) for installation details.
 ````
 
 `````
