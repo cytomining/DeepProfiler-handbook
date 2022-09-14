@@ -28,7 +28,9 @@ virtualenv -p python3 deepprofenv
 ```
 ````
 ````{tab-item} conda
-See [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) for installation details.
+```{code-block}
+conda create --name deepprofenv python=3.8 
+```
 ````
 `````
 
@@ -41,7 +43,9 @@ source ./deepprofenv/bin/activate
 ```
 ````
 ````{tab-item} conda
-See [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) for installation details.
+```{code-block}
+conda activate deepprofenv
+```
 ````
 `````
 
