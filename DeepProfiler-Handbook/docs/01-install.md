@@ -20,33 +20,6 @@ a = 1;
 
 ````
 
-Next, you will be able to create a virtual environment in a current directory:
-
-````{tab-set-code}
-
-```{code-block} virtualenv
-virtualenv -p python3 deepprofenv
-```
-
-```{code-block} conda
-a = 1;
-```
-
-````
-
-To activate the created virtualenv use:
-
-````{tab-set-code}
-
-```{code-block} virtualenv
-source ./deepprofenv/bin/activate
-```
-
-```{code-block} conda
-a = 1;
-```
-
-````
 
 `````
 
