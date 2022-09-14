@@ -1,7 +1,44 @@
 # 1. Install DeepProfiler
 
-There are two options for installation: installing DeepProfiler from source and using a docker container. We recommend you use docker if your environment needs to be quickly recreated (e.g., virtual machines in the cloud) or if you plan to do large scale processing. Install from source when you need flexibility to adjust code and configurations, for instance when testing new models or for adjusting advanced training settings. If using a docker container, download a [Docker Image](https://hub.docker.com/r/michaelbornholdt/deep_profiler/tags) using the command `docker pull michaelbornholdt/deep_profiler:aws-0` then proceed to step 2. The instructions in this section assist you with installing DeepProfiler from source in a Linux environment. The provided code snippets assume the use of Ubuntu but any Linux distribution can work for installing DeepProfiler; just make sure your environment is configured accordingly.
+We recommend installing DeepProfiler from source, which will give you flexibility to adjust code and configurations, for instance when testing new models or for adjusting advanced training settings. The instructions in this section assist you with installing DeepProfiler from source in a Linux environment. The provided code snippets assume the use of Ubuntu but any Linux distribution can work for installing DeepProfiler; just make sure your environment is configured accordingly.
 
+We strongly advise you use a virtual environment for DeepProfiler. This will help avoid interference with system-wide installed python packages. Below contains some basic instructions for getting started using virtualenv or conda to manage virtual environments in Linux:
+
+`````{dropdown} **Virtual environment quickstart:**
+We will present tips on managing environments with virtualenv and conda. 
+
+````{tab-set}
+```{tab-item} virtualenv
+Virtualenv ([https://pypi.org/project/virtualenv/](https://pypi.org/project/virtualenv/)) can be installed with the following command:
+
+```
+sudo install virtualenv
+```
+If you don’t have sudo privileges in your system, use:
+
+
+```
+pip3 install virtualenv
+```
+Next, you will be able to create a virtual environment in a current directory:
+
+
+```
+virtualenv -p python3 deepprofenv
+```
+
+
+To activate the created virtualenv use:
+
+
+```
+source ./deepprofenv/bin/activate
+
+```{tab-item} conda
+Conda instructions
+```
+````
+`````
 
 ## **1.1 Clone the repository**
 
@@ -34,36 +71,7 @@ sudo apt install python3
 ```
 
 
-We strongly advise using a virtual environment for DeepProfiler. This will help not to interfere with system-wide installed python packages. Virtualenv ([https://pypi.org/project/virtualenv/](https://pypi.org/project/virtualenv/)) can be installed with the following command:
 
-
-```
-sudo install virtualenv
-```
-
-
-If you don’t have sudo privileges in your system, use:
-
-
-```
-pip3 install virtualenv
-```
-
-
-Next, you will be able to create a virtual environment in a current directory:
-
-
-```
-virtualenv -p python3 deepprofenv
-```
-
-
-To activate the created virtualenv use:
-
-
-```
-source ./deepprofenv/bin/activate
-```
 
 ```{admonition} Note
 :class: tip
