@@ -5,17 +5,7 @@ We recommend installing DeepProfiler from source, which will give you flexibilit
 We strongly advise you use a virtual environment for DeepProfiler. This will help avoid interference with system-wide installed python packages. Below contains some basic instructions for getting started using virtualenv or conda to manage virtual environments in Linux:
 
 ````{dropdown} **Virtual environment quickstart**
-::::{tab-set}
-
-:::{tab-item} Label1
-Content 1
-:::
-
-:::{tab-item} Label2
-Content 2
-:::
-
-::::
+Test
 ````
 
 
