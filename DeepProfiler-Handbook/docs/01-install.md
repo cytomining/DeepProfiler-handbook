@@ -7,8 +7,8 @@ We strongly advise you use a virtual environment for DeepProfiler. This will hel
 `````{dropdown} **Virtual environment quickstart**
 ````{tab-set-code}
 
-```{literalinclude} ./snippet.py
-:language: python
+```{code-block} python
+a = 1;
 ```
 
 ```{code-block} javascript
