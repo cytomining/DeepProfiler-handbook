@@ -422,7 +422,8 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="install-deepprofiler">
 <h1>1. Install DeepProfiler<a class="headerlink" href="#install-deepprofiler" title="Permalink to this headline">#</a></h1>
-<p>There are two options for installation: installing DeepProfiler from source and using a docker container. We recommend you use docker if your environment needs to be quickly recreated (e.g., virtual machines in the cloud) or if you plan to do large scale processing. Install from source when you need flexibility to adjust code and configurations, for instance when testing new models or for adjusting advanced training settings. If using a docker container, download a <a class="reference external" href="https://hub.docker.com/r/michaelbornholdt/deep_profiler/tags">Docker Image</a> using the command <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">michaelbornholdt/deep_profiler:aws-0</span></code> then proceed to step 2. The instructions in this section assist you with installing DeepProfiler from source in a Linux environment. The provided code snippets assume the use of Ubuntu but any Linux distribution can work for installing DeepProfiler; just make sure your environment is configured accordingly.</p>
+<p>We recommend installing DeepProfiler from source, which will give you flexibility to adjust code and configurations, for instance when testing new models or for adjusting advanced training settings. The instructions in this section assist you with installing DeepProfiler from source in a Linux environment. The provided code snippets assume the use of Ubuntu but any Linux distribution can work for installing DeepProfiler; just make sure your environment is configured accordingly.</p>
+<p>We strongly advise you use a virtual environment for DeepProfiler. This will help avoid interference with system-wide installed python packages. Below contains some basic instructions for getting started using virtualenv or conda to manage virtual environments in Linux:</p>
 <section id="clone-the-repository">
 <h2><strong>1.1 Clone the repository</strong><a class="headerlink" href="#clone-the-repository" title="Permalink to this headline">#</a></h2>
 <p>On the command line, enter the directory where you want to install DeepProfiler, then clone the GitHub repo:</p>
@@ -439,22 +440,6 @@ title="Print to PDF"
 </div>
 <p>If you don’t have sudo, use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span> <span class="pre">--all</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span>
-</pre></div>
-</div>
-<p>We strongly advise using a virtual environment for DeepProfiler. This will help not to interfere with system-wide installed python packages. Virtualenv (<a class="reference external" href="https://pypi.org/project/virtualenv/">https://pypi.org/project/virtualenv/</a>) can be installed with the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">install</span> <span class="n">virtualenv</span>
-</pre></div>
-</div>
-<p>If you don’t have sudo privileges in your system, use:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">virtualenv</span>
-</pre></div>
-</div>
-<p>Next, you will be able to create a virtual environment in a current directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">virtualenv</span> <span class="o">-</span><span class="n">p</span> <span class="n">python3</span> <span class="n">deepprofenv</span>
-</pre></div>
-</div>
-<p>To activate the created virtualenv use:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">./</span><span class="n">deepprofenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 </pre></div>
 </div>
 <div class="tip admonition">
