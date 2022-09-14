@@ -6,22 +6,43 @@ We strongly advise you use a virtual environment for DeepProfiler. This will hel
 
 ``````{dropdown} **Virtual environment quickstart instructions**
 
-Installation
+Install your environment manager of choice:
 
 `````{tab-set}
-
 ````{tab-item} virtualenv
-
 ```{code-block}
 sudo install virtualenv
 ```
-
 ````
-
 ````{tab-item} conda
 See [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) for installation details.
 ````
+`````
 
+Next, create a virtual environment for DeepProfiler in the current directory:
+
+`````{tab-set}
+````{tab-item} virtualenv
+```{code-block}
+virtualenv -p python3 deepprofenv
+```
+````
+````{tab-item} conda
+See [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) for installation details.
+````
+`````
+
+Finally, activate your virtual environment: 
+
+`````{tab-set}
+````{tab-item} virtualenv
+```{code-block}
+source ./deepprofenv/bin/activate
+```
+````
+````{tab-item} conda
+See [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) for installation details.
+````
 `````
 
 ``````
@@ -49,16 +70,11 @@ First make sure that your python installation is up to date. DeepProfiler runs i
 sudo apt update
 ```
 
-
 If you don’t have sudo, use `conda update --all`
-
 
 ```
 sudo apt install python3
 ```
-
-
-
 
 ```{admonition} Note
 :class: tip
@@ -71,12 +87,17 @@ Now you can enter the DeepProfiler directory and install it using pip. This will
 ```
 cd DeepProfiler/
 pip install -e .
-python3 deepprofiler
 ```
 
 ```{admonition} Note
 :class: tip
 The above environment does not include the package of ‘Imagecodecs’, that needs to be installed separately.
+```
+
+Run DeepProfiler
+
+```
+python3 deepprofiler
 ```
 
 The following is the expected output of running the DeepProfiler entry point:
