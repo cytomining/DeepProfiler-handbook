@@ -12,7 +12,11 @@ Installation
 
 ```{tab-item} virtualenv
 
-`sudo install virtualenv`
+```{code-block}
+
+sudo install virtualenv
+
+```
 
 ```
 
