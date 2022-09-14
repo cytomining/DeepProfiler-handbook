@@ -433,47 +433,51 @@ title="Print to PDF"
 </summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">Install your environment manager of choice:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="d4509a98-06b3-4f42-8049-8b17cb1d4e08" name="5ae9beed-1d30-4a31-9c53-54aeb70ed956" type="radio">
-</input><label class="sd-tab-label" for="d4509a98-06b3-4f42-8049-8b17cb1d4e08">
+<input checked="checked" id="3a0c5bca-ae08-482d-b5f1-57b27f4d0aa0" name="db263f3c-72fd-4b85-a793-8b03e8376e81" type="radio">
+</input><label class="sd-tab-label" for="3a0c5bca-ae08-482d-b5f1-57b27f4d0aa0">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">install</span> <span class="n">virtualenv</span>
 </pre></div>
 </div>
 </div>
-<input id="7107f33f-8fca-4a72-b171-4df26b0e28d2" name="5ae9beed-1d30-4a31-9c53-54aeb70ed956" type="radio">
-</input><label class="sd-tab-label" for="7107f33f-8fca-4a72-b171-4df26b0e28d2">
+<input id="df534017-87e8-4a72-9001-947d6fd3388d" name="db263f3c-72fd-4b85-a793-8b03e8376e81" type="radio">
+</input><label class="sd-tab-label" for="df534017-87e8-4a72-9001-947d6fd3388d">
 conda</label><div class="sd-tab-content docutils">
 <p class="sd-card-text">See <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html">conda documentation</a> for installation details.</p>
 </div>
 </div>
 <p class="sd-card-text">Next, create a virtual environment for DeepProfiler in the current directory:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="5c402f5f-726a-44ab-ae60-aa53a7862b03" name="74d5ff37-d367-4b67-bc1a-d5f82aadb29d" type="radio">
-</input><label class="sd-tab-label" for="5c402f5f-726a-44ab-ae60-aa53a7862b03">
+<input checked="checked" id="81ac0867-c8ee-4446-a0a5-6bdebffccb43" name="06a41cad-9adb-4367-a836-9d7ee645173d" type="radio">
+</input><label class="sd-tab-label" for="81ac0867-c8ee-4446-a0a5-6bdebffccb43">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">virtualenv</span> <span class="o">-</span><span class="n">p</span> <span class="n">python3</span> <span class="n">deepprofenv</span>
 </pre></div>
 </div>
 </div>
-<input id="b02690ff-292b-44cb-8ae8-1b2ca994b750" name="74d5ff37-d367-4b67-bc1a-d5f82aadb29d" type="radio">
-</input><label class="sd-tab-label" for="b02690ff-292b-44cb-8ae8-1b2ca994b750">
+<input id="e174ca4f-c85f-4e56-b78d-2ec1f18e3ad2" name="06a41cad-9adb-4367-a836-9d7ee645173d" type="radio">
+</input><label class="sd-tab-label" for="e174ca4f-c85f-4e56-b78d-2ec1f18e3ad2">
 conda</label><div class="sd-tab-content docutils">
-<p class="sd-card-text">See <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html">conda documentation</a> for installation details.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">deepprofenv</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span> 
+</pre></div>
+</div>
 </div>
 </div>
 <p class="sd-card-text">Finally, activate your virtual environment:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="b3ae6457-51fd-4ef9-9fa7-ff45ca8300a8" name="e4d0d199-f369-46ff-bad8-48387811e697" type="radio">
-</input><label class="sd-tab-label" for="b3ae6457-51fd-4ef9-9fa7-ff45ca8300a8">
+<input checked="checked" id="d98bd4f0-7658-4a5d-af02-17bf79a7ff8b" name="dd872a8f-d75f-4d53-bcca-58b495c256fc" type="radio">
+</input><label class="sd-tab-label" for="d98bd4f0-7658-4a5d-af02-17bf79a7ff8b">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">./</span><span class="n">deepprofenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 </pre></div>
 </div>
 </div>
-<input id="922504cc-fadc-4375-b9ff-827354f43aeb" name="e4d0d199-f369-46ff-bad8-48387811e697" type="radio">
-</input><label class="sd-tab-label" for="922504cc-fadc-4375-b9ff-827354f43aeb">
+<input id="c5a098ec-0870-4cbc-a4c2-65a4b855177b" name="dd872a8f-d75f-4d53-bcca-58b495c256fc" type="radio">
+</input><label class="sd-tab-label" for="c5a098ec-0870-4cbc-a4c2-65a4b855177b">
 conda</label><div class="sd-tab-content docutils">
-<p class="sd-card-text">See <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html">conda documentation</a> for installation details.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">deepprofenv</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
