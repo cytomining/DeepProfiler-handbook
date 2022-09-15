@@ -106,6 +106,7 @@ The above environment does not include the package of ‘Imagecodecs’, that ne
 
 ## **1.4 Run DeepProfiler to check it works**
 
+To run DeepProfiler, run this command: 
 ```
 python3 deepprofiler
 ```
