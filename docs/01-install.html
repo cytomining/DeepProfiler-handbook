@@ -350,23 +350,37 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-python-and-choose-an-environment-manager">
+   <strong>
+    1.1 Install python and choose an environment manager
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#clone-the-repository">
    <strong>
-    1.1 Clone the repository
+    1.2 Clone the repository
    </strong>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#install-dependencies-and-packages">
    <strong>
-    1.2 Install dependencies and packages
+    1.3 Install dependencies and packages
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-deepprofiler-to-check-it-works">
+   <strong>
+    1.4 Run DeepProfiler to check it works
    </strong>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#troubleshooting">
    <strong>
-    1.4 Troubleshooting
+    1.5 Troubleshooting
    </strong>
   </a>
  </li>
@@ -390,23 +404,37 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-python-and-choose-an-environment-manager">
+   <strong>
+    1.1 Install python and choose an environment manager
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#clone-the-repository">
    <strong>
-    1.1 Clone the repository
+    1.2 Clone the repository
    </strong>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#install-dependencies-and-packages">
    <strong>
-    1.2 Install dependencies and packages
+    1.3 Install dependencies and packages
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-deepprofiler-to-check-it-works">
+   <strong>
+    1.4 Run DeepProfiler to check it works
    </strong>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#troubleshooting">
    <strong>
-    1.4 Troubleshooting
+    1.5 Troubleshooting
    </strong>
   </a>
  </li>
@@ -423,6 +451,17 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="install-deepprofiler">
 <h1>1. Install DeepProfiler<a class="headerlink" href="#install-deepprofiler" title="Permalink to this headline">#</a></h1>
 <p>We recommend installing DeepProfiler from source, which will give you flexibility to adjust code and configurations, for instance when testing new models or for adjusting advanced training settings. The instructions in this section assist you with installing DeepProfiler from source in a Linux environment. The provided code snippets assume the use of Ubuntu but any Linux distribution can work for installing DeepProfiler; just make sure your environment is configured accordingly.</p>
+<section id="install-python-and-choose-an-environment-manager">
+<h2><strong>1.1 Install python and choose an environment manager</strong><a class="headerlink" href="#install-python-and-choose-an-environment-manager" title="Permalink to this headline">#</a></h2>
+<p>First make sure that your python 3 installation is up to date. DeepProfiler runs in Python 3.6 or higher (Python 3.8 recommended).</p>
+<p>To install python3 and pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">pip</span>
+</pre></div>
+</div>
+<p>To update an existing installation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+</pre></div>
+</div>
 <p>We strongly advise you use a virtual environment for DeepProfiler. This will help avoid interference with system-wide installed python packages. Below contains some basic instructions for getting started using <a class="reference external" href="https://pypi.org/project/virtualenv/">virtualenv</a> or <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html">conda</a> to manage virtual environments in Linux:</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
@@ -431,32 +470,32 @@ title="Print to PDF"
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">First, nstall your environment manager of choice:</p>
+<p class="sd-card-text">First, install your environment manager of choice:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="33ab8c47-b04b-40f9-aaaf-9544d694c38a" name="7893fbf8-7f87-4b89-9591-c1b5d96425f1" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key1" for="33ab8c47-b04b-40f9-aaaf-9544d694c38a">
+<input checked="checked" id="2d6cbb5c-d8bc-4607-9f01-1d062565e0e0" name="155d3962-2e6b-433a-9dfe-9f5eea296773" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key1" for="2d6cbb5c-d8bc-4607-9f01-1d062565e0e0">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">install</span> <span class="n">virtualenv</span>
 </pre></div>
 </div>
 </div>
-<input id="99651172-5419-4f86-9985-9328b9a0240c" name="7893fbf8-7f87-4b89-9591-c1b5d96425f1" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key2" for="99651172-5419-4f86-9985-9328b9a0240c">
+<input id="d4dcf65d-ce8a-4614-b040-e1adf12d162a" name="155d3962-2e6b-433a-9dfe-9f5eea296773" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key2" for="d4dcf65d-ce8a-4614-b040-e1adf12d162a">
 conda</label><div class="sd-tab-content docutils">
 <p class="sd-card-text">See <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html">conda documentation</a> for installation details.</p>
 </div>
 </div>
 <p class="sd-card-text">Next, create a virtual environment for DeepProfiler in the current directory:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="2de1c1bc-2340-46d9-8f5b-15e1387e9553" name="16e1d0ae-1ff1-463b-bb58-dd8f35dbd2be" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key1" for="2de1c1bc-2340-46d9-8f5b-15e1387e9553">
+<input checked="checked" id="c21ef0ee-e9be-44b5-ac53-c24107abe558" name="472bd565-c413-42b0-9895-485dfbca61fe" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key1" for="c21ef0ee-e9be-44b5-ac53-c24107abe558">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">virtualenv</span> <span class="o">-</span><span class="n">p</span> <span class="n">python3</span> <span class="n">deepprofenv</span>
 </pre></div>
 </div>
 </div>
-<input id="92310479-fe5f-4b40-95c8-8d010bd46cfb" name="16e1d0ae-1ff1-463b-bb58-dd8f35dbd2be" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key2" for="92310479-fe5f-4b40-95c8-8d010bd46cfb">
+<input id="fe71798b-3dd4-46c3-9a55-7524e67a116e" name="472bd565-c413-42b0-9895-485dfbca61fe" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key2" for="fe71798b-3dd4-46c3-9a55-7524e67a116e">
 conda</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">deepprofenv</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span> 
 </pre></div>
@@ -465,15 +504,15 @@ conda</label><div class="sd-tab-content docutils">
 </div>
 <p class="sd-card-text">Finally, activate your virtual environment:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="f06d936a-2b13-451f-b991-701290097ba7" name="62b8cf85-6831-47ea-a753-e9bb9800b7e7" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key1" for="f06d936a-2b13-451f-b991-701290097ba7">
+<input checked="checked" id="61a6e8dd-3941-4895-aa67-f699c2f92859" name="e404328d-0757-4101-954d-88d4ecaf958b" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key1" for="61a6e8dd-3941-4895-aa67-f699c2f92859">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">./</span><span class="n">deepprofenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 </pre></div>
 </div>
 </div>
-<input id="3960a73f-df2b-4210-bcac-7784507e1e5a" name="62b8cf85-6831-47ea-a753-e9bb9800b7e7" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key2" for="3960a73f-df2b-4210-bcac-7784507e1e5a">
+<input id="6e08fc5e-098d-4712-814d-3a34d872ffc2" name="e404328d-0757-4101-954d-88d4ecaf958b" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key2" for="6e08fc5e-098d-4712-814d-3a34d872ffc2">
 conda</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">deepprofenv</span>
 </pre></div>
@@ -481,8 +520,9 @@ conda</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-</details><section id="clone-the-repository">
-<h2><strong>1.1 Clone the repository</strong><a class="headerlink" href="#clone-the-repository" title="Permalink to this headline">#</a></h2>
+</details></section>
+<section id="clone-the-repository">
+<h2><strong>1.2 Clone the repository</strong><a class="headerlink" href="#clone-the-repository" title="Permalink to this headline">#</a></h2>
 <p>On the command line, enter the directory where you want to install DeepProfiler, then clone the GitHub repo:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">broadinstitute</span><span class="o">/</span><span class="n">DeepProfiler</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
@@ -490,13 +530,9 @@ conda</label><div class="sd-tab-content docutils">
 <p>Alternatively, you can fork it to keep track of your own changes, and eventually contribute back.</p>
 </section>
 <section id="install-dependencies-and-packages">
-<h2><strong>1.2 Install dependencies and packages</strong><a class="headerlink" href="#install-dependencies-and-packages" title="Permalink to this headline">#</a></h2>
-<p>First make sure that your python installation is up to date. DeepProfiler runs in Python 3.6 or higher (Python 3.8 recommended).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
-</pre></div>
-</div>
-<p>If you don’t have sudo, use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span> <span class="pre">--all</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span>
+<h2><strong>1.3 Install dependencies and packages</strong><a class="headerlink" href="#install-dependencies-and-packages" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">DeepProfiler</span><span class="o">/</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
 </pre></div>
 </div>
 <div class="tip admonition">
@@ -504,15 +540,13 @@ conda</label><div class="sd-tab-content docutils">
 <p>If you have access to a GPU, make sure that you have the correct drivers and the <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code> package installed and configured correctly. You can follow this link for more details about how to install TensorFlow with GPU support in your machine: <a class="reference external" href="https://www.tensorflow.org/install">https://www.tensorflow.org/install</a> . The command to check if the correct GPU is being utilized is <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> .</p>
 </div>
 <p>Now you can enter the DeepProfiler directory and install it using pip. This will pull the missing dependencies and will also create runnable packages in your clone.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">DeepProfiler</span><span class="o">/</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
-</pre></div>
-</div>
 <div class="tip admonition">
 <p class="admonition-title">Note</p>
 <p>The above environment does not include the package of ‘Imagecodecs’, that needs to be installed separately.</p>
 </div>
-<p>Run DeepProfiler</p>
+</section>
+<section id="run-deepprofiler-to-check-it-works">
+<h2><strong>1.4 Run DeepProfiler to check it works</strong><a class="headerlink" href="#run-deepprofiler-to-check-it-works" title="Permalink to this headline">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">deepprofiler</span>
 </pre></div>
 </div>
@@ -545,7 +579,7 @@ conda</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="troubleshooting">
-<h2><strong>1.4 Troubleshooting</strong><a class="headerlink" href="#troubleshooting" title="Permalink to this headline">#</a></h2>
+<h2><strong>1.5 Troubleshooting</strong><a class="headerlink" href="#troubleshooting" title="Permalink to this headline">#</a></h2>
 <p>Some dependencies need to be manually installed depending on your environment. If you pulled the latest version of DeepProfiler in an existing clone, try reinstalling it again as in step 1.2 to make sure the dependencies are still up to date.</p>
 </section>
 </section>
