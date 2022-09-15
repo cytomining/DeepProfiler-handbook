@@ -2,11 +2,25 @@
 
 We recommend installing DeepProfiler from source, which will give you flexibility to adjust code and configurations, for instance when testing new models or for adjusting advanced training settings. The instructions in this section assist you with installing DeepProfiler from source in a Linux environment. The provided code snippets assume the use of Ubuntu but any Linux distribution can work for installing DeepProfiler; just make sure your environment is configured accordingly.
 
+## **1.1 Install python and choose an environment manager**
+
+First make sure that your python 3 installation is up to date. DeepProfiler runs in Python 3.6 or higher (Python 3.8 recommended).
+
+To install python3 and pip:
+```{code-block}
+sudo apt-get install python3-pip
+```
+
+To update an existing installation:
+```{code-block}
+sudo apt update
+```
+
 We strongly advise you use a virtual environment for DeepProfiler. This will help avoid interference with system-wide installed python packages. Below contains some basic instructions for getting started using [virtualenv](https://pypi.org/project/virtualenv/) or [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) to manage virtual environments in Linux:
 
 ``````{dropdown} **Virtual environment quickstart instructions**
 
-First, nstall your environment manager of choice:
+First, install your environment manager of choice:
 
 `````{tab-set}
 ````{tab-item} virtualenv
@@ -62,32 +76,21 @@ conda activate deepprofenv
 ``````
 
 
-## **1.1 Clone the repository**
+## **1.2 Clone the repository**
 
 On the command line, enter the directory where you want to install DeepProfiler, then clone the GitHub repo:
-
 
 ```
 git clone https://github.com/broadinstitute/DeepProfiler.git
 ```
-
-
 Alternatively, you can fork it to keep track of your own changes, and eventually contribute back.
 
 
-## **1.2 Install dependencies and packages**
-
-First make sure that your python installation is up to date. DeepProfiler runs in Python 3.6 or higher (Python 3.8 recommended).
-
+## **1.3 Install dependencies and packages**
 
 ```
-sudo apt update
-```
-
-If you don’t have sudo, use `conda update --all`
-
-```
-sudo apt install python3
+cd DeepProfiler/
+pip install -e .
 ```
 
 ```{admonition} Note
@@ -97,25 +100,17 @@ If you have access to a GPU, make sure that you have the correct drivers and the
 
 Now you can enter the DeepProfiler directory and install it using pip. This will pull the missing dependencies and will also create runnable packages in your clone.
 
-
-```
-cd DeepProfiler/
-pip install -e .
-```
-
 ```{admonition} Note
 :class: tip
 The above environment does not include the package of ‘Imagecodecs’, that needs to be installed separately.
 ```
 
-Run DeepProfiler
+## **1.4 Run DeepProfiler to check it works**
 
 ```
 python3 deepprofiler
 ```
-
 The following is the expected output of running the DeepProfiler entry point:
-
 
 ```
 Using TensorFlow backend.
@@ -144,9 +139,7 @@ Commands:
   traintf2  train a model with TensorFlow 2 dataset
 ```
 
-
-
-## **1.4 Troubleshooting**
+## **1.5 Troubleshooting**
 
 Some dependencies need to be manually installed depending on your environment. If you pulled the latest version of DeepProfiler in an existing clone, try reinstalling it again as in step 1.2 to make sure the dependencies are still up to date.
 
