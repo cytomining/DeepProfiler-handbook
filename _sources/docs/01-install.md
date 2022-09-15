@@ -6,15 +6,19 @@ We strongly advise you use a virtual environment for DeepProfiler. This will hel
 
 ``````{dropdown} **Virtual environment quickstart instructions**
 
-Install your environment manager of choice:
+First, nstall your environment manager of choice:
 
 `````{tab-set}
 ````{tab-item} virtualenv
+:sync: key1
+
 ```{code-block}
 sudo install virtualenv
 ```
 ````
 ````{tab-item} conda
+:sync: key2
+
 See [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) for installation details.
 ````
 `````
@@ -23,12 +27,14 @@ Next, create a virtual environment for DeepProfiler in the current directory:
 
 `````{tab-set}
 ````{tab-item} virtualenv
+:sync: key1
 ```{code-block}
 virtualenv -p python3 deepprofenv
 ```
 ````
 
 ````{tab-item} conda
+:sync: key2
 ```{code-block}
 conda create --name deepprofenv python=3.8 
 ```
@@ -39,12 +45,15 @@ Finally, activate your virtual environment:
 
 `````{tab-set}
 ````{tab-item} virtualenv
+:sync: key1
 ```{code-block}
 source ./deepprofenv/bin/activate
 ```
 ````
 
 ````{tab-item} conda
+:sync: key2
+
 ```{code-block}
 conda activate deepprofenv
 ```
