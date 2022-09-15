@@ -53,6 +53,26 @@ Creating directory:  /home/ubuntu/project/outputs/results/features/
 
 
 Resulting in a directory structure like this:
+```
+.
+└── project/
+    ├── inputs/
+    │   ├── config
+    │   ├── images
+    │   ├── locations
+    │   ├── outlines
+    │   └── metadata
+    └── outputs/
+        ├── compressed/
+        │   ├── images
+        │   └── metadata
+        ├── intensities
+        └── results/
+            ├── checkpoint
+            ├── features
+            ├── logs
+            └── summaries
+ ```
 
 
 ```{figure} images/image2.png
