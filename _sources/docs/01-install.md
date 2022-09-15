@@ -88,6 +88,7 @@ Alternatively, you can fork it to keep track of your own changes, and eventually
 
 ## **1.3 Install dependencies and packages**
 
+Now you can enter the DeepProfiler directory and install it using pip. This will pull the missing dependencies and will also create runnable packages in your clone.
 ```
 cd DeepProfiler/
 pip install -e .
@@ -97,8 +98,6 @@ pip install -e .
 :class: tip
 If you have access to a GPU, make sure that you have the correct drivers and the `tensorflow` package installed and configured correctly. You can follow this link for more details about how to install TensorFlow with GPU support in your machine: [https://www.tensorflow.org/install](https://www.tensorflow.org/install) . The command to check if the correct GPU is being utilized is `nvidia-smi` .
 ```
-
-Now you can enter the DeepProfiler directory and install it using pip. This will pull the missing dependencies and will also create runnable packages in your clone.
 
 ```{admonition} Note
 :class: tip
