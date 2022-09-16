@@ -74,15 +74,6 @@ Resulting in a directory structure like this:
             └── summaries
  ```
 
-
-```{figure} images/image2.png
----
-width: 300px
-name: dir-fig
----
-Illustration of the project directory structure expected by DeepProfiler.
-```
-
 ```{admonition} Note
 :class: tip
 You can create this directory structure manually if you want, but make sure you follow these conventions because DeepProfiler expects these directories to exist and does not explicitly validate if that is the case.
