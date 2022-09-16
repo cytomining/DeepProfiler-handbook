@@ -27,7 +27,7 @@ First, install your environment manager of choice:
 :sync: key1
 
 ```{code-block}
-sudo install virtualenv
+sudo pip3 install virtualenv
 ```
 ````
 ````{tab-item} conda
