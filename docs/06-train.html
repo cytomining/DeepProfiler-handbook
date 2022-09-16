@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>8. Processing DeepProfiler features &#8212; Handbook</title>
+    <title>6. Train a model and profile cells &#8212; Handbook</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,7 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon_32.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="7. Aggregating profiles" href="07-aggregate.html" />
+    <link rel="next" title="7. Profiling" href="07-profiling.html" />
+    <link rel="prev" title="5. The configuration file" href="05-config.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -139,19 +140,24 @@ const thebe_selector_output = ".output, .cell_output"
    5. The configuration file
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-train-infer.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    6. Train a model and profile cells
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="07-aggregate.html">
-   7. Aggregating profiles
+  <a class="reference internal" href="07-profiling.html">
+   7. Profiling
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   8. Processing DeepProfiler features
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-aggregate.html">
+   8. Aggregating profiles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-process.html">
+   9. Processing DeepProfiler features
   </a>
  </li>
 </ul>
@@ -244,7 +250,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/cytomining/DeepProfiler-handbook/issues/new?title=Issue%20on%20page%20%2Fdocs/08-process.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/cytomining/DeepProfiler-handbook/issues/new?title=Issue%20on%20page%20%2Fdocs/06-train.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -261,7 +267,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/cytomining/DeepProfiler-handbook/edit/main/DeepProfiler-Handbook/docs/08-process.md"
+        <a href="https://github.com/cytomining/DeepProfiler-handbook/edit/main/DeepProfiler-Handbook/docs/06-train.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -289,7 +295,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/docs/08-process.md"
+        <a href="../_sources/docs/06-train.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -326,23 +332,78 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-a-model">
+   <strong>
+    6.1 Train a model:
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-project-dependent-functions">
+   <strong>
+    Optional project-dependent functions:
+   </strong>
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>8. Processing DeepProfiler features</h1>
+                <h1>6. Train a model and profile cells</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-a-model">
+   <strong>
+    6.1 Train a model:
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-project-dependent-functions">
+   <strong>
+    Optional project-dependent functions:
+   </strong>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -350,10 +411,33 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="processing-deepprofiler-features">
-<h1>8. Processing DeepProfiler features<a class="headerlink" href="#processing-deepprofiler-features" title="Permalink to this headline">#</a></h1>
-<p>After aggregating, profiles are typically processed before being used for analysis purposes. Downstream processing can be done with the different operations of <a class="reference external" href="https://github.com/cytomining/pycytominer">Pycytominer</a>. Typically well-level data is spherized and then aggregated to compound level (no normalization and feature selection).</p>
-<p>The <a class="reference external" href="https://github.com/cytomining/cytominer-eval">Cytominer-eval</a> repository contains six functions that calculate different quality metrics for perturbation profiling experiments: Precision&#64;K and Recall&#64;K, Enrichment, Hit&#64;k, Replicate reproducibility, MP-value, and Grit.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="train-a-model-and-profile-cells">
+<h1>6. Train a model and profile cells<a class="headerlink" href="#train-a-model-and-profile-cells" title="Permalink to this headline">#</a></h1>
+<p>After configuring the project, running DeepProfiler is straightforward. There are two main commands that can be run for training and then extracting features with a trained network.</p>
+<section id="train-a-model">
+<h2><strong>6.1 Train a model:</strong><a class="headerlink" href="#train-a-model" title="Permalink to this headline">#</a></h2>
+<p>If using a pretrained model, skip this step and move to 6.2 directly.</p>
+<p>The minimal command for training can look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">deepprofiler</span> <span class="o">--</span><span class="n">root</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span> <span class="o">--</span><span class="n">config</span> <span class="n">filename</span><span class="o">.</span><span class="n">json</span> <span class="n">train</span>
+</pre></div>
+</div>
+</section>
+<section id="optional-project-dependent-functions">
+<h2><strong>Optional project-dependent functions:</strong><a class="headerlink" href="#optional-project-dependent-functions" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<strong>Prepare a dataset:</strong><div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">This tool computes illumination statistics, illumination correction functions and compresses images into PNG format. This is useful when the image collection used for training is too large and cannot be kept in a single server (think TBs of imaging data in a data center). Compressing a large collection of images can make training feasible for a diversity of cellular phenotypes. We designed this functionality to compress images as much as possible while losing the minimum amount of information.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">deepprofiler</span> <span class="o">--</span><span class="n">root</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span> <span class="o">--</span><span class="n">config</span> <span class="n">filename</span><span class="o">.</span><span class="n">json</span> <span class="n">prepare</span>
+<span class="n">python3</span> <span class="n">deepprofiler</span> <span class="o">--</span><span class="n">root</span><span class="o">=/</span><span class="n">project_folder</span><span class="o">/</span><span class="n">example_data</span> <span class="o">--</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">json</span> <span class="n">prepare</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -383,12 +467,19 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="07-aggregate.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="05-config.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">7. Aggregating profiles</p>
+            <p class="prev-next-title">5. The configuration file</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="07-profiling.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">7. Profiling</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

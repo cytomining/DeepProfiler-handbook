@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>7. Aggregating profiles &#8212; Handbook</title>
+    <title>9. Processing DeepProfiler features &#8212; Handbook</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon_32.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8. Processing DeepProfiler features" href="08-process.html" />
-    <link rel="prev" title="6. Train a model and profile cells" href="06-train-infer.html" />
+    <link rel="prev" title="8. Aggregating profiles" href="08-aggregate.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -141,18 +140,23 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="06-train-infer.html">
+  <a class="reference internal" href="06-train.html">
    6. Train a model and profile cells
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-profiling.html">
+   7. Profiling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-aggregate.html">
+   8. Aggregating profiles
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   7. Aggregating profiles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-process.html">
-   8. Processing DeepProfiler features
+   9. Processing DeepProfiler features
   </a>
  </li>
 </ul>
@@ -245,7 +249,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/cytomining/DeepProfiler-handbook/issues/new?title=Issue%20on%20page%20%2Fdocs/07-aggregate.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/cytomining/DeepProfiler-handbook/issues/new?title=Issue%20on%20page%20%2Fdocs/09-process.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -262,7 +266,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/cytomining/DeepProfiler-handbook/edit/main/DeepProfiler-Handbook/docs/07-aggregate.md"
+        <a href="https://github.com/cytomining/DeepProfiler-handbook/edit/main/DeepProfiler-Handbook/docs/09-process.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -290,7 +294,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/docs/07-aggregate.md"
+        <a href="../_sources/docs/09-process.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -339,7 +343,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>7. Aggregating profiles</h1>
+                <h1>9. Processing DeepProfiler features</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -351,43 +355,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="aggregating-profiles">
-<h1>7. Aggregating profiles<a class="headerlink" href="#aggregating-profiles" title="Permalink to this headline">#</a></h1>
-<p>DeepProfiler single-cell profiles can be aggregated via a <a class="reference external" href="https://github.com/cytomining/pycytominer">Pycytominer</a> function called <a class="reference external" href="https://github.com/cytomining/pycytominer/blob/master/pycytominer/cyto_utils/DeepProfiler_processing.py">DeepProfiler_Processing</a>. This function reads the output features of DeepProfiler, including the metadata, aggregates, and saves the data in a Pycytominer and Cytominer-eval readable data frame format.</p>
-<p>This code gives an example on how to run the aggregation function:</p>
-<p>Make sure to install this version of pycytominer:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cytomining</span><span class="o">/</span><span class="n">pycytominer</span><span class="nd">@update_agg_TF2</span>
-
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="kn">from</span> <span class="nn">pycytominer.cyto_utils.DeepProfiler_processing</span> <span class="kn">import</span> <span class="n">AggregateDeepProfiler</span>
-
-<span class="n">project_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">experiment</span> <span class="o">=</span> <span class="s1">&#39;folder_name&#39;</span>
-
-<span class="n">profile_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="n">experiment</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">)</span>
-
-<span class="n">index_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span> <span class="s2">&quot;inputs&quot;</span><span class="p">,</span> <span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="s2">&quot;index.csv&quot;</span><span class="p">)</span>
-
-<span class="n">output_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span> <span class="s1">&#39;outputs&#39;</span><span class="p">,</span><span class="n">experiment</span><span class="p">,</span><span class="s1">&#39;aggregated&#39;</span><span class="p">)</span>
-
-<span class="n">well_class</span> <span class="o">=</span> <span class="n">AggregateDeepProfiler</span><span class="p">(</span>
-    <span class="n">index_file</span><span class="o">=</span><span class="n">index_file</span><span class="p">,</span>
-    <span class="n">profile_dir</span><span class="o">=</span><span class="n">profile_dir</span><span class="p">,</span>
-    <span class="n">aggregate_operation</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">,</span>
-    <span class="n">aggregate_on</span><span class="o">=</span><span class="s2">&quot;well&quot;</span><span class="p">,</span>
-    <span class="n">output_file</span><span class="o">=</span><span class="n">output_folder</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">df_well</span> <span class="o">=</span> <span class="n">well_class</span><span class="o">.</span><span class="n">aggregate_deep</span><span class="p">()</span>
-
-<span class="n">df_well</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;aggregated_efficientnet_median.csv&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="processing-deepprofiler-features">
+<h1>9. Processing DeepProfiler features<a class="headerlink" href="#processing-deepprofiler-features" title="Permalink to this headline">#</a></h1>
+<p>After aggregating, profiles are typically processed before being used for analysis purposes. Downstream processing can be done with the different operations of <a class="reference external" href="https://github.com/cytomining/pycytominer">Pycytominer</a>. Typically well-level data is spherized and then aggregated to compound level (no normalization and feature selection).</p>
+<p>The <a class="reference external" href="https://github.com/cytomining/cytominer-eval">Cytominer-eval</a> repository contains six functions that calculate different quality metrics for perturbation profiling experiments: Precision&#64;K and Recall&#64;K, Enrichment, Hit&#64;k, Replicate reproducibility, MP-value, and Grit.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -417,19 +388,12 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="06-train-infer.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="08-aggregate.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">6. Train a model and profile cells</p>
+            <p class="prev-next-title">8. Aggregating profiles</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="08-process.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">8. Processing DeepProfiler features</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

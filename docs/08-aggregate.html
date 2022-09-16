@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3. Images and segmentation masks &#8212; Handbook</title>
+    <title>8. Aggregating profiles &#8212; Handbook</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon_32.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Metadata files" href="04-metadata.html" />
-    <link rel="prev" title="2. Project structure" href="02-structure.html" />
+    <link rel="next" title="9. Processing DeepProfiler features" href="09-process.html" />
+    <link rel="prev" title="7. Profiling" href="07-profiling.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -125,8 +125,8 @@ const thebe_selector_output = ".output, .cell_output"
    2. Project structure
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-images.html">
    3. Images and segmentation masks
   </a>
  </li>
@@ -150,8 +150,8 @@ const thebe_selector_output = ".output, .cell_output"
    7. Profiling
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-aggregate.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    8. Aggregating profiles
   </a>
  </li>
@@ -250,7 +250,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/cytomining/DeepProfiler-handbook/issues/new?title=Issue%20on%20page%20%2Fdocs/03-images.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/cytomining/DeepProfiler-handbook/issues/new?title=Issue%20on%20page%20%2Fdocs/08-aggregate.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -267,7 +267,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/cytomining/DeepProfiler-handbook/edit/main/DeepProfiler-Handbook/docs/03-images.md"
+        <a href="https://github.com/cytomining/DeepProfiler-handbook/edit/main/DeepProfiler-Handbook/docs/08-aggregate.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -295,7 +295,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/docs/03-images.md"
+        <a href="../_sources/docs/08-aggregate.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -332,78 +332,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#images">
-   <strong>
-    3.1 Images
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#masking-cells">
-   <strong>
-    3.2 Masking cells
-   </strong>
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>3. Images and segmentation masks</h1>
+                <h1>8. Aggregating profiles</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#images">
-   <strong>
-    3.1 Images
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#masking-cells">
-   <strong>
-    3.2 Masking cells
-   </strong>
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -411,16 +356,43 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="images-and-segmentation-masks">
-<h1>3. Images and segmentation masks<a class="headerlink" href="#images-and-segmentation-masks" title="Permalink to this headline">#</a></h1>
-<section id="images">
-<h2><strong>3.1 Images</strong><a class="headerlink" href="#images" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="masking-cells">
-<h2><strong>3.2 Masking cells</strong><a class="headerlink" href="#masking-cells" title="Permalink to this headline">#</a></h2>
-<p>The pixels in an image that belong to cells can be identified using segmentation algorithms, such as those available in <a class="reference external" href="https://cellprofiler.org/">CellProfiler</a>. The segmentation boundaries can be stored as binary images with the outlines of cells in white on a black background. These outlines can be used in DeepProfiler to mask cells and isolate the content of single cells for training neural networks and computing features. This may be useful for projects where the structure of single cells determines the phenotype of interest. In our experience, masking cells can sometimes reduce the performance of learning algorithms in identifying phenotypic information. If cell context is necessary for the study of phenotypic variations in your dataset, we recommend you skip cell masking.</p>
-<p>To mask cells, you first need to segment them using an external tool like <a class="reference external" href="https://cellprofiler.org/">CellProfiler</a> or <a class="reference external" href="https://www.ilastik.org/">Ilastik</a> and save the binary image of their outlines. Save these images in the <code class="docutils literal notranslate"><span class="pre">input/outlines</span></code> directory. Next, you need to create a csv file with the list of the outline images with three additional columns: plate, well and site. Save this file in the <code class="docutils literal notranslate"><span class="pre">input/metadata</span></code> directory. The final step is to update the configuration file (<a class="reference external" href="#heading=h.5i3187icaj4t">Section 3</a>) to let DeepProfiler know that you want to use these outlines for masking the cells. Specifically, the <code class="docutils literal notranslate"><span class="pre">mask_objects</span> </code>setting under <code class="docutils literal notranslate"><span class="pre">locations</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">true</span></code> in the configuration file to use masks (more details below).</p>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="aggregating-profiles">
+<h1>8. Aggregating profiles<a class="headerlink" href="#aggregating-profiles" title="Permalink to this headline">#</a></h1>
+<p>DeepProfiler single-cell profiles can be aggregated via a <a class="reference external" href="https://github.com/cytomining/pycytominer">Pycytominer</a> function called <a class="reference external" href="https://github.com/cytomining/pycytominer/blob/master/pycytominer/cyto_utils/DeepProfiler_processing.py">DeepProfiler_Processing</a>. This function reads the output features of DeepProfiler, including the metadata, aggregates, and saves the data in a Pycytominer and Cytominer-eval readable data frame format.</p>
+<p>This code gives an example on how to run the aggregation function:</p>
+<p>Make sure to install this version of pycytominer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cytomining</span><span class="o">/</span><span class="n">pycytominer</span><span class="nd">@update_agg_TF2</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">pycytominer.cyto_utils.DeepProfiler_processing</span> <span class="kn">import</span> <span class="n">AggregateDeepProfiler</span>
+
+<span class="n">project_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">experiment</span> <span class="o">=</span> <span class="s1">&#39;folder_name&#39;</span>
+
+<span class="n">profile_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="n">experiment</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">)</span>
+
+<span class="n">index_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span> <span class="s2">&quot;inputs&quot;</span><span class="p">,</span> <span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="s2">&quot;index.csv&quot;</span><span class="p">)</span>
+
+<span class="n">output_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span> <span class="s1">&#39;outputs&#39;</span><span class="p">,</span><span class="n">experiment</span><span class="p">,</span><span class="s1">&#39;aggregated&#39;</span><span class="p">)</span>
+
+<span class="n">well_class</span> <span class="o">=</span> <span class="n">AggregateDeepProfiler</span><span class="p">(</span>
+    <span class="n">index_file</span><span class="o">=</span><span class="n">index_file</span><span class="p">,</span>
+    <span class="n">profile_dir</span><span class="o">=</span><span class="n">profile_dir</span><span class="p">,</span>
+    <span class="n">aggregate_operation</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">,</span>
+    <span class="n">aggregate_on</span><span class="o">=</span><span class="s2">&quot;well&quot;</span><span class="p">,</span>
+    <span class="n">output_file</span><span class="o">=</span><span class="n">output_folder</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">df_well</span> <span class="o">=</span> <span class="n">well_class</span><span class="o">.</span><span class="n">aggregate_deep</span><span class="p">()</span>
+
+<span class="n">df_well</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;aggregated_efficientnet_median.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -450,17 +422,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="02-structure.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="07-profiling.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">2. Project structure</p>
+            <p class="prev-next-title">7. Profiling</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="04-metadata.html" title="next page">
+    <a class='right-next' id="next-link" href="09-process.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">4. Metadata files</p>
+        <p class="prev-next-title">9. Processing DeepProfiler features</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
