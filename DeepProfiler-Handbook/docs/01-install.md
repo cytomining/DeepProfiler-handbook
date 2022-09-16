@@ -99,11 +99,6 @@ pip install -e .
 If you have access to a GPU, make sure that you have the correct drivers and the `tensorflow` package installed and configured correctly. You can follow this link for more details about how to install TensorFlow with GPU support in your machine: [https://www.tensorflow.org/install](https://www.tensorflow.org/install) . The command to check if the correct GPU is being utilized is `nvidia-smi` .
 ```
 
-```{admonition} Note
-:class: tip
-The above environment does not include the package of ‘Imagecodecs’, that needs to be installed separately.
-```
-
 ## **1.4 Run DeepProfiler to check it works**
 
 To run DeepProfiler, run this command: 
