@@ -2,6 +2,8 @@
 
 ## **3.1 Images**
 
+DeepProfiler expects either TIFF or PNG files. Image channels need to be stored in separate files. Image sizes and dimensions are flexible. DeepProfiler are compatible with most high-throughput microscopy systems.
+
 ## **3.2 Masking cells**
 
 The pixels in an image that belong to cells can be identified using segmentation algorithms, such as those available in [CellProfiler](https://cellprofiler.org/). The segmentation boundaries can be stored as binary images with the outlines of cells in white on a black background. These outlines can be used in DeepProfiler to mask cells and isolate the content of single cells for training neural networks and computing features. This may be useful for projects where the structure of single cells determines the phenotype of interest. In our experience, masking cells can sometimes reduce the performance of learning algorithms in identifying phenotypic information. If cell context is necessary for the study of phenotypic variations in your dataset, we recommend you skip cell masking.
