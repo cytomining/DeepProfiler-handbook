@@ -4,7 +4,7 @@ DeepProfiler allows profiling the data using self-trained models or pre-trained 
 
 ## **7.1 General profiling information:**
 
-Before profiling the dataset, it is **strongly** recommended to [pre-process the dataset](https://cytomining.github.io/DeepProfiler-handbook/docs/07-profiling.html#optional-project-dependent-functions) if you have not done it yet.
+Before profiling the dataset, it is **strongly** recommended to [pre-process the dataset](https://cytomining.github.io/DeepProfiler-handbook/docs/03-images.html#dataset-compression-and-illumination-correction) if you have not done it yet.
 
 General example command to run profiling: 
 

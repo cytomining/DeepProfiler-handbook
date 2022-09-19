@@ -4,7 +4,7 @@
 ## **6.1 Export single-cells**
 
 Imagine you already have a dataset of full images and you would like to train a model. Models are trained with single-cell crops, so the single-cells of the dataset should be exported separately.
-If the dataset consists of 16-bit TIFF images, it is **strongly** recommended to [pre-process the dataset](https://cytomining.github.io/DeepProfiler-handbook/docs/06-train.html#optional-project-dependent-functions) first. 
+If the dataset consists of 16-bit TIFF images, it is **strongly** recommended to [pre-process the dataset](https://cytomining.github.io/DeepProfiler-handbook/docs/03-images.html#dataset-compression-and-illumination-correction) first. 
 
 
 The basic command for export is as follows:
@@ -12,8 +12,14 @@ The basic command for export is as follows:
 python deepprofiler --root=/home/ubuntu/project/ --config=export.json --metadata=index.csv --single-cells=single_cells_dataset export-sc
 ```
 
-The exported images and metadata (`sc-metadata.csv`) will be stored in `/project/outputs/single_cells_dataset/`. If the `single-cells` parameter is not set, the default folder for the exported dataset would be `single-cells`. 
- 
+The exported images and metadata (`sc-metadata.csv`) will be stored in `/project/outputs/single_cells_dataset/`. If the `single-cells` parameter is not set, the default folder for the exported dataset would be `single-cells`. The size of the cropped region is defined by `box_size` parameter in the configuration file. The images are saved as a stripe of crops from each channel (as listed in `channels` field in the configuration). Optionally, cell masks can be extracted, it would appear last in the stripe.
+
+```{figure} images/single-cell_taorf.png
+---
+name: Exported cell image with mask
+---
+Example of exported image from [BBBC037 dataset](https://bbbc.broadinstitute.org/BBBC037). 
+```
 
 
 ```{admonition} About training and validation splits
