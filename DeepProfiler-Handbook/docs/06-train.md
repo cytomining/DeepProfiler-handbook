@@ -36,13 +36,25 @@ If a different training-validation split is needed, you can modify the `split_fi
 An example of the training command:
 
 ```
-python3 deepprofiler --root=/home/ubuntu/project/ --config filename.json --single-cells=single_cells_dataset --gpu 0 train
+python3 deepprofiler --root=/home/ubuntu/project/ --config filename.json --single-cells=single_cells_dataset --exp=experiment_name --gpu 0 train
 ```
 
 
-```{admonition} Metadata parameter
+```{admonition} Training arguments
 :class: tip
 The default single-cell metadata file is `sc-metadata.csv`, though it can be different by passing `--metadata` parameter.
 `--gpu` parameter is an id of a GPU to be used, available GPUs with their IDs can be listed with `nvidia-smi` command. 
+The `--config filename.json` parameter points to the name of a file from /inputs/config folder.
+The `--exp experiment_name` points to a folder in /outputs/ folder.
+```
 
+Training checkpoints will be saved in `/project/outputs/experiment_name/checkpoint/`, the logs with accuracy and losses in `/project/outputs/experiment_name/logs/`.
+
+```{admonition} Crop generators
+Crop generator plugins define the way how the data is going to pass through models. The default choice in most cases is `sampled_crop_generator`. You can explore other availible crop generators or create your own. 
+```
+
+```{admonition} About class balancing
+:class: tip
+DeepProfiler performs class balancing, so no need to worry about initial class imbalance in the processed dataset.
 ```
