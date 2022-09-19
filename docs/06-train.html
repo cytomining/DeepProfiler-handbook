@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon_32.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="7. Profile cells" href="07-profiling.html" />
+    <link rel="next" title="7. Profile cells with DeepProfiler" href="07-profiling.html" />
     <link rel="prev" title="5. Configuration file" href="05-config.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -147,7 +147,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07-profiling.html">
-   7. Profile cells
+   7. Profile cells with DeepProfiler
   </a>
  </li>
  <li class="toctree-l1">
@@ -436,13 +436,10 @@ If the dataset consists of 16-bit TIFF images, it is <strong>strongly</strong> r
 </pre></div>
 </div>
 <p>The exported images and metadata (<code class="docutils literal notranslate"><span class="pre">sc-metadata.csv</span></code>) will be stored in <code class="docutils literal notranslate"><span class="pre">/project/outputs/single_cells_dataset/</span></code>. If the <code class="docutils literal notranslate"><span class="pre">single-cells</span></code> parameter is not set, the default folder for the exported dataset would be <code class="docutils literal notranslate"><span class="pre">single-cells</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-```{admonition} About training and validation splits
-:class: tip
-As mentioned in the [config description](https://cytomining.github.io/DeepProfiler-handbook/docs/05-config.html#train-parameters-for-training-a-deep-learning-model-on-your-data), the metadata field `split_field` and its values from `training` and `validation` configuration config fields define the initial training-validation split, which will be reflected in the single-cell metadata file for each record.
-If a different training-validation split is needed, you can modify the `split_field` column (for example with `pandas`) and save the new metadata to a different file and then use it for training, there is no need to export images again. It is also possible to append a new column for a new training-validation split to an existing metadata file, in that case, don&#39;t forget to change `split_field` in the training configuration file. 
-
-</pre></div>
+<div class="tip admonition">
+<p class="admonition-title">About training and validation splits</p>
+<p>As mentioned in the <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/05-config.html#train-parameters-for-training-a-deep-learning-model-on-your-data">config description</a>, the metadata field <code class="docutils literal notranslate"><span class="pre">split_field</span></code> and its values from <code class="docutils literal notranslate"><span class="pre">training</span></code> and <code class="docutils literal notranslate"><span class="pre">validation</span></code> configuration config fields define the initial training-validation split, which will be reflected in the single-cell metadata file for each record.
+If a different training-validation split is needed, you can modify the <code class="docutils literal notranslate"><span class="pre">split_field</span></code> column (for example with <code class="docutils literal notranslate"><span class="pre">pandas</span></code>) and save the new metadata to a different file and then use it for training, there is no need to export images again. It is also possible to append a new column for a new training-validation split to an existing metadata file, in that case, don’t forget to change <code class="docutils literal notranslate"><span class="pre">split_field</span></code> in the training configuration file.</p>
 </div>
 </section>
 <section id="train-a-model">
@@ -451,13 +448,10 @@ If a different training-validation split is needed, you can modify the `split_fi
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">deepprofiler</span> <span class="o">--</span><span class="n">root</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span> <span class="o">--</span><span class="n">config</span> <span class="n">filename</span><span class="o">.</span><span class="n">json</span> <span class="o">--</span><span class="n">single</span><span class="o">-</span><span class="n">cells</span><span class="o">=</span><span class="n">single_cells_dataset</span> <span class="o">--</span><span class="n">gpu</span> <span class="mi">0</span> <span class="n">train</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-```{admonition} Metadata parameter
-:class: tip
-The default single-cell metadata file is `sc-metadata.csv`, though it can be different by passing `--metadata` parameter.
-`--gpu` parameter is an id of a GPU to be used, available GPUs with their IDs can be listed with `nvidia-smi` command. 
-
-</pre></div>
+<div class="tip admonition">
+<p class="admonition-title">Metadata parameter</p>
+<p>The default single-cell metadata file is <code class="docutils literal notranslate"><span class="pre">sc-metadata.csv</span></code>, though it can be different by passing <code class="docutils literal notranslate"><span class="pre">--metadata</span></code> parameter.
+<code class="docutils literal notranslate"><span class="pre">--gpu</span></code> parameter is an id of a GPU to be used, available GPUs with their IDs can be listed with <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> command.</p>
 </div>
 </section>
 <section id="optional-project-dependent-functions">
@@ -515,7 +509,7 @@ The default single-cell metadata file is `sc-metadata.csv`, though it can be dif
     <a class='right-next' id="next-link" href="07-profiling.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">7. Profile cells</p>
+        <p class="prev-next-title">7. Profile cells with DeepProfiler</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -15,7 +15,7 @@ python deepprofiler --root=/home/ubuntu/project/ --config=export.json --metadata
 The exported images and metadata (`sc-metadata.csv`) will be stored in `/project/outputs/single_cells_dataset/`. If the `single-cells` parameter is not set, the default folder for the exported dataset would be `single-cells`. 
  
 
-```
+
 
 ```{admonition} About training and validation splits
 :class: tip
@@ -34,7 +34,7 @@ An example of the training command:
 python3 deepprofiler --root=/home/ubuntu/project/ --config filename.json --single-cells=single_cells_dataset --gpu 0 train
 ```
 
-```
+
 
 ```{admonition} Metadata parameter
 :class: tip
