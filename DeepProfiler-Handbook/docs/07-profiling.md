@@ -1,10 +1,10 @@
-# 7. Profile cells
+# 7. Profile cells with DeepProfiler
 
 DeepProfiler allows profiling the data using self-trained models or pre-trained models. 
 
 ## **7.1 General profiling information:**
 
-Before profiling the dataset, it is **strongly** recommended to [pre-process the dataset](https://cytomining.github.io/DeepProfiler-handbook/docs/07-profile.html#optional-project-dependent-functions) if you have not done it yet.
+Before profiling the dataset, it is **strongly** recommended to [pre-process the dataset](https://cytomining.github.io/DeepProfiler-handbook/docs/07-profiling.html#optional-project-dependent-functions) if you have not done it yet.
 
 General example command to run profiling: 
 
@@ -33,7 +33,7 @@ For specific instructions and config examples see further sections.
 
 ```{admonition} Note
 :class: tip
-The `checkpoint` parameter points to the name of a file from /outputs/experiment_name/checkpoint/ folder.
+The `checkpoint` parameter points to the name of a file from `/outputs/experiment_name/checkpoint/` folder.
 If your GPU\workstation allows, you can increase `batch_size` to speed up the profiling.
 ```
 
