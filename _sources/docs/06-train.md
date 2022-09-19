@@ -16,7 +16,6 @@ The exported images and metadata (`sc-metadata.csv`) will be stored in `/project
  
 
 
-
 ```{admonition} About training and validation splits
 :class: tip
 As mentioned in the [config description](https://cytomining.github.io/DeepProfiler-handbook/docs/05-config.html#train-parameters-for-training-a-deep-learning-model-on-your-data), the metadata field `split_field` and its values from `training` and `validation` configuration config fields define the initial training-validation split, which will be reflected in the single-cell metadata file for each record.
@@ -35,25 +34,9 @@ python3 deepprofiler --root=/home/ubuntu/project/ --config filename.json --singl
 ```
 
 
-
 ```{admonition} Metadata parameter
 :class: tip
 The default single-cell metadata file is `sc-metadata.csv`, though it can be different by passing `--metadata` parameter.
 `--gpu` parameter is an id of a GPU to be used, available GPUs with their IDs can be listed with `nvidia-smi` command. 
 
 ```
-
-## **Optional project-dependent functions:**
-
-````{dropdown} **Prepare a dataset:**
-
-This tool computes illumination statistics, illumination correction functions and compresses images into PNG format. This is useful when the image collection used for training is too large and cannot be kept in a single server (think TBs of imaging data in a data center). Compressing a large collection of images can make training feasible for a diversity of cellular phenotypes. We designed this functionality to compress images as much as possible while losing the minimum amount of information.
-
-
-```
-python3 deepprofiler --root=/home/ubuntu/project/ --config filename.json prepare
-python3 deepprofiler --root=/project_folder/example_data --config=config.json prepare
-```
-
-
-````

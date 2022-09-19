@@ -4,6 +4,15 @@
 
 DeepProfiler expects either TIFF or PNG files. Image channels need to be stored in separate files. Image sizes and dimensions are flexible. DeepProfiler are compatible with most high-throughput microscopy systems.
 
+## **3.2 Dataset compression and illumination correction**
+
+This tool computes illumination statistics, illumination correction functions and compresses images into PNG format. This is useful when the image collection used for training is too large and cannot be kept in a single server (think TBs of imaging data in a data center). Compressing a large collection of images can make training feasible for a diversity of cellular phenotypes. We designed this functionality to compress images as much as possible while losing the minimum amount of information.
+
+```
+python3 deepprofiler --root=/home/ubuntu/project/ --config filename.json prepare
+```
+
+
 ## **3.2 Masking cells**
 
 The pixels in an image that belong to cells can be identified using segmentation algorithms, such as those available in [CellProfiler](https://cellprofiler.org/). The segmentation boundaries can be stored as binary images with the outlines of cells in white on a black background. These outlines can be used in DeepProfiler to mask cells and isolate the content of single cells for training neural networks and computing features. This may be useful for projects where the structure of single cells determines the phenotype of interest. In our experience, masking cells can sometimes reduce the performance of learning algorithms in identifying phenotypic information. If cell context is necessary for the study of phenotypic variations in your dataset, we recommend you skip cell masking.
