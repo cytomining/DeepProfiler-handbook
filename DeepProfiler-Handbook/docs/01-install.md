@@ -16,9 +16,15 @@ To update an existing installation:
 sudo apt update
 ```
 
+
+```{admonition} Note
+:class: tip
+DeepProfiler does not require sudo priviliges to be installed. The commands above and some others suggested below assume that you have sudo permissions to configure your Linux environment. However, if your Linux machine is already up-to-date and has virtualenv or conda available, you can proceed without sudo privileges for configuring a virtual environment, and for cloning and running DeepProfiler.
+```
+
 We strongly advise you use a virtual environment for DeepProfiler. This will help avoid interference with system-wide installed python packages. Below contains some basic instructions for getting started using [virtualenv](https://pypi.org/project/virtualenv/) or [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) to manage virtual environments in Linux:
 
-``````{dropdown} **Virtual environment quickstart instructions**
+``````{dropdown} **Virtual environment quickstart instructions** 
 
 First, install your environment manager of choice:
 
