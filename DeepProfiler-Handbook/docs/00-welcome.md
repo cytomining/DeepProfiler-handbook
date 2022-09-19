@@ -14,4 +14,12 @@ In a nutshell, DeepProfiler requires three types of input: 1) microscopy images,
 What DeepProfiler does not do: 1) it does not identify the location of single cells or segment cells from the images. These locations need to be obtained using other software, such as [CellProfiler](https://cellprofiler.org/), [Ilastik](https://www.ilastik.org/), or Cellpose (https://www.cellpose.org/). 2) DeepProfiler does not create aggregated profiles of cell populations. The single-cell feature embeddings need to be processed separately to perform the corresponding downstream analysis, using tools such as [pycytominer](https://github.com/cytomining/pycytominer).
 
 ## Cell Painting CNN
+
+```{figure} images/CellPaintingCNN.png
+---
+name: cp-cnn
+---
+The Cell Painting CNN can process the 5 image channels together to produce single-cell features.
+```
+
 If you are profiling [Cell Painting images](https://www.nature.com/articles/nprot.2016.105), you can now use our _**Cell Painting CNN**_ model to profile your experiments out of the box! No need to train a separate model for Cell Painting. [Our analysis](https://www.biorxiv.org/content/10.1101/2022.08.12.503783v1.full) indicates that the Cell Painting CNN generalizes better to new treatments because it has been trained at large scale with diverse phenotypic data. You can download the [pre-trained model]() and follow the instructions for [profiling]() in this guide to get started.
