@@ -13,7 +13,7 @@ python3 deepprofiler --root=/home/ubuntu/project/ --config filename.json --metad
 ```
 
 
-```{admonition} Note
+```{admonition} Profiling arguments
 :class: tip
 The `--metadata index.csv` parameter points to  a metadata file from /inputs/metadata folder.
 The `--config filename.json` parameter points to the name of a file from /inputs/config folder.
@@ -31,7 +31,7 @@ For specific instructions and config examples see further sections.
     }
 ```
 
-```{admonition} Note
+```{admonition} On configureation parameters
 :class: tip
 The `checkpoint` parameter points to the name of a file from `/outputs/experiment_name/checkpoint/` folder.
 If your GPU\workstation allows, you can increase `batch_size` to speed up the profiling.
@@ -42,7 +42,16 @@ If your GPU\workstation allows, you can increase `batch_size` to speed up the pr
 The `feature_layer` parameter in the configuration file defines the layer of the model to be extracted. `pool5` in this case refers to the average pooling penultimate layer. You might want to experiment with other layers. In our analysis, we found that in the case of EfficientNet, the best downstream results are obtained with `block6a_activation` intermediate layer.
 ```
 
-The extracted features are stored in `/outputs/experiment_name/features/`. In case you want to run another feature extraction for the same experiment, you will need to move (or remove) the contents of this folder. 
+The extracted features are stored in `/outputs/experiment_name/features/` as NumPy `npz` files for each site (full image). The array of features can be accessed through `features` field of the object: 
+```
+with open(filename, "rb") as data:
+    info = np.load(data)
+    info["features"]
+```
+The order of vectors matches the order of cell locations for the image. 
+
+
+In case you want to run another feature extraction for the same experiment, you will need to move (or remove) the contents of this folder. 
 
 
 ## **7.2 Profiling with self-trained model:**
@@ -65,6 +74,8 @@ The _profile_ section example:
 Pre-trained ImageNet model is downloaded automatically for EfficientNet or ResNet to the cache folder of Keras.  
 
 The _profile_ section of your config should be adjusted: `checkpoint` field will have `None` and `use_pretrained_input_size` is set according to the chosen model.
+
+The crop_generator parameter should be set to `repeat_channel_crop_generator`, this crop generator feeds each channel to the model seprately, to match the number of channels of ImageNet, each channel is replcated three times. 
   
 Example for _EfficientNet-B0_ model:
 

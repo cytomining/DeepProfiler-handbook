@@ -437,13 +437,24 @@ If a different training-validation split is needed, you can modify the <code cla
 <section id="train-a-model">
 <h2><strong>6.2 Train a model:</strong><a class="headerlink" href="#train-a-model" title="Permalink to this headline">#</a></h2>
 <p>An example of the training command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">deepprofiler</span> <span class="o">--</span><span class="n">root</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span> <span class="o">--</span><span class="n">config</span> <span class="n">filename</span><span class="o">.</span><span class="n">json</span> <span class="o">--</span><span class="n">single</span><span class="o">-</span><span class="n">cells</span><span class="o">=</span><span class="n">single_cells_dataset</span> <span class="o">--</span><span class="n">gpu</span> <span class="mi">0</span> <span class="n">train</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">deepprofiler</span> <span class="o">--</span><span class="n">root</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span> <span class="o">--</span><span class="n">config</span> <span class="n">filename</span><span class="o">.</span><span class="n">json</span> <span class="o">--</span><span class="n">single</span><span class="o">-</span><span class="n">cells</span><span class="o">=</span><span class="n">single_cells_dataset</span> <span class="o">--</span><span class="n">exp</span><span class="o">=</span><span class="n">experiment_name</span> <span class="o">--</span><span class="n">gpu</span> <span class="mi">0</span> <span class="n">train</span>
 </pre></div>
 </div>
 <div class="tip admonition">
-<p class="admonition-title">Metadata parameter</p>
+<p class="admonition-title">Training arguments</p>
 <p>The default single-cell metadata file is <code class="docutils literal notranslate"><span class="pre">sc-metadata.csv</span></code>, though it can be different by passing <code class="docutils literal notranslate"><span class="pre">--metadata</span></code> parameter.
-<code class="docutils literal notranslate"><span class="pre">--gpu</span></code> parameter is an id of a GPU to be used, available GPUs with their IDs can be listed with <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> command.</p>
+<code class="docutils literal notranslate"><span class="pre">--gpu</span></code> parameter is an id of a GPU to be used, available GPUs with their IDs can be listed with <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> command.
+The <code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">filename.json</span></code> parameter points to the name of a file from /inputs/config folder.
+The <code class="docutils literal notranslate"><span class="pre">--exp</span> <span class="pre">experiment_name</span></code> points to a folder in /outputs/ folder.</p>
+</div>
+<p>Training checkpoints will be saved in <code class="docutils literal notranslate"><span class="pre">/project/outputs/experiment_name/checkpoint/</span></code>, the logs with accuracy and losses in <code class="docutils literal notranslate"><span class="pre">/project/outputs/experiment_name/logs/</span></code>.</p>
+<div class="admonition-crop-generators admonition">
+<p class="admonition-title">Crop generators</p>
+<p>Crop generator plugins define the way how the data is going to pass through models. The default choice in most cases is <code class="docutils literal notranslate"><span class="pre">sampled_crop_generator</span></code>. You can explore other availible crop generators or create your own.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">About class balancing</p>
+<p>DeepProfiler performs class balancing, so no need to worry about initial class imbalance in the processed dataset.</p>
 </div>
 </section>
 </section>

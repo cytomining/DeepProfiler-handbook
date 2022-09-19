@@ -464,7 +464,7 @@ title="Print to PDF"
 </pre></div>
 </div>
 <div class="tip admonition">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">Profiling arguments</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">--metadata</span> <span class="pre">index.csv</span></code> parameter points to  a metadata file from /inputs/metadata folder.
 The <code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">filename.json</span></code> parameter points to the name of a file from /inputs/config folder.
 The <code class="docutils literal notranslate"><span class="pre">--exp</span> <span class="pre">experiment_name</span></code> points to a folder in /outputs/ folder.</p>
@@ -479,7 +479,7 @@ For specific instructions and config examples see further sections.</p>
 </pre></div>
 </div>
 <div class="tip admonition">
-<p class="admonition-title">Note</p>
+<p class="admonition-title">On configureation parameters</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">checkpoint</span></code> parameter points to the name of a file from <code class="docutils literal notranslate"><span class="pre">/outputs/experiment_name/checkpoint/</span></code> folder.
 If your GPU\workstation allows, you can increase <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> to speed up the profiling.</p>
 </div>
@@ -487,7 +487,14 @@ If your GPU\workstation allows, you can increase <code class="docutils literal n
 <p class="admonition-title">About feature layers</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">feature_layer</span></code> parameter in the configuration file defines the layer of the model to be extracted. <code class="docutils literal notranslate"><span class="pre">pool5</span></code> in this case refers to the average pooling penultimate layer. You might want to experiment with other layers. In our analysis, we found that in the case of EfficientNet, the best downstream results are obtained with <code class="docutils literal notranslate"><span class="pre">block6a_activation</span></code> intermediate layer.</p>
 </div>
-<p>The extracted features are stored in <code class="docutils literal notranslate"><span class="pre">/outputs/experiment_name/features/</span></code>. In case you want to run another feature extraction for the same experiment, you will need to move (or remove) the contents of this folder.</p>
+<p>The extracted features are stored in <code class="docutils literal notranslate"><span class="pre">/outputs/experiment_name/features/</span></code> as NumPy <code class="docutils literal notranslate"><span class="pre">npz</span></code> files for each site (full image). The array of features can be accessed through <code class="docutils literal notranslate"><span class="pre">features</span></code> field of the object:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">info</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The order of vectors matches the order of cell locations for the image.</p>
+<p>In case you want to run another feature extraction for the same experiment, you will need to move (or remove) the contents of this folder.</p>
 </section>
 <section id="profiling-with-self-trained-model">
 <h2><strong>7.2 Profiling with self-trained model:</strong><a class="headerlink" href="#profiling-with-self-trained-model" title="Permalink to this headline">#</a></h2>
@@ -505,6 +512,7 @@ If your GPU\workstation allows, you can increase <code class="docutils literal n
 <h2><strong>7.3 Profiling with ImageNet pre-trained model:</strong><a class="headerlink" href="#profiling-with-imagenet-pre-trained-model" title="Permalink to this headline">#</a></h2>
 <p>Pre-trained ImageNet model is downloaded automatically for EfficientNet or ResNet to the cache folder of Keras.</p>
 <p>The <em>profile</em> section of your config should be adjusted: <code class="docutils literal notranslate"><span class="pre">checkpoint</span></code> field will have <code class="docutils literal notranslate"><span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">use_pretrained_input_size</span></code> is set according to the chosen model.</p>
+<p>The crop_generator parameter should be set to <code class="docutils literal notranslate"><span class="pre">repeat_channel_crop_generator</span></code>, this crop generator feeds each channel to the model seprately, to match the number of channels of ImageNet, each channel is replcated three times.</p>
 <p>Example for <em>EfficientNet-B0</em> model:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;profile&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s2">&quot;use_pretrained_input_size&quot;</span> <span class="p">:</span> <span class="mi">224</span><span class="p">,</span>
