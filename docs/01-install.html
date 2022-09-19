@@ -137,17 +137,17 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05-config.html">
-   5. The configuration file
+   5. Configuration file
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="06-train.html">
-   6. Train a model and profile cells
+   6. Training models with DeepProfiler
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07-profiling.html">
-   7. Profiling
+   7. Profile cells
   </a>
  </li>
  <li class="toctree-l1">
@@ -477,30 +477,30 @@ title="Print to PDF"
 </summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">First, install your environment manager of choice:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="1d8ab61c-804a-472f-b378-885b26ee12c1" name="837cbbac-49f0-4101-a0ee-09843af9510b" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key1" for="1d8ab61c-804a-472f-b378-885b26ee12c1">
+<input checked="checked" id="a1f87fa1-7f63-48b3-89df-84b3c2e984fd" name="ad148dfd-8080-4f8a-ab81-87bc8f8c3149" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key1" for="a1f87fa1-7f63-48b3-89df-84b3c2e984fd">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">virtualenv</span>
 </pre></div>
 </div>
 </div>
-<input id="d1892577-b77e-445a-9431-8eaa289ba526" name="837cbbac-49f0-4101-a0ee-09843af9510b" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key2" for="d1892577-b77e-445a-9431-8eaa289ba526">
+<input id="40680993-18ff-4438-86e0-7041f52124da" name="ad148dfd-8080-4f8a-ab81-87bc8f8c3149" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key2" for="40680993-18ff-4438-86e0-7041f52124da">
 conda</label><div class="sd-tab-content docutils">
 <p class="sd-card-text">See <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html">conda documentation</a> for installation details.</p>
 </div>
 </div>
 <p class="sd-card-text">Next, create a virtual environment for DeepProfiler in the current directory:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="3e1111ef-6cae-4b5d-a60a-d04eaccd9564" name="6e4a5734-c849-498e-9e9a-5ecfe02610f1" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key1" for="3e1111ef-6cae-4b5d-a60a-d04eaccd9564">
+<input checked="checked" id="24a0c80d-4347-4210-a5b3-f8399b045db7" name="3a02cb2d-d82e-470d-8644-d17ec8295ce1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key1" for="24a0c80d-4347-4210-a5b3-f8399b045db7">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">virtualenv</span> <span class="o">-</span><span class="n">p</span> <span class="n">python3</span> <span class="n">deepprofenv</span>
 </pre></div>
 </div>
 </div>
-<input id="c3147906-80db-4482-a09c-b551daa39c4d" name="6e4a5734-c849-498e-9e9a-5ecfe02610f1" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key2" for="c3147906-80db-4482-a09c-b551daa39c4d">
+<input id="7b55f610-a1f5-4160-bf27-a3ba61e0fb19" name="3a02cb2d-d82e-470d-8644-d17ec8295ce1" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key2" for="7b55f610-a1f5-4160-bf27-a3ba61e0fb19">
 conda</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">deepprofenv</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span> 
 </pre></div>
@@ -509,15 +509,15 @@ conda</label><div class="sd-tab-content docutils">
 </div>
 <p class="sd-card-text">Finally, activate your virtual environment:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="60105060-a5a2-4fa8-a777-b448f1d527a4" name="5e67718b-691e-41bd-8bbf-e53d61cc1675" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key1" for="60105060-a5a2-4fa8-a777-b448f1d527a4">
+<input checked="checked" id="37c074fa-fc62-481b-a403-549572a552e3" name="53111bfb-e9ae-479e-a44f-00b79eeedb8e" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key1" for="37c074fa-fc62-481b-a403-549572a552e3">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">./</span><span class="n">deepprofenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 </pre></div>
 </div>
 </div>
-<input id="8a91d278-9b74-43c1-8237-de496bd6171c" name="5e67718b-691e-41bd-8bbf-e53d61cc1675" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key2" for="8a91d278-9b74-43c1-8237-de496bd6171c">
+<input id="4c3d4d4d-e455-427d-8e4f-6c560a8ba536" name="53111bfb-e9ae-479e-a44f-00b79eeedb8e" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key2" for="4c3d4d4d-e455-427d-8e4f-6c560a8ba536">
 conda</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">deepprofenv</span>
 </pre></div>

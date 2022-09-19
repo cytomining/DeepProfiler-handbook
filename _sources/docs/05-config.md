@@ -1,4 +1,4 @@
-# 5. The configuration file
+# 5. Configuration file
 
 The configuration file is a text file in JSON format that organizes various settings for one experiment. If you need to test different configurations, you can create different configuration files and run DeepProfiler with each. DeepProfiler searches for the configuration file in the `inputs/config/` directory, which you can use to store various configuration files. Note that the `--config` flag does not need you to specify the full path of the file, just the name as it is assumed to be stored in the `inputs/config/` directory.
 

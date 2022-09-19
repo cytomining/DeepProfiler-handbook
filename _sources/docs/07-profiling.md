@@ -1,8 +1,10 @@
-# 7. Profiling
+# 7. Profile cells
 
-DeepProfiler allows to profile the data using self-trained models or pre-trained models. 
+DeepProfiler allows profiling the data using self-trained models or pre-trained models. 
 
 ## **7.1 General profiling information:**
+
+Before profiling the dataset, it is **strongly** recommended to [pre-process the dataset](https://cytomining.github.io/DeepProfiler-handbook/docs/07-profile.html#optional-project-dependent-functions) if you have not done it yet.
 
 General example command to run profiling: 
 
@@ -32,20 +34,20 @@ For specific instructions and config examples see further sections.
 ```{admonition} Note
 :class: tip
 The `checkpoint` parameter points to the name of a file from /outputs/experiment_name/checkpoint/ folder.
-If your GPU\workstations allows, you can insrease `batch_size` to speed-up the profiling.
+If your GPU\workstation allows, you can increase `batch_size` to speed up the profiling.
 ```
 
 ```{admonition} About feature layers
 :class: tip
-The `feature_layer` parameter in the configuration file defines the layer of the model to be extracted. `pool5` in this case refers to average pooling penultimate layer. You might want to experiment with other layers. In our analysis, we found that in case of EfficientNet, the best downstream results are obtained with `block6a_activation` intermediate layer.
+The `feature_layer` parameter in the configuration file defines the layer of the model to be extracted. `pool5` in this case refers to the average pooling penultimate layer. You might want to experiment with other layers. In our analysis, we found that in the case of EfficientNet, the best downstream results are obtained with `block6a_activation` intermediate layer.
 ```
 
-The extracted features are stored in `/outputs/experiment_name/features/`. In case if you want to run another feature extraction for the same experiment, you will need to move (or remove) the contents of this folder. 
+The extracted features are stored in `/outputs/experiment_name/features/`. In case you want to run another feature extraction for the same experiment, you will need to move (or remove) the contents of this folder. 
 
 
 ## **7.2 Profiling with self-trained model:**
 
-After training your own model, you can profile your data using the checkpoints from the training:
+After training your model, you can profile your data using the checkpoints from the training:
 
 The _profile_ section example:
 
@@ -60,7 +62,7 @@ The _profile_ section example:
 
 ## **7.3 Profiling with ImageNet pre-trained model:**
 
-Pre-trained ImageNet model is downloaded automatically for EfficientNet or ResNet. 
+Pre-trained ImageNet model is downloaded automatically for EfficientNet or ResNet to the cache folder of Keras.  
 
 The _profile_ section of your config should be adjusted: `checkpoint` field will have `None` and `use_pretrained_input_size` is set according to the chosen model.
   
@@ -77,7 +79,7 @@ Example for _EfficientNet-B0_ model:
 
 ## **7.4 Profiling with Cell Painting CNN model:**
 
-Cell Painting CNN was pre-trained on diverse dataset (almost 500 treatments and two controls in two different cell lines: U2OS and A549) of Cell Painting images and can be used primarly for processing of new Cell Painting experiments.
+Cell Painting CNN was pre-trained on the diverse dataset (almost 500 treatments and two controls in two different cell lines: U2OS and A549) of Cell Painting images and can be used primarily for the processing of new Cell Painting experiments.
 
 To run an experiment, an experiment folder should be created manually in `/outputs/`, for example  `/outputs/experiment/` and then create a checkpoint folder `/outputs/experiment/checkpoint/`. The model should be copied into this folder. After it, the usage of the model does not differ from self-trained models, a configuration example:
 
