@@ -75,7 +75,7 @@ Pre-trained ImageNet model is downloaded automatically for EfficientNet or ResNe
 
 The _profile_ section of your config should be adjusted: `checkpoint` field will have `None` and `use_pretrained_input_size` is set according to the chosen model.
 
-The crop_generator parameter should be set to `repeat_channel_crop_generator`, this crop generator feeds each channel to the model seprately, to match the number of channels of ImageNet, each channel is replcated three times. 
+The `crop_generator` parameter should be set to `repeat_channel_crop_generator`, this crop generator feeds each channel to the model seprately, to match the number of channels of ImageNet, each channel is replcated three times. 
   
 Example for _EfficientNet-B0_ model:
 
