@@ -93,18 +93,6 @@ To run an experiment, an experiment folder should be created manually in `/outpu
 
 ## **Optional project-dependent functions:**
 
-````{dropdown} **Prepare a dataset:**
-
-This tool computes illumination statistics, illumination correction functions and compresses images into PNG format. This is useful when the image collection used for training is too large and cannot be kept in a single server (think TBs of imaging data in a data center). Compressing a large collection of images can make training feasible for a diversity of cellular phenotypes. We designed this functionality to compress images as much as possible while losing the minimum amount of information.
-
-
-```
-python3 deepprofiler --root=/home/ubuntu/project/ --config filename.json prepare
-python3 deepprofiler --root=/project_folder/example_data --config=config.json prepare
-```
-
-
-````
 
 ````{dropdown} **Split index file**:
 
