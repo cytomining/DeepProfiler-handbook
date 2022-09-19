@@ -2,7 +2,7 @@
 
 ## **3.1 Images**
 
-DeepProfiler expects either TIFF or PNG files. Image channels need to be stored in separate files. Image sizes and dimensions are flexible. DeepProfiler are compatible with most high-throughput microscopy systems.
+DeepProfiler expects either TIFF or PNG files with images of cells. The image channels are expected to be stored in separate files, and their paths can be organized as needed in the project and documented in the metadata file. The size of images is, in principle, flexible and DeepProfiler can work with different resolutions and image dimensions. The workflow of DeepProfiler is standard and compatible with most high-throughput microscopy systems.
 
 ## **3.2 Dataset compression and illumination correction**
 
