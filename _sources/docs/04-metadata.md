@@ -2,7 +2,7 @@
 
 ## **4.1 The index.csv file**
 
-The index.csv file (located in project/inputs/metadata/index.csv) is critical for running DeepProfiler. It follows a comma-separated-values format with a header, contains information about the experiment, and lists all images in your project. DeepProfiler uses this file to guide image sampling for running learning algorithms, and to find the images that we want to process. This file is expected to contain metadata to identify the context of images in the physical experiment that produced them, for instance, identifiers of plates, wells and fields of view (Figure 3). DeepProfiler assumes that each row in the file represents one (multi-channel) field of view. The following list indicates the columns that the index.csv file is expected to have:
+The index.csv file (located in `project/inputs/metadata/index.csv`) is critical for running DeepProfiler. It follows a comma-separated-values (CSV) format with a header, contains information about the experiment, and lists all images in your project. DeepProfiler uses this file to guide image sampling for running learning algorithms, and to find the images that we want to process. This file is expected to contain metadata to identify the context of images in the physical experiment that produced them, for instance, identifiers of plates, wells and fields of view (Figure 3). DeepProfiler assumes that each row in the file represents one (multi-channel) field of view. The following list indicates the columns that the index.csv file is expected to have:
 
 
 1. `Metadata_Plate`: Name or identifier of the plate (i.e., highest level of experimental organization), e.g. `41744`. The field header cannot be renamed.
