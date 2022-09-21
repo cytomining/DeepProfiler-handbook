@@ -1,10 +1,8 @@
-# 7. Profile cells with DeepProfiler
+# 6. Profile cells with DeepProfiler
 
 DeepProfiler allows profiling the data using self-trained models or pre-trained models. 
 
-## **7.1 General profiling information:**
-
-Before profiling the dataset, it is **strongly** recommended to [pre-process the dataset](https://cytomining.github.io/DeepProfiler-handbook/docs/03-images.html#dataset-compression-and-illumination-correction) if you have not done it yet.
+## **6.1 General profiling information:**
 
 General example command to run profiling: 
 
@@ -54,22 +52,21 @@ The order of vectors matches the order of cell locations for the image.
 In case you want to run another feature extraction for the same experiment, you will need to move (or remove) the contents of this folder. 
 
 
-## **7.2 Profiling with self-trained model:**
+## **6.2 Profiling with Cell Painting CNN model:**
 
-After training your model, you can profile your data using the checkpoints from the training:
+Cell Painting CNN was pre-trained on the diverse dataset (almost 500 treatments and two controls in two different cell lines: U2OS and A549) of Cell Painting images and can be used primarily for the processing of new Cell Painting experiments.
 
-The _profile_ section example:
+To run an experiment, an experiment folder should be created manually in `/outputs/`, for example  `/outputs/experiment/` and then create a checkpoint folder `/outputs/experiment/checkpoint/`. The model should be copied into this folder. After it, the usage of the model does not differ from self-trained models, a configuration example:
 
 ```
 "profile": {
-      "feature_layer": "pool5",
-      "checkpoint": "checkpoint_0020.hdf5",
+      "feature_layer": "block6a_activation",
+      "checkpoint": "combinedset_cellsout_e30.hdf5",
       "batch_size": 128
     }
 ```
 
-
-## **7.3 Profiling with ImageNet pre-trained model:**
+## **6.3 Profiling with ImageNet pre-trained model:**
 
 Pre-trained ImageNet model is downloaded automatically for EfficientNet or ResNet to the cache folder of Keras.  
 
@@ -88,19 +85,20 @@ Example for _EfficientNet-B0_ model:
     }
 ```
 
-## **7.4 Profiling with Cell Painting CNN model:**
+## **6.4 Profiling with self-trained model:**
 
-Cell Painting CNN was pre-trained on the diverse dataset (almost 500 treatments and two controls in two different cell lines: U2OS and A549) of Cell Painting images and can be used primarily for the processing of new Cell Painting experiments.
+After training your model, you can profile your data using the checkpoints from the training:
 
-To run an experiment, an experiment folder should be created manually in `/outputs/`, for example  `/outputs/experiment/` and then create a checkpoint folder `/outputs/experiment/checkpoint/`. The model should be copied into this folder. After it, the usage of the model does not differ from self-trained models, a configuration example:
+The _profile_ section example:
 
 ```
 "profile": {
-      "feature_layer": "block6a_activation",
-      "checkpoint": "combinedset_cellsout_e30.hdf5",
+      "feature_layer": "pool5",
+      "checkpoint": "checkpoint_0020.hdf5",
       "batch_size": 128
     }
 ```
+
 
 ## **Optional project-dependent functions:**
 

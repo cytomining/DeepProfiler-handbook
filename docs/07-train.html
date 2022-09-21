@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>6. Training models with DeepProfiler &#8212; Handbook</title>
+    <title>7. Training models with DeepProfiler &#8212; Handbook</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon_32.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="7. Profile cells with DeepProfiler" href="07-profiling.html" />
-    <link rel="prev" title="5. Configuration file" href="05-config.html" />
+    <link rel="next" title="8. Aggregating profiles" href="08-aggregate.html" />
+    <link rel="prev" title="6. Profile cells with DeepProfiler" href="06-profiling.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -140,14 +140,14 @@ const thebe_selector_output = ".output, .cell_output"
    5. Configuration file
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   6. Training models with DeepProfiler
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-profiling.html">
+   6. Profile cells with DeepProfiler
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-profiling.html">
-   7. Profile cells with DeepProfiler
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   7. Training models with DeepProfiler
   </a>
  </li>
  <li class="toctree-l1">
@@ -250,7 +250,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/cytomining/DeepProfiler-handbook/issues/new?title=Issue%20on%20page%20%2Fdocs/06-train.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/cytomining/DeepProfiler-handbook/issues/new?title=Issue%20on%20page%20%2Fdocs/07-train.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -267,7 +267,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/cytomining/DeepProfiler-handbook/edit/main/DeepProfiler-Handbook/docs/06-train.md"
+        <a href="https://github.com/cytomining/DeepProfiler-handbook/edit/main/DeepProfiler-Handbook/docs/07-train.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -295,7 +295,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/docs/06-train.md"
+        <a href="../_sources/docs/07-train.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -357,14 +357,14 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#export-single-cells">
    <strong>
-    6.1 Export single-cells
+    7.1 Export single-cells
    </strong>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#train-a-model">
    <strong>
-    6.2 Train a model:
+    7.2 Train a model:
    </strong>
   </a>
  </li>
@@ -377,7 +377,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>6. Training models with DeepProfiler</h1>
+                <h1>7. Training models with DeepProfiler</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -390,14 +390,14 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#export-single-cells">
    <strong>
-    6.1 Export single-cells
+    7.1 Export single-cells
    </strong>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#train-a-model">
    <strong>
-    6.2 Train a model:
+    7.2 Train a model:
    </strong>
   </a>
  </li>
@@ -412,9 +412,9 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="training-models-with-deepprofiler">
-<h1>6. Training models with DeepProfiler<a class="headerlink" href="#training-models-with-deepprofiler" title="Permalink to this headline">#</a></h1>
+<h1>7. Training models with DeepProfiler<a class="headerlink" href="#training-models-with-deepprofiler" title="Permalink to this headline">#</a></h1>
 <section id="export-single-cells">
-<h2><strong>6.1 Export single-cells</strong><a class="headerlink" href="#export-single-cells" title="Permalink to this headline">#</a></h2>
+<h2><strong>7.1 Export single-cells</strong><a class="headerlink" href="#export-single-cells" title="Permalink to this headline">#</a></h2>
 <p>Imagine you already have a dataset of full images and you would like to train a model. Models are trained with single-cell crops, so the single-cells of the dataset should be exported separately.
 If the dataset consists of 16-bit TIFF images, it is <strong>strongly</strong> recommended to <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/03-images.html#dataset-compression-and-illumination-correction">pre-process the dataset</a> first.</p>
 <p>The single-cell export tool requires single cells to be identified and segmented ahead of time (see Section 3). Then, this tool will generate an image for each exisisting single cell in the locations file with the channels concatenated in horizontal order (see example image below). The basic command for export is as follows:</p>
@@ -436,7 +436,7 @@ If a different training-validation split is needed, you can modify the <code cla
 </div>
 </section>
 <section id="train-a-model">
-<h2><strong>6.2 Train a model:</strong><a class="headerlink" href="#train-a-model" title="Permalink to this headline">#</a></h2>
+<h2><strong>7.2 Train a model:</strong><a class="headerlink" href="#train-a-model" title="Permalink to this headline">#</a></h2>
 <p>An example of the training command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">deepprofiler</span> <span class="o">--</span><span class="n">root</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span> <span class="o">--</span><span class="n">config</span> <span class="n">filename</span><span class="o">.</span><span class="n">json</span> <span class="o">--</span><span class="n">single</span><span class="o">-</span><span class="n">cells</span><span class="o">=</span><span class="n">single_cells_dataset</span> <span class="o">--</span><span class="n">exp</span><span class="o">=</span><span class="n">experiment_name</span> <span class="o">--</span><span class="n">gpu</span> <span class="mi">0</span> <span class="n">train</span>
 </pre></div>
@@ -487,17 +487,17 @@ The <code class="docutils literal notranslate"><span class="pre">--exp</span> <s
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="05-config.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="06-profiling.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">5. Configuration file</p>
+            <p class="prev-next-title">6. Profile cells with DeepProfiler</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="07-profiling.html" title="next page">
+    <a class='right-next' id="next-link" href="08-aggregate.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">7. Profile cells with DeepProfiler</p>
+        <p class="prev-next-title">8. Aggregating profiles</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
