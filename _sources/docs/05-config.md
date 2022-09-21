@@ -33,7 +33,15 @@ The command `prepare` then runs illumination correction and compression, useful 
       * `implement`: _(bool)_ true or false, whether compression is used for training and profiling. If true, other DeepProfiler commands will use the compressed images in the `output/compressed/` directory instead of the original images in the `input/images/` directory.
       * `scaling_factor`: _(float)_ make images a fraction of what they are. 1.0 means no scaling, 0.8 means resize to 80% of the current size in x and y. Re-scaling images results in smaller files that are faster to read during training, but loses spatial resolution, which is generally not recommended. Use a value different to 1.0 only if there is a good experimental reason.
 
-### 3. `train`: parameters for training a deep learning model on your data.
+### 3. <code>profile</code>: parameters to run an existing model on images to extract features or obtain classification outputs.
+
+  * <code>use_pretrained_input_size</code>: <em>(int)</em> input size for the neural network models pre-trained on the ImageNet dataset. The pretrained InceptionResNetv2 model uses <code>299</code> while pretrained ResNet and EfficientNet models use <code>224</code>. This parameter is not needed for models trained by you, only for these three supported pretrained models.
+  * <code>feature_layer</code>: <em>(string)</em> name of the layer in the convolutional network to be used for feature extraction.
+  * <code>checkpoint</code>: <em>(string)</em> name of the weights file stored in the <code>outputs/&lt;experiment&gt;/checkpoint/</code> directory after the network is trained.
+  * <code>batch_size</code>: <em>(int)</em> number of samples used during the forward pass for feature extraction.
+
+
+### 4. `train`: parameters for training a deep learning model on your data.
 
   * `partition`:
       * `targets`: _(array)_ column names in the metadata (`index.csv` file) that want to be used as classification targets for training the neural networks. It currently uses only the first element in the list, e.g., `['Compound', 'Concentration']`, means that there are two columns in the `index.csv `file with that information, and that DeepProfiler will use `'Compound'` for training. The rest of the array is currently ignored, but is intended to be used in the future. If both columns are necessary for training, consider merging them in a single column, otherwise you can leave only one column name in the array i.e., `['Compound']`
@@ -70,9 +78,3 @@ The command `prepare` then runs illumination correction and compression, useful 
       * <code>frame</code>: <em>(string)</em> partition of the data used for validation. Valid values include “all”, “train” or “val”. Recommended default value: “val”.
       * <code>sample_first_crops</code>: <em>(bool)</em> true or false, whether to use all crops from each validation image or only sample the first N for validation, where N is the batch size.
 
-### 4. <code>profile</code>: parameters to run an existing model on images to extract features or obtain classification outputs.
-
-  * <code>use_pretrained_input_size</code>: <em>(int)</em> input size for the neural network models pre-trained on the ImageNet dataset. The pretrained InceptionResNetv2 model uses <code>299</code> while pretrained ResNet and EfficientNet models use <code>224</code>. This parameter is not needed for models trained by you, only for these three supported pretrained models.
-  * <code>feature_layer</code>: <em>(string)</em> name of the layer in the convolutional network to be used for feature extraction.
-  * <code>checkpoint</code>: <em>(string)</em> name of the weights file stored in the <code>outputs/&lt;experiment&gt;/checkpoint/</code> directory after the network is trained.
-  * <code>batch_size</code>: <em>(int)</em> number of samples used during the forward pass for feature extraction.

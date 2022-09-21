@@ -384,23 +384,23 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#train-parameters-for-training-a-deep-learning-model-on-your-data">
+    <a class="reference internal nav-link" href="#code-profile-code-parameters-to-run-an-existing-model-on-images-to-extract-features-or-obtain-classification-outputs">
      3.
+     <code>
+      profile
+     </code>
+     : parameters to run an existing model on images to extract features or obtain classification outputs.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-parameters-for-training-a-deep-learning-model-on-your-data">
+     4.
      <code class="docutils literal notranslate">
       <span class="pre">
        train
       </span>
      </code>
      : parameters for training a deep learning model on your data.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#code-profile-code-parameters-to-run-an-existing-model-on-images-to-extract-features-or-obtain-classification-outputs">
-     4.
-     <code>
-      profile
-     </code>
-     : parameters to run an existing model on images to extract features or obtain classification outputs.
     </a>
    </li>
   </ul>
@@ -454,23 +454,23 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#train-parameters-for-training-a-deep-learning-model-on-your-data">
+    <a class="reference internal nav-link" href="#code-profile-code-parameters-to-run-an-existing-model-on-images-to-extract-features-or-obtain-classification-outputs">
      3.
+     <code>
+      profile
+     </code>
+     : parameters to run an existing model on images to extract features or obtain classification outputs.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-parameters-for-training-a-deep-learning-model-on-your-data">
+     4.
      <code class="docutils literal notranslate">
       <span class="pre">
        train
       </span>
      </code>
      : parameters for training a deep learning model on your data.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#code-profile-code-parameters-to-run-an-existing-model-on-images-to-extract-features-or-obtain-classification-outputs">
-     4.
-     <code>
-      profile
-     </code>
-     : parameters to run an existing model on images to extract features or obtain classification outputs.
     </a>
    </li>
   </ul>
@@ -537,8 +537,17 @@ title="Print to PDF"
 </li>
 </ul>
 </section>
+<section id="code-profile-code-parameters-to-run-an-existing-model-on-images-to-extract-features-or-obtain-classification-outputs">
+<h3>3. <code>profile</code>: parameters to run an existing model on images to extract features or obtain classification outputs.<a class="headerlink" href="#code-profile-code-parameters-to-run-an-existing-model-on-images-to-extract-features-or-obtain-classification-outputs" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><code>use_pretrained_input_size</code>: <em>(int)</em> input size for the neural network models pre-trained on the ImageNet dataset. The pretrained InceptionResNetv2 model uses <code>299</code> while pretrained ResNet and EfficientNet models use <code>224</code>. This parameter is not needed for models trained by you, only for these three supported pretrained models.</p></li>
+<li><p><code>feature_layer</code>: <em>(string)</em> name of the layer in the convolutional network to be used for feature extraction.</p></li>
+<li><p><code>checkpoint</code>: <em>(string)</em> name of the weights file stored in the <code>outputs/&lt;experiment&gt;/checkpoint/</code> directory after the network is trained.</p></li>
+<li><p><code>batch_size</code>: <em>(int)</em> number of samples used during the forward pass for feature extraction.</p></li>
+</ul>
+</section>
 <section id="train-parameters-for-training-a-deep-learning-model-on-your-data">
-<h3>3. <code class="docutils literal notranslate"><span class="pre">train</span></code>: parameters for training a deep learning model on your data.<a class="headerlink" href="#train-parameters-for-training-a-deep-learning-model-on-your-data" title="Permalink to this headline">#</a></h3>
+<h3>4. <code class="docutils literal notranslate"><span class="pre">train</span></code>: parameters for training a deep learning model on your data.<a class="headerlink" href="#train-parameters-for-training-a-deep-learning-model-on-your-data" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">partition</span></code>:</p>
 <ul>
@@ -601,15 +610,6 @@ title="Print to PDF"
 <li><p><code>sample_first_crops</code>: <em>(bool)</em> true or false, whether to use all crops from each validation image or only sample the first N for validation, where N is the batch size.</p></li>
 </ul>
 </li>
-</ul>
-</section>
-<section id="code-profile-code-parameters-to-run-an-existing-model-on-images-to-extract-features-or-obtain-classification-outputs">
-<h3>4. <code>profile</code>: parameters to run an existing model on images to extract features or obtain classification outputs.<a class="headerlink" href="#code-profile-code-parameters-to-run-an-existing-model-on-images-to-extract-features-or-obtain-classification-outputs" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p><code>use_pretrained_input_size</code>: <em>(int)</em> input size for the neural network models pre-trained on the ImageNet dataset. The pretrained InceptionResNetv2 model uses <code>299</code> while pretrained ResNet and EfficientNet models use <code>224</code>. This parameter is not needed for models trained by you, only for these three supported pretrained models.</p></li>
-<li><p><code>feature_layer</code>: <em>(string)</em> name of the layer in the convolutional network to be used for feature extraction.</p></li>
-<li><p><code>checkpoint</code>: <em>(string)</em> name of the weights file stored in the <code>outputs/&lt;experiment&gt;/checkpoint/</code> directory after the network is trained.</p></li>
-<li><p><code>batch_size</code>: <em>(int)</em> number of samples used during the forward pass for feature extraction.</p></li>
 </ul>
 </section>
 </section>
