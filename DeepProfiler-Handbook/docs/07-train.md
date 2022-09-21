@@ -1,7 +1,7 @@
-# 6. Training models with DeepProfiler
+# 7. Training models with DeepProfiler
 
 
-## **6.1 Export single-cells**
+## **7.1 Export single-cells**
 
 Imagine you already have a dataset of full images and you would like to train a model. Models are trained with single-cell crops, so the single-cells of the dataset should be exported separately.
 If the dataset consists of 16-bit TIFF images, it is **strongly** recommended to [pre-process the dataset](https://cytomining.github.io/DeepProfiler-handbook/docs/03-images.html#dataset-compression-and-illumination-correction) first. 
@@ -32,7 +32,7 @@ If a different training-validation split is needed, you can modify the `split_fi
 ```
 
 
-## **6.2 Train a model:**
+## **7.2 Train a model:**
 
 
 An example of the training command:

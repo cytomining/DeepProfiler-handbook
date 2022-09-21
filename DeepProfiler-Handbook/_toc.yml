@@ -6,7 +6,7 @@ chapters:
 - file: docs/03-images
 - file: docs/04-metadata
 - file: docs/05-config
-- file: docs/06-train
-- file: docs/07-profiling
+- file: docs/06-profiling
+- file: docs/07-train
 - file: docs/08-aggregate
 - file: docs/09-process
