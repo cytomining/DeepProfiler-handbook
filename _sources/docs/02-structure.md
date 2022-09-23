@@ -19,7 +19,7 @@ Go back to the DeepProfiler to initialize the contents of your new project direc
 
 ```
 cd /path/to/DeepProfiler
-python3 deepprofiler --root=/home/ubuntu/project --config=config.json setup
+python3 deepprofiler --root=/home/ubuntu/project setup
 ```
 
 ```{admonition} Note
