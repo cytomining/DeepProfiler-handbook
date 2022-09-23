@@ -359,8 +359,8 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#aggregation-of-profiles">
-     8.1.1 Aggregation of profiles
+    <a class="reference internal nav-link" href="#aggregation-of-profiles-and-batch-correction">
+     8.1.1 Aggregation of profiles and batch-correction
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -405,8 +405,8 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#aggregation-of-profiles">
-     8.1.1 Aggregation of profiles
+    <a class="reference internal nav-link" href="#aggregation-of-profiles-and-batch-correction">
+     8.1.1 Aggregation of profiles and batch-correction
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -445,8 +445,8 @@ Jupyter notebooks, which are available in <a class="reference external" href="ht
 Folders <code class="docutils literal notranslate"><span class="pre">ta-orf</span></code> (BBBC037 dataset), <code class="docutils literal notranslate"><span class="pre">bbbc022</span></code> and <code class="docutils literal notranslate"><span class="pre">cdrp</span></code> (BBBC036 dataset) correspond to benchmark datasets and contain
 Jupyter notebooks, <code class="docutils literal notranslate"><span class="pre">profiling</span></code> folder contains utility functions. Next, we are going to go through the most important
 analysis notebooks. You can reuse this code to build a custom analysis pipeline.</p>
-<section id="aggregation-of-profiles">
-<h2>8.1.1 Aggregation of profiles<a class="headerlink" href="#aggregation-of-profiles" title="Permalink to this headline">#</a></h2>
+<section id="aggregation-of-profiles-and-batch-correction">
+<h2>8.1.1 Aggregation of profiles and batch-correction<a class="headerlink" href="#aggregation-of-profiles-and-batch-correction" title="Permalink to this headline">#</a></h2>
 <p>Aggregation of features can be done with <code class="docutils literal notranslate"><span class="pre">01-create-profiles.ipynb</span></code> Jupyter notebook. The inputs are: <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/04-metadata.html#the-index-csv-file">project metadata
 file</a>, ground truth metadata
 with annotations of treatments by the mechanism of action and the <code class="docutils literal notranslate"><span class="pre">.npz</span></code> files with features  organized in
@@ -467,9 +467,9 @@ output file names: <code class="docutils literal notranslate"><span class="pre">
 <p>Evaluation of profiles can be done with <code class="docutils literal notranslate"><span class="pre">04-downstream-analysis.ipynb</span></code>. This notebook uses the cosine similarity matrix
 obtained in <code class="docutils literal notranslate"><span class="pre">01-create-profiles.ipynb</span></code> as an input.</p>
 <ol class="simple">
-<li><p>First parts (<code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">similarity</span> <span class="pre">matrix</span></code> and <code class="docutils literal notranslate"><span class="pre">MOA</span> <span class="pre">matching</span></code>) of the notebook perform input pre-processing. <code class="docutils literal notranslate"><span class="pre">moa_matches</span></code>
+<li><p>First parts (<em>Load similarity matrix</em> and <em>MOA matching</em>) of the notebook perform input pre-processing. <code class="docutils literal notranslate"><span class="pre">moa_matches</span></code>
 is a binary matrix of size <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">x</span> <span class="pre">n</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of treatments in the similarity matrix. This matrix is symmetrical
-and each row (column) relates is a treatment, and values are <code class="docutils literal notranslate"><span class="pre">True</span></code> in each row (column) for the current treatment (digonal)
+and each row (column) relates is a treatment, and values are <code class="docutils literal notranslate"><span class="pre">True</span></code> in each row (column) for the current treatment (diagonal)
 and treatments that belong to the same mechanism of action as the current treatment.</p></li>
 <li><p>Calculate the precision metrics: <code class="docutils literal notranslate"><span class="pre">Average</span> <span class="pre">precision</span></code> and <code class="docutils literal notranslate"><span class="pre">Precision</span> <span class="pre">&#64;</span> <span class="pre">top</span> <span class="pre">1%</span></code>.</p></li>
 <li><p>Calculate the recall metrics: <code class="docutils literal notranslate"><span class="pre">Recall</span></code> and <code class="docutils literal notranslate"><span class="pre">Average</span> <span class="pre">Recall</span> <span class="pre">at</span> <span class="pre">top</span> <span class="pre">10%</span></code> (a different cut-off was used on purpose).</p></li>

@@ -14,7 +14,7 @@ Jupyter notebooks, `profiling` folder contains utility functions. Next, we are g
 analysis notebooks. You can reuse this code to build a custom analysis pipeline.
 
 
-## 8.1.1 Aggregation of profiles
+## 8.1.1 Aggregation of profiles and batch-correction
 
 Aggregation of features can be done with `01-create-profiles.ipynb` Jupyter notebook. The inputs are: [project metadata 
 file](https://cytomining.github.io/DeepProfiler-handbook/docs/04-metadata.html#the-index-csv-file), ground truth metadata 
@@ -35,9 +35,9 @@ with annotations of treatments by the mechanism of action and the `.npz` files w
 
 Evaluation of profiles can be done with `04-downstream-analysis.ipynb`. This notebook uses the cosine similarity matrix 
 obtained in `01-create-profiles.ipynb` as an input. 
-1. First parts (`Load similarity matrix` and `MOA matching`) of the notebook perform input pre-processing. `moa_matches` 
+1. First parts (*Load similarity matrix* and *MOA matching*) of the notebook perform input pre-processing. `moa_matches` 
    is a binary matrix of size `n x n`, where `n` is the number of treatments in the similarity matrix. This matrix is symmetrical 
-   and each row (column) relates is a treatment, and values are `True` in each row (column) for the current treatment (digonal) 
+   and each row (column) relates is a treatment, and values are `True` in each row (column) for the current treatment (diagonal) 
    and treatments that belong to the same mechanism of action as the current treatment.
 2. Calculate the precision metrics: `Average precision` and `Precision @ top 1%`. 
 3. Calculate the recall metrics: `Recall` and `Average Recall at top 10%` (a different cut-off was used on purpose). 
