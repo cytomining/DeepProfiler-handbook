@@ -1,8 +1,8 @@
-# 5. Configuration file
+# 5. Configuration file and examples 
 
 The configuration file is a text file in JSON format that organizes various settings for one experiment. If you need to test different configurations, you can create different configuration files and run DeepProfiler with each. DeepProfiler searches for the configuration file in the `inputs/config/` directory, which you can use to store various configuration files. Note that the `--config` flag does not need you to specify the full path of the file, just the name as it is assumed to be stored in the `inputs/config/` directory.
 
-## <strong>Configuration File Organization</strong>
+## 5.1 Configuration File Organization
 The configuration file is organized in four main sections as follows. We’ve included specific recommendations where possible. For more details, check out our paper (link). For generating this config file for your own project, look at the descriptions below together with the provided examples of index.csv and config.json files.
 
 ### 1. `dataset`: description of your image collection with basic general information
@@ -77,4 +77,16 @@ The command `prepare` then runs illumination correction and compression, useful 
       * <code>batch_size</code>: <em>(int)</em> batch size for the validation set.
       * <code>frame</code>: <em>(string)</em> partition of the data used for validation. Valid values include “all”, “train” or “val”. Recommended default value: “val”.
       * <code>sample_first_crops</code>: <em>(bool)</em> true or false, whether to use all crops from each validation image or only sample the first N for validation, where N is the batch size.
+
+## 5.2 Available examples of configuration files
+[DeepProfilerExperiments Github repository](https://github.com/broadinstitute/DeepProfilerExperiments) contains 
+experiment configuration files for benchmark datasets (in the repository you can find a corresponding folder for 
+each of those: `ta-orf` (BBBC037 dataset), `bbbc022` and `cdrp` (BBBC036 dataset)) the example configuration files 
+can be found in the `config` folder. There are the following examples: 
+
+1. `cell_painting_cnn.json`: a configuration file for [profiling with the *Cell Painting CNN* model](https://cytomining.github.io/DeepProfiler-handbook/docs/06-profiling.html#profiling-with-cell-painting-cnn-model).
+2. `efficientnet_train_and_profile.json`: a configuration file for [training](https://cytomining.github.io/DeepProfiler-handbook/docs/07-train.html) and then [profiling](https://cytomining.github.io/DeepProfiler-handbook/docs/06-profiling.html#profiling-with-self-trained-model) with the trained model.
+    It does not differ much from the previous one, only the name of the checkpoint file is different.
+3. `export.json`: a configuration file for [single-cell export](https://cytomining.github.io/DeepProfiler-handbook/docs/07-train.html#export-single-cells).
+4. `pretrained_effnet.json`: a configuration file for [profiling with ImageNet pre-trained](https://cytomining.github.io/DeepProfiler-handbook/docs/06-profiling.html#profiling-with-imagenet-pre-trained-model) EfficientNet. 
 

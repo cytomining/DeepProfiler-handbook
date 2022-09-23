@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>5. Configuration file &#8212; Handbook</title>
+    <title>5. Configuration file and examples &#8212; Handbook</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -137,7 +137,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   5. Configuration file
+   5. Configuration file and examples
   </a>
  </li>
  <li class="toctree-l1">
@@ -350,10 +350,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#strong-configuration-file-organization-strong">
-   <strong>
-    Configuration File Organization
-   </strong>
+  <a class="reference internal nav-link" href="#configuration-file-organization">
+   5.1 Configuration File Organization
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -400,6 +398,11 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#available-examples-of-configuration-files">
+   5.2 Available examples of configuration files
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -409,7 +412,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>5. Configuration file</h1>
+                <h1>5. Configuration file and examples</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -420,10 +423,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#strong-configuration-file-organization-strong">
-   <strong>
-    Configuration File Organization
-   </strong>
+  <a class="reference internal nav-link" href="#configuration-file-organization">
+   5.1 Configuration File Organization
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -469,6 +470,11 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#available-examples-of-configuration-files">
+   5.2 Available examples of configuration files
+  </a>
  </li>
 </ul>
 
@@ -480,11 +486,11 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="configuration-file">
-<h1>5. Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="configuration-file-and-examples">
+<h1>5. Configuration file and examples<a class="headerlink" href="#configuration-file-and-examples" title="Permalink to this headline">#</a></h1>
 <p>The configuration file is a text file in JSON format that organizes various settings for one experiment. If you need to test different configurations, you can create different configuration files and run DeepProfiler with each. DeepProfiler searches for the configuration file in the <code class="docutils literal notranslate"><span class="pre">inputs/config/</span></code> directory, which you can use to store various configuration files. Note that the <code class="docutils literal notranslate"><span class="pre">--config</span></code> flag does not need you to specify the full path of the file, just the name as it is assumed to be stored in the <code class="docutils literal notranslate"><span class="pre">inputs/config/</span></code> directory.</p>
-<section id="strong-configuration-file-organization-strong">
-<h2><strong>Configuration File Organization</strong><a class="headerlink" href="#strong-configuration-file-organization-strong" title="Permalink to this headline">#</a></h2>
+<section id="configuration-file-organization">
+<h2>5.1 Configuration File Organization<a class="headerlink" href="#configuration-file-organization" title="Permalink to this headline">#</a></h2>
 <p>The configuration file is organized in four main sections as follows. We’ve included specific recommendations where possible. For more details, check out our paper (link). For generating this config file for your own project, look at the descriptions below together with the provided examples of index.csv and config.json files.</p>
 <section id="dataset-description-of-your-image-collection-with-basic-general-information">
 <h3>1. <code class="docutils literal notranslate"><span class="pre">dataset</span></code>: description of your image collection with basic general information<a class="headerlink" href="#dataset-description-of-your-image-collection-with-basic-general-information" title="Permalink to this headline">#</a></h3>
@@ -607,6 +613,20 @@ title="Print to PDF"
 </li>
 </ul>
 </section>
+</section>
+<section id="available-examples-of-configuration-files">
+<h2>5.2 Available examples of configuration files<a class="headerlink" href="#available-examples-of-configuration-files" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://github.com/broadinstitute/DeepProfilerExperiments">DeepProfilerExperiments Github repository</a> contains
+experiment configuration files for benchmark datasets (in the repository you can find a corresponding folder for
+each of those: <code class="docutils literal notranslate"><span class="pre">ta-orf</span></code> (BBBC037 dataset), <code class="docutils literal notranslate"><span class="pre">bbbc022</span></code> and <code class="docutils literal notranslate"><span class="pre">cdrp</span></code> (BBBC036 dataset)) the example configuration files
+can be found in the <code class="docutils literal notranslate"><span class="pre">config</span></code> folder. There are the following examples:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cell_painting_cnn.json</span></code>: a configuration file for <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/06-profiling.html#profiling-with-cell-painting-cnn-model">profiling with the <em>Cell Painting CNN</em> model</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">efficientnet_train_and_profile.json</span></code>: a configuration file for <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/07-train.html">training</a> and then <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/06-profiling.html#profiling-with-self-trained-model">profiling</a> with the trained model.
+It does not differ much from the previous one, only the name of the checkpoint file is different.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export.json</span></code>: a configuration file for <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/07-train.html#export-single-cells">single-cell export</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pretrained_effnet.json</span></code>: a configuration file for <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/06-profiling.html#profiling-with-imagenet-pre-trained-model">profiling with ImageNet pre-trained</a> EfficientNet.</p></li>
+</ol>
 </section>
 </section>
 
