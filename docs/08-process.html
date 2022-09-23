@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>9. Processing DeepProfiler features &#8212; Handbook</title>
+    <title>8. Processing DeepProfiler features &#8212; Handbook</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -151,7 +151,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   9. Processing DeepProfiler features
+   8. Processing DeepProfiler features
   </a>
  </li>
 </ul>
@@ -350,12 +350,29 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   9. Processing DeepProfiler features
+   8. Processing DeepProfiler features
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aggregating-and-evaluating-profiles-with-profiling-notebooks">
+   8.1 Aggregating and evaluating profiles with profiling notebooks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregation-of-profiles">
+     8.1.1 Aggregation of profiles
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluation-of-profiles">
+     8.1.2 Evaluation of profiles
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aggregating-and-evaluating-profiles-with-pycytominer">
-   9.1 Aggregating and evaluating profiles with Pycytominer
+   8.2 Aggregating and evaluating profiles with Pycytominer
   </a>
  </li>
 </ul>
@@ -367,7 +384,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>9. Processing DeepProfiler features</h1>
+                <h1>8. Processing DeepProfiler features</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -379,12 +396,29 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   9. Processing DeepProfiler features
+   8. Processing DeepProfiler features
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aggregating-and-evaluating-profiles-with-profiling-notebooks">
+   8.1 Aggregating and evaluating profiles with profiling notebooks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregation-of-profiles">
+     8.1.1 Aggregation of profiles
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluation-of-profiles">
+     8.1.2 Evaluation of profiles
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aggregating-and-evaluating-profiles-with-pycytominer">
-   9.1 Aggregating and evaluating profiles with Pycytominer
+   8.2 Aggregating and evaluating profiles with Pycytominer
   </a>
  </li>
 </ul>
@@ -398,13 +432,50 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="processing-deepprofiler-features">
-<h1>9. Processing DeepProfiler features<a class="headerlink" href="#processing-deepprofiler-features" title="Permalink to this headline">#</a></h1>
-<p>After aggregating, profiles are typically processed before being used for analysis purposes. Downstream processing can be done with the different operations of <a class="reference external" href="https://github.com/cytomining/pycytominer">Pycytominer</a>. Typically well-level data is spherized and then aggregated to compound level (no normalization and feature selection).</p>
+<h1>8. Processing DeepProfiler features<a class="headerlink" href="#processing-deepprofiler-features" title="Permalink to this headline">#</a></h1>
+<p>After aggregating, profiles are typically processed before being used for analysis purposes.
+Data-processing approaches for profiles extracted with CellProfiler were described in the paper “<a class="reference external" href="https://doi.org/10.1038/nmeth.4397">Data analysis strategies for image-based profiling</a>”. Some of those approaches were used for features extracted with DeepProfiler.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="aggregating-and-evaluating-profiles-with-profiling-notebooks">
+<h1>8.1 Aggregating and evaluating profiles with profiling notebooks<a class="headerlink" href="#aggregating-and-evaluating-profiles-with-profiling-notebooks" title="Permalink to this headline">#</a></h1>
+<p>To analyse benchmark datasets <a class="reference external" href="https://www.biorxiv.org/content/10.1101/2022.08.12.503783v1.full">analysis paper</a> we created Jupyter notebooks, which are available in <a class="reference external" href="https://github.com/broadinstitute/DeepProfilerExperiments">DeepProfilerExperiments Github repository</a>. Folders <code class="docutils literal notranslate"><span class="pre">ta-orf</span></code>, <code class="docutils literal notranslate"><span class="pre">bbbc022</span></code> and <code class="docutils literal notranslate"><span class="pre">cdrp</span></code> correspond to benchmark datasets and contain Jupyter notebooks, <code class="docutils literal notranslate"><span class="pre">profiling</span></code> folder contains utility functions.
+Next, we are going to go through the most important analysis notebooks. You can reuse this code to build your custom analysis pipeline.</p>
+<section id="aggregation-of-profiles">
+<h2>8.1.1 Aggregation of profiles<a class="headerlink" href="#aggregation-of-profiles" title="Permalink to this headline">#</a></h2>
+<p>Aggregation of features can be done with <code class="docutils literal notranslate"><span class="pre">01-create-profiles.ipynb</span></code> Jupyter notebook. The inputs are: project metadata
+file, ground truth metadata with annotations of treatments by the mechanism of action and the <code class="docutils literal notranslate"><span class="pre">.npz</span></code> files with features organized in <code class="docutils literal notranslate"><span class="pre">{Plate}/{Well}/{Site}.npz</span></code> folder structure.</p>
+<ol class="simple">
+<li><p>Define the parameters: project and experiment folders from DeepProfiler, sphering regularization parameter and output file names: <code class="docutils literal notranslate"><span class="pre">OUTPUT_FILE</span></code> - output file that will contain well-level profiles after sphering and <code class="docutils literal notranslate"><span class="pre">MATRIX_FILE</span></code> that will contain similarity matrix of treatments.</p></li>
+<li><p>Load single-cell data by passing through metadata and reading files with features. It might require a significant amount of RAM (depending on the size of the dataset).</p></li>
+<li><p>Aggregate features of single-cells by site with median aggregation. <code class="docutils literal notranslate"><span class="pre">sites</span></code> Pandas dataframe will contain those aggregated profiles.</p></li>
+<li><p>Aggregate site-level profiles to well-level using mean aggregation and store them in <code class="docutils literal notranslate"><span class="pre">wells</span></code> dataframe.</p></li>
+<li><p>Sphering: calculate the sphering transformation <strong>using control wells only</strong> and then apply this transformation to all well-level profiles in <code class="docutils literal notranslate"><span class="pre">wells</span></code>.</p></li>
+<li><p>Aggregate well-level profiles to treatment-level profiles. Only treatments with ground truth annotations are aggregated and stored in <code class="docutils literal notranslate"><span class="pre">profiles</span></code> dataframe.</p></li>
+<li><p>Create a similarity matrix from <code class="docutils literal notranslate"><span class="pre">profiles</span></code>. We use cosine similarity as a similarity metric. Save the matrix to <code class="docutils literal notranslate"><span class="pre">OUTPUT_FILE</span></code>.</p></li>
+</ol>
+</section>
+<section id="evaluation-of-profiles">
+<h2>8.1.2 Evaluation of profiles<a class="headerlink" href="#evaluation-of-profiles" title="Permalink to this headline">#</a></h2>
+<p>Evaluation of profiles can be done with <code class="docutils literal notranslate"><span class="pre">04-downstream-analysis.ipynb</span></code>. This notebook uses the cosine similarity matrix
+obtained in <code class="docutils literal notranslate"><span class="pre">01-create-profiles.ipynb</span></code> as an input.</p>
+<ol class="simple">
+<li><p>First parts (<code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">similarity</span> <span class="pre">matrix</span></code> and <code class="docutils literal notranslate"><span class="pre">MOA</span> <span class="pre">matching</span></code>) of the notebook perform input pre-processing. <code class="docutils literal notranslate"><span class="pre">moa_matches</span></code>
+is a binary matrix of size <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">x</span> <span class="pre">n</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of treatments in similarity matrix. This matrix is symmetrical
+and each row (column) relates is a treatment, and values are <code class="docutils literal notranslate"><span class="pre">True</span></code> in each row (column) for the current treatment and
+treatments that belong to the same mechanism of action as the current treatment.</p></li>
+<li><p>Calculate the precision metrics: <code class="docutils literal notranslate"><span class="pre">Average</span> <span class="pre">precision</span></code> and <code class="docutils literal notranslate"><span class="pre">Precision</span> <span class="pre">&#64;</span> <span class="pre">top</span> <span class="pre">1%</span></code>.</p></li>
+<li><p>Calculate the recall metrics: <code class="docutils literal notranslate"><span class="pre">Average</span> <span class="pre">Recall</span> <span class="pre">at</span> <span class="pre">top</span> <span class="pre">10%</span></code> (a different cut-off was used on purpose).</p></li>
+<li><p>Calculate mean Average Precision, and area under interpolated Precision-Recall curve and plot it.</p></li>
+<li><p>Save results to the <code class="docutils literal notranslate"><span class="pre">.csv</span></code> table and <code class="docutils literal notranslate"><span class="pre">pickle</span></code> (contains Python dictionary and can be loaded with Python).</p></li>
+</ol>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="aggregating-and-evaluating-profiles-with-pycytominer">
-<h1>9.1 Aggregating and evaluating profiles with Pycytominer<a class="headerlink" href="#aggregating-and-evaluating-profiles-with-pycytominer" title="Permalink to this headline">#</a></h1>
-<p>DeepProfiler single-cell profiles can be aggregated via a <a class="reference external" href="https://github.com/cytomining/pycytominer">Pycytominer</a> function called <a class="reference external" href="https://github.com/cytomining/pycytominer/blob/master/pycytominer/cyto_utils/DeepProfiler_processing.py">DeepProfiler_Processing</a>. This function reads the output features of DeepProfiler, including the metadata, aggregates, and saves the data in a Pycytominer and Cytominer-eval readable data frame format.</p>
-<p>This code gives an example on how to run the aggregation function:</p>
+<h1>8.2 Aggregating and evaluating profiles with Pycytominer<a class="headerlink" href="#aggregating-and-evaluating-profiles-with-pycytominer" title="Permalink to this headline">#</a></h1>
+<p>DeepProfiler single-cell profiles can be aggregated via a <a class="reference external" href="https://github.com/cytomining/pycytominer">Pycytominer</a>
+function called <a class="reference external" href="https://github.com/cytomining/pycytominer/blob/master/pycytominer/cyto_utils/DeepProfiler_processing.py">DeepProfiler_Processing</a>.
+This function reads the output features of DeepProfiler, including the metadata, aggregates, and saves the data in a Pycytominer and Cytominer-eval readable data frame format.</p>
+<p>This code gives an example of how to run the aggregation function:</p>
 <p>Make sure to install this version of pycytominer:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cytomining</span><span class="o">/</span><span class="n">pycytominer</span><span class="nd">@update_agg_TF2</span>
 
