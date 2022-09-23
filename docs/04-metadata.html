@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>4. Metadata files &#8212; Handbook</title>
+    <title>4. Metadata and single cell locations &#8212; Handbook</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -132,7 +132,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. Metadata files
+   4. Metadata and single cell locations
   </a>
  </li>
  <li class="toctree-l1">
@@ -356,6 +356,13 @@ title="Print to PDF"
    </strong>
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#single-cell-locations-file">
+   <strong>
+    4.2 single-cell locations file
+   </strong>
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -365,7 +372,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>4. Metadata files</h1>
+                <h1>4. Metadata and single cell locations</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -382,6 +389,13 @@ title="Print to PDF"
    </strong>
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#single-cell-locations-file">
+   <strong>
+    4.2 single-cell locations file
+   </strong>
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -392,11 +406,16 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="metadata-files">
-<h1>4. Metadata files<a class="headerlink" href="#metadata-files" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="metadata-and-single-cell-locations">
+<h1>4. Metadata and single cell locations<a class="headerlink" href="#metadata-and-single-cell-locations" title="Permalink to this headline">#</a></h1>
+<p>DeepProfiler requires metadata files that provide information about the experiment as well as the locations of single cells (centroids) in your images. These files are stored in <code class="docutils literal notranslate"><span class="pre">project/inputs/</span></code> and there are two main types:</p>
+<ol class="simple">
+<li><p>A metadata <strong>index.csv</strong> file (located in <code class="docutils literal notranslate"><span class="pre">project/inputs/metadata/index.csv</span></code>) that relates image files to the experiment structure (e.g., plate and well positions) and includes additional information about replicates and treatments.</p></li>
+<li><p>A single cell locations file (located in <code class="docutils literal notranslate"><span class="pre">project/inputs/locations/single-cells.csv</span></code>) the provides the XY coordinates of cell centroids. <strong>Note</strong> that this file is not required if running DeepProfiler in <code class="docutils literal notranslate"><span class="pre">full_image</span></code> mode.</p></li>
+</ol>
 <section id="the-index-csv-file">
 <h2><strong>4.1 The index.csv file</strong><a class="headerlink" href="#the-index-csv-file" title="Permalink to this headline">#</a></h2>
-<p>The index.csv file (located in <code class="docutils literal notranslate"><span class="pre">project/inputs/metadata/index.csv</span></code>) is critical for running DeepProfiler. It follows a comma-separated-values (CSV) format with a header, contains information about the experiment, and lists all images in your project. DeepProfiler uses this file to guide image sampling for running learning algorithms, and to find the images that we want to process. This file is expected to contain metadata to identify the context of images in the physical experiment that produced them, for instance, identifiers of plates, wells and fields of view (Figure 3). DeepProfiler assumes that each row in the file represents one (multi-channel) field of view. The following list indicates the columns that the index.csv file is expected to have:</p>
+<p>The index.csv file is critical for running DeepProfiler. It follows a comma-separated-values (CSV) format with a header, contains information about the experiment, and lists all images in your project. DeepProfiler uses this file to guide image sampling for running learning algorithms, and to find the images that we want to process. This file is expected to contain metadata to identify the context of images in the physical experiment that produced them, for instance, identifiers of plates, wells and fields of view (Figure 3). DeepProfiler assumes that each row in the file represents one (multi-channel) field of view. The following list indicates the columns that the index.csv file is expected to have:</p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Plate</span></code>: Name or identifier of the plate (i.e., highest level of experimental organization), e.g. <code class="docutils literal notranslate"><span class="pre">41744</span></code>. The field header cannot be renamed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Well</span></code>: Position in the plate, e.g. <code class="docutils literal notranslate"><span class="pre">f21</span></code> (i.e., middle level of organization within plates). The field header cannot be renamed.</p></li>
@@ -414,6 +433,9 @@ title="Print to PDF"
 </figure>
 <p>Example of index.csv file:</p>
 <img alt="index file" class="align-center" src="../_images/image4.png" />
+</section>
+<section id="single-cell-locations-file">
+<h2><strong>4.2 single-cell locations file</strong><a class="headerlink" href="#single-cell-locations-file" title="Permalink to this headline">#</a></h2>
 </section>
 </section>
 
