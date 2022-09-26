@@ -82,9 +82,9 @@ Then training will start.
 
 ```{figure} images/training.png
 ---
-name: Weights initialization
+name: Training procedure
 ---
-ImageNet pre-trained weights are beings assigned. It can take a little time. 
+Example of the training output with a closing message.
 ```
 
 Training checkpoints will be saved in `/project/outputs/experiment_name/checkpoint/`, the logs with accuracy and losses 
