@@ -79,8 +79,15 @@ The command `prepare` then runs illumination correction and compression, useful 
       * <code>sample_first_crops</code>: <em>(bool)</em> true or false, whether to use all crops from each validation image or only sample the first N for validation, where N is the batch size.
 
 ## 5.2 Available examples of configuration files
+The examples of configuration files can be found in the [example data](https://cytomining.github.io/DeepProfiler-handbook/docs/02-structure.html#add-project-data),
+[availible in DeepProfiler repository](https://github.com/cytomining/DeepProfiler/blob/master/example_data.tar.gz)
+under `/inputs/config/` folder. It contains two examples:
+1. `training_profiling.json`: a configuration file for [training](https://cytomining.github.io/DeepProfiler-handbook/docs/07-train.html)
+with the example data and then [profiling](https://cytomining.github.io/DeepProfiler-handbook/docs/06-profiling.html#profiling-with-self-trained-model).
+2. `export.json`: a configuration file for [single-cell export](https://cytomining.github.io/DeepProfiler-handbook/docs/07-train.html#export-single-cells).
+
 [DeepProfilerExperiments Github repository](https://github.com/broadinstitute/DeepProfilerExperiments) contains 
-experiment configuration files for benchmark datasets (in the repository you can find a corresponding folder for 
+experiment configuration files for the benchmark datasets (in the repository you can find a corresponding folder for 
 each of those: `ta-orf` (BBBC037 dataset), `bbbc022` and `cdrp` (BBBC036 dataset)) the example configuration files 
 can be found in the `config` folder. There are the following examples: 
 
