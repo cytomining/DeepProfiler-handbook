@@ -54,9 +54,20 @@ In case you want to run another feature extraction for the same experiment, you 
 
 ## **6.2 Profiling with Cell Painting CNN model:**
 
-Cell Painting CNN was pre-trained on the diverse dataset (almost 500 treatments and two controls in two different cell lines: U2OS and A549) of Cell Painting images and can be used primarily for the processing of new Cell Painting experiments.
+Cell Painting CNN was pre-trained on the diverse dataset (almost 500 treatments and two controls in two different cell lines: 
+U2OS and A549) of Cell Painting images and can be used primarily for the processing of new Cell Painting experiments.
 
-To run an experiment, an experiment folder should be created manually in `/outputs/`, for example  `/outputs/experiment/` and then create a checkpoint folder `/outputs/experiment/checkpoint/`. The model should be copied into this folder. After it, the usage of the model does not differ from self-trained models, a configuration example:
+**Important :** *Cell Painting CNN* expects specific order of Cell Painting channels in the input image:
+```
+1. DNA (Nucleus)
+2. RNA (Nucleoli, cytoplasmic RNA)
+3. ER (Endoplasmic reticulum)
+4. AGP (F-actin cytoskeleton, Golgi, plasma membrane)
+5. Mito (Mitochondria)
+```
+To run an experiment, an experiment folder should be created manually in `/outputs/`, for example  `/outputs/experiment/` 
+and then create a checkpoint folder `/outputs/experiment/checkpoint/`. The model should be copied into this folder. 
+After it, the usage of the model does not differ from self-trained models, a configuration example:
 
 ```
 "profile": {
