@@ -92,18 +92,11 @@ in `/project/outputs/experiment_name/logs/`.
 
 If you run example data training, you would get approximately reproduce the following classification results:
 
-```{figure} images/training_accuracy.png
+```{figure} images/training_accuracy_loss.png
 ---
-name: Example data accuracy.
+name: Example data accuracy and loss.
 ---
-Accuracy over epochs while training on example data.
-```
-
-```{figure} images/training_loss.png
----
-name: Example data loss.
----
-Training and validation losses over epochs while training on example data.
+Loss and accuracy over epochs while training on example data.
 ```
 
 ```{admonition} Crop generators
