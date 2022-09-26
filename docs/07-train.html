@@ -410,18 +410,35 @@ title="Print to PDF"
 <h1>7. Training models with DeepProfiler<a class="headerlink" href="#training-models-with-deepprofiler" title="Permalink to this headline">#</a></h1>
 <section id="export-single-cells">
 <h2><strong>7.1 Export single-cells</strong><a class="headerlink" href="#export-single-cells" title="Permalink to this headline">#</a></h2>
-<p>Imagine you already have a dataset of full images and you would like to train a model. Models are trained with single-cell crops, so the single-cells of the dataset should be exported separately.
-If the dataset consists of 16-bit TIFF images, it is <strong>strongly</strong> recommended to <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/03-images.html#dataset-compression-and-illumination-correction">pre-process the dataset</a> first.</p>
-<p>The single-cell export tool requires single cells to be identified and segmented ahead of time (see Section 3). Then, this tool will generate an image for each exisisting single cell in the locations file with the channels concatenated in horizontal order (see example image below). The basic command for export is as follows:</p>
+<p>Imagine you already have a dataset of full images and you would like to train a model. Models are trained with single-cell crops,
+so the single-cells of the dataset should be exported separately.
+If the dataset consists of 16-bit TIFF images, it is <strong>strongly</strong> recommended to
+<a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/03-images.html#dataset-compression-and-illumination-correction">pre-process the dataset</a> first.</p>
+<p>The single-cell export tool requires single cells to be identified and segmented ahead of time (see Section 3). Then,
+this tool will generate an image for each existing single cell in the locations file with the channels concatenated in
+horizontal order (see example image below). The basic command for export is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">deepprofiler</span> <span class="o">--</span><span class="n">root</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span> <span class="o">--</span><span class="n">config</span><span class="o">=</span><span class="n">export</span><span class="o">.</span><span class="n">json</span> <span class="o">--</span><span class="n">metadata</span><span class="o">=</span><span class="n">index</span><span class="o">.</span><span class="n">csv</span> <span class="o">--</span><span class="n">single</span><span class="o">-</span><span class="n">cells</span><span class="o">=</span><span class="n">single_cells_dataset</span> <span class="n">export</span><span class="o">-</span><span class="n">sc</span>
 </pre></div>
 </div>
-<p>Where <code class="docutils literal notranslate"><span class="pre">--root</span></code> is the root directory of your project, <code class="docutils literal notranslate"><span class="pre">--config</span></code> is the name of the configuration file that you want to use for this command, <code class="docutils literal notranslate"><span class="pre">--metadata</span></code> is the name of the metadata file listing the images you want to process with this command (note that it can be a subsample), and <code class="docutils literal notranslate"><span class="pre">--single-cells</span></code> is the name of the directory that will be created for storing the output.</p>
-<p>The exported images and metadata (<code class="docutils literal notranslate"><span class="pre">sc-metadata.csv</span></code>) will be stored in <code class="docutils literal notranslate"><span class="pre">/project/outputs/single_cells_dataset/</span></code> (you control the name of this directory with the flags described above). If the <code class="docutils literal notranslate"><span class="pre">single-cells</span></code> parameter is not set, the default folder name for the exported dataset will be <code class="docutils literal notranslate"><span class="pre">single-cells</span></code>. The size of the cropped region is defined by <code class="docutils literal notranslate"><span class="pre">box_size</span></code> parameter in the configuration file. The images are saved as a stripe of crops from each channel (as listed in <code class="docutils literal notranslate"><span class="pre">channels</span></code> field in the configuration). Optionally, cell masks can be extracted, it would appear last in the stripe.</p>
-<figure class="align-default" id="exported-cell-image-with-mask">
+<p>Where <code class="docutils literal notranslate"><span class="pre">--root</span></code> is the root directory of your project, <code class="docutils literal notranslate"><span class="pre">--config</span></code> is the name of the configuration file that you want to
+use for this command, <code class="docutils literal notranslate"><span class="pre">--metadata</span></code> is the name of the metadata file listing the images you want to process with this
+command (note that it can be a subsample), and <code class="docutils literal notranslate"><span class="pre">--single-cells</span></code> is the name of the directory that will be created for
+storing the output.</p>
+<figure class="align-default" id="console-output-when-export-finishes">
+<img alt="../_images/export.png" src="../_images/export.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Console output when export finishes.</span><a class="headerlink" href="#console-output-when-export-finishes" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The exported images and metadata (<code class="docutils literal notranslate"><span class="pre">sc-metadata.csv</span></code>) will be stored in <code class="docutils literal notranslate"><span class="pre">/project/outputs/single_cells_dataset/</span></code>
+(you control the name of this directory with the flags described above). If the <code class="docutils literal notranslate"><span class="pre">single-cells</span></code> parameter is not set, the
+default folder name for the exported dataset will be <code class="docutils literal notranslate"><span class="pre">single-cells</span></code>. The size of the cropped region is defined by a <code class="docutils literal notranslate"><span class="pre">box_size</span></code>
+parameter in the configuration file. The images are saved as a stripe of crops from each channel (as listed in the <code class="docutils literal notranslate"><span class="pre">channels</span></code>
+field in the configuration). Optionally, cell masks can be extracted, it would appear last in the stripe.</p>
+<figure class="align-default" id="exported-cell-image-with-a-mask">
 <img alt="../_images/single-cell_taorf.png" src="../_images/single-cell_taorf.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Example of exported image from <a class="reference external" href="https://bbbc.broadinstitute.org/BBBC037">BBBC037 dataset</a>.</span><a class="headerlink" href="#exported-cell-image-with-mask" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Example of exported image from <a class="reference external" href="https://bbbc.broadinstitute.org/BBBC037">BBBC037 dataset</a>.</span><a class="headerlink" href="#exported-cell-image-with-a-mask" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="tip admonition">
@@ -443,7 +460,23 @@ If a different training-validation split is needed, you can modify the <code cla
 The <code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">filename.json</span></code> parameter points to the name of a file from /inputs/config folder.
 The <code class="docutils literal notranslate"><span class="pre">--exp</span> <span class="pre">experiment_name</span></code> points to a folder in /outputs/ folder.</p>
 </div>
-<p>Training checkpoints will be saved in <code class="docutils literal notranslate"><span class="pre">/project/outputs/experiment_name/checkpoint/</span></code>, the logs with accuracy and losses in <code class="docutils literal notranslate"><span class="pre">/project/outputs/experiment_name/logs/</span></code>.</p>
+<p>In the beginning the ImageNet pre-trained weights (if <code class="docutils literal notranslate"><span class="pre">initialization</span></code> is set to <code class="docutils literal notranslate"><span class="pre">ImageNet</span></code> in the config)
+are assigned and you will see the following console output:</p>
+<figure class="align-default" id="weights-initialization">
+<img alt="../_images/pretrained_weights_init.png" src="../_images/pretrained_weights_init.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">ImageNet pre-trained weights are beings assigned. It can take a little time.</span><a class="headerlink" href="#weights-initialization" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Then training will start.</p>
+<figure class="align-default" id="id1">
+<img alt="../_images/training.png" src="../_images/training.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">ImageNet pre-trained weights are beings assigned. It can take a little time.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Training checkpoints will be saved in <code class="docutils literal notranslate"><span class="pre">/project/outputs/experiment_name/checkpoint/</span></code>, the logs with accuracy and losses
+in <code class="docutils literal notranslate"><span class="pre">/project/outputs/experiment_name/logs/</span></code>.</p>
 <div class="admonition-crop-generators admonition">
 <p class="admonition-title">Crop generators</p>
 <p>Crop generator plugins define the way how the data is going to pass through models. The default choice in most cases is <code class="docutils literal notranslate"><span class="pre">sampled_crop_generator</span></code>. You can explore other availible crop generators or create your own.</p>

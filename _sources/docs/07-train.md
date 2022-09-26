@@ -3,22 +3,40 @@
 
 ## **7.1 Export single-cells**
 
-Imagine you already have a dataset of full images and you would like to train a model. Models are trained with single-cell crops, so the single-cells of the dataset should be exported separately.
-If the dataset consists of 16-bit TIFF images, it is **strongly** recommended to [pre-process the dataset](https://cytomining.github.io/DeepProfiler-handbook/docs/03-images.html#dataset-compression-and-illumination-correction) first. 
+Imagine you already have a dataset of full images and you would like to train a model. Models are trained with single-cell crops, 
+so the single-cells of the dataset should be exported separately.
+If the dataset consists of 16-bit TIFF images, it is **strongly** recommended to 
+[pre-process the dataset](https://cytomining.github.io/DeepProfiler-handbook/docs/03-images.html#dataset-compression-and-illumination-correction) first. 
 
-The single-cell export tool requires single cells to be identified and segmented ahead of time (see Section 3). Then, this tool will generate an image for each exisisting single cell in the locations file with the channels concatenated in horizontal order (see example image below). The basic command for export is as follows:
+The single-cell export tool requires single cells to be identified and segmented ahead of time (see Section 3). Then, 
+this tool will generate an image for each existing single cell in the locations file with the channels concatenated in
+horizontal order (see example image below). The basic command for export is as follows:
 
 ```
 python deepprofiler --root=/home/ubuntu/project/ --config=export.json --metadata=index.csv --single-cells=single_cells_dataset export-sc
 ```
 
-Where `--root` is the root directory of your project, `--config` is the name of the configuration file that you want to use for this command, `--metadata` is the name of the metadata file listing the images you want to process with this command (note that it can be a subsample), and `--single-cells` is the name of the directory that will be created for storing the output.
+Where `--root` is the root directory of your project, `--config` is the name of the configuration file that you want to 
+use for this command, `--metadata` is the name of the metadata file listing the images you want to process with this 
+command (note that it can be a subsample), and `--single-cells` is the name of the directory that will be created for 
+storing the output.
 
-The exported images and metadata (`sc-metadata.csv`) will be stored in `/project/outputs/single_cells_dataset/` (you control the name of this directory with the flags described above). If the `single-cells` parameter is not set, the default folder name for the exported dataset will be `single-cells`. The size of the cropped region is defined by `box_size` parameter in the configuration file. The images are saved as a stripe of crops from each channel (as listed in `channels` field in the configuration). Optionally, cell masks can be extracted, it would appear last in the stripe.
+```{figure} images/export.png
+---
+name: Console output when export finishes.
+---
+ Console output when export finishes.
+```
+
+The exported images and metadata (`sc-metadata.csv`) will be stored in `/project/outputs/single_cells_dataset/` 
+(you control the name of this directory with the flags described above). If the `single-cells` parameter is not set, the
+default folder name for the exported dataset will be `single-cells`. The size of the cropped region is defined by a `box_size`
+parameter in the configuration file. The images are saved as a stripe of crops from each channel (as listed in the `channels`
+field in the configuration). Optionally, cell masks can be extracted, it would appear last in the stripe.
 
 ```{figure} images/single-cell_taorf.png
 ---
-name: Exported cell image with mask
+name: Exported cell image with a mask
 ---
 Example of exported image from [BBBC037 dataset](https://bbbc.broadinstitute.org/BBBC037). 
 ```
@@ -50,7 +68,27 @@ The `--config filename.json` parameter points to the name of a file from /inputs
 The `--exp experiment_name` points to a folder in /outputs/ folder.
 ```
 
-Training checkpoints will be saved in `/project/outputs/experiment_name/checkpoint/`, the logs with accuracy and losses in `/project/outputs/experiment_name/logs/`.
+In the beginning the ImageNet pre-trained weights (if `initialization` is set to `ImageNet` in the config) 
+are assigned and you will see the following console output:
+
+```{figure} images/pretrained_weights_init.png
+---
+name: Weights initialization
+---
+ImageNet pre-trained weights are beings assigned. It can take a little time. 
+```
+
+Then training will start. 
+
+```{figure} images/training.png
+---
+name: Weights initialization
+---
+ImageNet pre-trained weights are beings assigned. It can take a little time. 
+```
+
+Training checkpoints will be saved in `/project/outputs/experiment_name/checkpoint/`, the logs with accuracy and losses 
+in `/project/outputs/experiment_name/logs/`.
 
 ```{admonition} Crop generators
 Crop generator plugins define the way how the data is going to pass through models. The default choice in most cases is `sampled_crop_generator`. You can explore other availible crop generators or create your own. 
