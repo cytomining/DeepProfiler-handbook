@@ -492,8 +492,19 @@ If your GPU\workstation allows, you can increase <code class="docutils literal n
 </section>
 <section id="profiling-with-cell-painting-cnn-model">
 <h2><strong>6.2 Profiling with Cell Painting CNN model:</strong><a class="headerlink" href="#profiling-with-cell-painting-cnn-model" title="Permalink to this headline">#</a></h2>
-<p>Cell Painting CNN was pre-trained on the diverse dataset (almost 500 treatments and two controls in two different cell lines: U2OS and A549) of Cell Painting images and can be used primarily for the processing of new Cell Painting experiments.</p>
-<p>To run an experiment, an experiment folder should be created manually in <code class="docutils literal notranslate"><span class="pre">/outputs/</span></code>, for example  <code class="docutils literal notranslate"><span class="pre">/outputs/experiment/</span></code> and then create a checkpoint folder <code class="docutils literal notranslate"><span class="pre">/outputs/experiment/checkpoint/</span></code>. The model should be copied into this folder. After it, the usage of the model does not differ from self-trained models, a configuration example:</p>
+<p>Cell Painting CNN was pre-trained on the diverse dataset (almost 500 treatments and two controls in two different cell lines:
+U2OS and A549) of Cell Painting images and can be used primarily for the processing of new Cell Painting experiments.</p>
+<p><strong>Important :</strong> <em>Cell Painting CNN</em> expects specific order of Cell Painting channels in the input image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">DNA</span> <span class="p">(</span><span class="n">Nucleus</span><span class="p">)</span>
+<span class="mf">2.</span> <span class="n">RNA</span> <span class="p">(</span><span class="n">Nucleoli</span><span class="p">,</span> <span class="n">cytoplasmic</span> <span class="n">RNA</span><span class="p">)</span>
+<span class="mf">3.</span> <span class="n">ER</span> <span class="p">(</span><span class="n">Endoplasmic</span> <span class="n">reticulum</span><span class="p">)</span>
+<span class="mf">4.</span> <span class="n">AGP</span> <span class="p">(</span><span class="n">F</span><span class="o">-</span><span class="n">actin</span> <span class="n">cytoskeleton</span><span class="p">,</span> <span class="n">Golgi</span><span class="p">,</span> <span class="n">plasma</span> <span class="n">membrane</span><span class="p">)</span>
+<span class="mf">5.</span> <span class="n">Mito</span> <span class="p">(</span><span class="n">Mitochondria</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To run an experiment, an experiment folder should be created manually in <code class="docutils literal notranslate"><span class="pre">/outputs/</span></code>, for example  <code class="docutils literal notranslate"><span class="pre">/outputs/experiment/</span></code>
+and then create a checkpoint folder <code class="docutils literal notranslate"><span class="pre">/outputs/experiment/checkpoint/</span></code>. The model should be copied into this folder.
+After it, the usage of the model does not differ from self-trained models, a configuration example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;profile&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s2">&quot;feature_layer&quot;</span><span class="p">:</span> <span class="s2">&quot;block6a_activation&quot;</span><span class="p">,</span>
       <span class="s2">&quot;checkpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;combinedset_cellsout_e30.hdf5&quot;</span><span class="p">,</span>
