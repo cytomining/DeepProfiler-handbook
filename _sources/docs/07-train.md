@@ -90,11 +90,27 @@ Example of the training output with a closing message.
 Training checkpoints will be saved in `/project/outputs/experiment_name/checkpoint/`, the logs with accuracy and losses 
 in `/project/outputs/experiment_name/logs/`.
 
+If you run example data training, you would get approximately reproduce the following classification results:
+
+```{figure} images/training_accuracy.png
+---
+name: Example data accuracy.
+---
+Accuracy over epochs while training on example data.
+```
+
+```{figure} images/training_loss.png
+---
+name: Example data loss.
+---
+Training and validation losses over epochs while training on example data.
+```
+
 ```{admonition} Crop generators
-Crop generator plugins define the way how the data is going to pass through models. The default choice in most cases is `sampled_crop_generator`. You can explore other availible crop generators or create your own. 
+Crop generator plugins define the way how the data is going to pass through models. The default choice in most cases is `sampled_crop_generator`. You can explore other available  crop generators or create your own. 
 ```
 
 ```{admonition} About class balancing
 :class: tip
-DeepProfiler performs class balancing, so no need to worry about initial class imbalance in the processed dataset.
+DeepProfiler performs class balancing, so no need to worry about an initial class imbalance in the processed dataset.
 ```
