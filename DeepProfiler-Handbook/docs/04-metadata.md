@@ -45,6 +45,8 @@ instance, instead of plates, you may be interested in subjects or patients. Howe
 apply to your data). The name of certain columns can be changed as well and later associated with the expected information 
 in the configuration file [(Section 3](#heading=h.5i3187icaj4t)).
 
+Click here to download an example [index file](/assets/index.csv).
+
 
 ```{figure} images/image3.png
 ---
