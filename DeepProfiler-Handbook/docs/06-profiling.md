@@ -57,6 +57,8 @@ In case you want to run another feature extraction for the same experiment, you 
 Cell Painting CNN was pre-trained on the diverse dataset (almost 500 treatments and two controls in two different cell lines: 
 U2OS and A549) of Cell Painting images and can be used primarily for the processing of new Cell Painting experiments.
 
+[_**Cell Painting CNN model can be downloaded here.**_](https://doi.org/10.5281/zenodo.7114558)
+
 **Important:** *Cell Painting CNN* expects specific order of Cell Painting channels in the input image:
 ```
 1. DNA (Nucleus)
