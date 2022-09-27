@@ -45,7 +45,7 @@ instance, instead of plates, you may be interested in subjects or patients. Howe
 apply to your data). The name of certain columns can be changed as well and later associated with the expected information 
 in the configuration file [(Section 3](#heading=h.5i3187icaj4t)).
 
-Click here to download an example [index file](/assets/index.csv).
+Click here to download an example [index file](https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv).
 
 
 ```{figure} images/image3.png
