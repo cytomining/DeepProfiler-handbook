@@ -408,10 +408,13 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="project-structure">
 <h1>2. Project structure<a class="headerlink" href="#project-structure" title="Permalink to this headline">#</a></h1>
-<p>After installing DeepProfiler on your machine, the next step is to create a project directory structure that holds your data with the required inputs and space for generated outputs.</p>
+<p>After installing DeepProfiler on your machine, the next step is to create a project directory structure that holds your
+data with the required inputs and space for generated outputs.</p>
 <section id="initialize-your-project">
 <h2><strong>2.1 Initialize your project</strong><a class="headerlink" href="#initialize-your-project" title="Permalink to this headline">#</a></h2>
-<p>In the following sections, we assume that you have an Ubuntu environment and a user account named “ubuntu”. Make sure to replace the example path (<code class="docutils literal notranslate"><span class="pre">/home/ubuntu</span></code>) with the directories that you are using in practice. Go to your base path and create an empty directory for your project (called <code class="docutils literal notranslate"><span class="pre">project</span></code>):</p>
+<p>In the following sections, we assume that you have an Ubuntu environment and a user account named “ubuntu”. Make sure to
+replace the example path (<code class="docutils literal notranslate"><span class="pre">/home/ubuntu</span></code>) with the directories that you are using in practice. Go to your base path and
+create an empty directory for your project (called <code class="docutils literal notranslate"><span class="pre">project</span></code>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span>
 <span class="n">mkdir</span> <span class="n">project</span>
 </pre></div>
@@ -472,12 +475,19 @@ title="Print to PDF"
 </section>
 <section id="add-project-data">
 <h2><strong>2.2 Add project data</strong><a class="headerlink" href="#add-project-data" title="Permalink to this headline">#</a></h2>
-<p>The directories created in the previous step are empty, so your next task is to put your project data in the right place. A small example dataset can be obtained from our web servers, so you can test and debug DeepProfiler issues easily. Example data is provided in the DeepProfiler repository, you only need to unpack the archive which is available in the main directory of DeepProfiler:</p>
+<p>The directories created in the previous step are empty, so your next task is to put your project data in the right place.
+A small example dataset can be obtained from our web servers, so you can test and debug DeepProfiler issues easily.
+Example data is provided in the DeepProfiler repository, you only need to unpack the archive which is available in the
+main directory of DeepProfiler:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">DeepProfiler</span><span class="o">/</span>
 <span class="n">tar</span> <span class="o">-</span><span class="n">xzf</span> <span class="n">example_data</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 </div>
-<p>The example dataset contains a few images from the Cell Painting <a class="reference external" href="https://bbbc.broadinstitute.org/BBBC037">BBBC037 dataset</a>, together with the necessary files to configure the DeepProfiler project. Copy the essential data to the corresponding project directory. Note that the images in this exmaple data are already processed and compressed, this means that the images are not stored in <code class="docutils literal notranslate"><span class="pre">project/inputs/images</span></code>, but in <code class="docutils literal notranslate"><span class="pre">project/outputs/compressed/images</span></code>. The example data already follows the DeepProfiler project structure. The example dataset also includes segmentation masks (outlines).</p>
+<p>The example dataset contains a few images from the Cell Painting <a class="reference external" href="https://bbbc.broadinstitute.org/BBBC037">BBBC037 dataset</a>,
+together with the necessary files to configure the DeepProfiler project. Copy the essential data to the corresponding
+project directory. Note that the images in this example data are already processed and compressed, this means that the
+images are not stored in <code class="docutils literal notranslate"><span class="pre">project/inputs/images</span></code>, but in <code class="docutils literal notranslate"><span class="pre">project/outputs/compressed/images</span></code>. The example data already
+follows the DeepProfiler project structure. The example dataset also includes segmentation masks (outlines).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="n">example</span><span class="o">-</span><span class="n">data</span><span class="o">/*</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/*</span>
 </pre></div>
 </div>

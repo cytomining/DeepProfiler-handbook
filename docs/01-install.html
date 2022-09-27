@@ -450,10 +450,13 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="install-deepprofiler">
 <h1>1. Install DeepProfiler<a class="headerlink" href="#install-deepprofiler" title="Permalink to this headline">#</a></h1>
-<p>We recommend installing DeepProfiler from source, which will give you flexibility to adjust code and configurations, for instance when testing new models or for adjusting advanced training settings. The instructions in this section assist you with installing DeepProfiler from source in a Linux environment. The provided code snippets assume the use of Ubuntu but any Linux distribution can work for installing DeepProfiler; just make sure your environment is configured accordingly.</p>
+<p>We recommend installing DeepProfiler from source, which will give you the flexibility to adjust code and configurations, for
+instance when testing new models or for adjusting advanced training settings. The instructions in this section assist you
+with installing DeepProfiler from the source code in a Linux environment. The provided code snippets assume the use of Ubuntu but
+any Linux distribution can work for installing DeepProfiler; just make sure your environment is configured accordingly.</p>
 <section id="install-python-and-choose-an-environment-manager">
 <h2><strong>1.1 Install python and choose an environment manager</strong><a class="headerlink" href="#install-python-and-choose-an-environment-manager" title="Permalink to this headline">#</a></h2>
-<p>First make sure that your python 3 installation is up to date. DeepProfiler runs in Python 3.6 or higher (Python 3.8 recommended).</p>
+<p>First, make sure that your python 3 installation is up-to-date. DeepProfiler runs in Python 3.6 or higher (Python 3.8 recommended).</p>
 <p>To install python3 and pip:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">pip</span>
 </pre></div>
@@ -464,9 +467,11 @@ title="Print to PDF"
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Note</p>
-<p>DeepProfiler does not require sudo priviliges to be installed. The commands above and some others suggested below assume that you have sudo permissions to configure your Linux environment. However, if your Linux machine is already up-to-date and has virtualenv or conda available, you can proceed without sudo privileges for configuring a virtual environment, and for cloning and running DeepProfiler.</p>
+<p>DeepProfiler does not require sudo privileges to be installed. The commands above and some others suggested below assume that you have sudo permissions to configure your Linux environment. However, if your Linux machine is already up-to-date and has virtualenv or conda available, you can proceed without sudo privileges for configuring a virtual environment, and for cloning and running DeepProfiler.</p>
 </div>
-<p>We strongly advise you use a virtual environment for DeepProfiler. This will help avoid interference with system-wide installed python packages. Below contains some basic instructions for getting started using <a class="reference external" href="https://pypi.org/project/virtualenv/">virtualenv</a> or <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html">conda</a> to manage virtual environments in Linux:</p>
+<p>We strongly advise you use a virtual environment for DeepProfiler. This will help avoid interference with system-wide
+installed python packages. Below contains some basic instructions for getting started using <a class="reference external" href="https://pypi.org/project/virtualenv/">virtualenv</a>
+or <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html">conda</a> to manage virtual environments in Linux:</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <strong>Virtual environment quickstart instructions</strong> <div class="sd-summary-down docutils">
@@ -476,30 +481,30 @@ title="Print to PDF"
 </summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">First, install your environment manager of choice:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="cb527bf3-b418-447b-a64d-87cd0bf585e8" name="aff49ef7-6bce-4607-a47a-182d2c14f59c" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key1" for="cb527bf3-b418-447b-a64d-87cd0bf585e8">
+<input checked="checked" id="ec5d45a5-e767-4e06-b2e9-36a17a837feb" name="bfc4a309-68c0-4378-b8c5-ac6c4c2afcba" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key1" for="ec5d45a5-e767-4e06-b2e9-36a17a837feb">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">virtualenv</span>
 </pre></div>
 </div>
 </div>
-<input id="904c9f7d-c169-47e8-abef-7086608d31dd" name="aff49ef7-6bce-4607-a47a-182d2c14f59c" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key2" for="904c9f7d-c169-47e8-abef-7086608d31dd">
+<input id="e118185b-5779-4905-829d-e3fa1fa51441" name="bfc4a309-68c0-4378-b8c5-ac6c4c2afcba" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key2" for="e118185b-5779-4905-829d-e3fa1fa51441">
 conda</label><div class="sd-tab-content docutils">
 <p class="sd-card-text">See <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html">conda documentation</a> for installation details.</p>
 </div>
 </div>
 <p class="sd-card-text">Next, create a virtual environment for DeepProfiler in the current directory:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="a17bd12a-395d-475a-89b4-fbf549d2c202" name="f9c88a6e-496f-45d1-a771-e2b877b987ee" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key1" for="a17bd12a-395d-475a-89b4-fbf549d2c202">
+<input checked="checked" id="f2fb3c7a-78a7-4227-8fc9-2b07264a4e98" name="ba1077c5-0fae-4b7b-9a5c-a09bbd5c93ba" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key1" for="f2fb3c7a-78a7-4227-8fc9-2b07264a4e98">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">virtualenv</span> <span class="o">-</span><span class="n">p</span> <span class="n">python3</span> <span class="n">deepprofenv</span>
 </pre></div>
 </div>
 </div>
-<input id="0f83a098-29fe-4843-8d89-e400fe0a2033" name="f9c88a6e-496f-45d1-a771-e2b877b987ee" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key2" for="0f83a098-29fe-4843-8d89-e400fe0a2033">
+<input id="4e8da6cd-5912-4725-9e5e-2f7dd49cc60b" name="ba1077c5-0fae-4b7b-9a5c-a09bbd5c93ba" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key2" for="4e8da6cd-5912-4725-9e5e-2f7dd49cc60b">
 conda</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">deepprofenv</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span> 
 </pre></div>
@@ -508,15 +513,15 @@ conda</label><div class="sd-tab-content docutils">
 </div>
 <p class="sd-card-text">Finally, activate your virtual environment:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="e5ecaeb1-48e4-4f1f-9db1-27ab443a5e9a" name="9c167900-094b-46d9-884d-88a917d3ad4a" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key1" for="e5ecaeb1-48e4-4f1f-9db1-27ab443a5e9a">
+<input checked="checked" id="ea0b6d44-9841-4d90-bfc1-2bd22b9d86e9" name="ad9aa1f6-f98d-4cea-b8a7-bdd30e037ef2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key1" for="ea0b6d44-9841-4d90-bfc1-2bd22b9d86e9">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">./</span><span class="n">deepprofenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 </pre></div>
 </div>
 </div>
-<input id="13b39ca4-82dc-4b78-9e15-68ad77146bb3" name="9c167900-094b-46d9-884d-88a917d3ad4a" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key2" for="13b39ca4-82dc-4b78-9e15-68ad77146bb3">
+<input id="b2f2975b-d021-4059-843f-525ab2a4e628" name="ad9aa1f6-f98d-4cea-b8a7-bdd30e037ef2" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key2" for="b2f2975b-d021-4059-843f-525ab2a4e628">
 conda</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">deepprofenv</span>
 </pre></div>
@@ -531,18 +536,19 @@ conda</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">broadinstitute</span><span class="o">/</span><span class="n">DeepProfiler</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-<p>Alternatively, you can fork it to keep track of your own changes, and eventually contribute back.</p>
+<p>Alternatively, you can fork it to keep track of your changes, and eventually contribute back.</p>
 </section>
 <section id="install-dependencies-and-packages">
 <h2><strong>1.3 Install dependencies and packages</strong><a class="headerlink" href="#install-dependencies-and-packages" title="Permalink to this headline">#</a></h2>
-<p>Now you can enter the DeepProfiler directory and install it using pip. This will pull the missing dependencies and will also create runnable packages in your clone.</p>
+<p>Now you can enter the DeepProfiler directory and install it using pip. This will pull the missing dependencies and will
+create runnable packages in your clone.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">DeepProfiler</span><span class="o">/</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
 </pre></div>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Note</p>
-<p>If you have access to a GPU, make sure that you have the correct drivers and the <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code> package installed and configured correctly. You can follow this link for more details about how to install TensorFlow with GPU support in your machine: <a class="reference external" href="https://www.tensorflow.org/install">https://www.tensorflow.org/install</a> . The command to check if the correct GPU is being utilized is <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> .</p>
+<p>If you have access to a GPU, make sure that you have the correct drivers and the <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code> package installed and configured correctly. You can follow this link for more details about how to install TensorFlow with GPU support on your machine: <a class="reference external" href="https://www.tensorflow.org/install">https://www.tensorflow.org/install</a>. The command to check if the correct GPU is being utilized is <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code>.</p>
 </div>
 </section>
 <section id="run-deepprofiler-to-check-it-works">
@@ -561,9 +567,9 @@ conda</label><div class="sd-tab-content docutils">
   <span class="o">--</span><span class="n">config</span> <span class="n">TEXT</span>       <span class="n">Path</span> <span class="n">to</span> <span class="n">existing</span> <span class="n">config</span> <span class="n">file</span> <span class="p">(</span><span class="n">filename</span> <span class="ow">in</span> <span class="n">project_root</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="p">)</span>
   <span class="o">--</span><span class="n">cores</span> <span class="n">INTEGER</span>     <span class="n">Number</span> <span class="n">of</span> <span class="n">CPU</span> <span class="n">cores</span> <span class="k">for</span> <span class="n">parallel</span> <span class="n">processing</span> <span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">prepare</span> <span class="n">command</span>
   <span class="o">--</span><span class="n">gpu</span> <span class="n">INTEGER</span>          <span class="n">GPU</span> <span class="n">device</span> <span class="nb">id</span> <span class="p">(</span><span class="n">the</span> <span class="nb">id</span> <span class="n">can</span> <span class="n">be</span> <span class="n">checked</span> <span class="k">with</span> <span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">exp</span> <span class="n">TEXT</span>          <span class="n">Name</span> <span class="n">of</span> <span class="n">experiment</span><span class="p">,</span> <span class="n">this</span> <span class="n">folder</span> <span class="n">will</span> <span class="n">be</span> <span class="n">created</span> <span class="ow">in</span> <span class="n">project_root</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span>
+  <span class="o">--</span><span class="n">exp</span> <span class="n">TEXT</span>          <span class="n">Name</span> <span class="n">of</span> <span class="n">an</span> <span class="n">experiment</span><span class="p">,</span> <span class="n">this</span> <span class="n">folder</span> <span class="n">will</span> <span class="n">be</span> <span class="n">created</span> <span class="ow">in</span> <span class="n">project_root</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span>
   <span class="o">--</span><span class="n">logging</span> <span class="n">TEXT</span>      <span class="n">Path</span> <span class="n">to</span> <span class="n">file</span> <span class="k">with</span> <span class="n">comet</span><span class="o">.</span><span class="n">ml</span> <span class="n">API</span> <span class="n">key</span> <span class="p">(</span><span class="n">filename</span> <span class="ow">in</span> <span class="n">project_root</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">single</span><span class="o">-</span><span class="n">cells</span> <span class="n">TEXT</span>       <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">folder</span> <span class="k">with</span> <span class="n">single</span><span class="o">-</span><span class="n">cell</span> <span class="n">dataset</span> <span class="p">(</span><span class="n">output</span> <span class="k">for</span> <span class="n">export</span><span class="o">-</span><span class="n">sc</span> <span class="n">command</span><span class="p">,</span> <span class="nb">input</span> <span class="k">for</span> <span class="n">training</span> <span class="k">with</span> <span class="n">sampled</span> <span class="n">crop</span> <span class="n">generator</span> <span class="ow">or</span> <span class="n">online</span> <span class="n">labels</span> <span class="n">crop</span> <span class="n">generator</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">single</span><span class="o">-</span><span class="n">cells</span> <span class="n">TEXT</span>       <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">folder</span> <span class="k">with</span> <span class="n">the</span> <span class="n">single</span><span class="o">-</span><span class="n">cell</span> <span class="n">dataset</span> <span class="p">(</span><span class="n">output</span> <span class="k">for</span> <span class="n">export</span><span class="o">-</span><span class="n">sc</span> <span class="n">command</span><span class="p">,</span> <span class="nb">input</span> <span class="k">for</span> <span class="n">training</span> <span class="k">with</span> <span class="n">sampled</span> <span class="n">crop</span> <span class="n">generator</span> <span class="ow">or</span> <span class="n">online</span> <span class="n">labels</span> <span class="n">crop</span> <span class="n">generator</span><span class="p">)</span>
   <span class="o">--</span><span class="n">metadata</span> <span class="n">TEXT</span>	    <span class="n">Metadata</span> <span class="n">filename</span><span class="p">,</span> <span class="k">for</span> <span class="n">exporting</span> <span class="ow">or</span> <span class="n">profiling</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">filename</span> <span class="k">for</span> <span class="n">project_root</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">metadata</span><span class="o">/</span><span class="p">,</span> <span class="k">for</span> <span class="n">training</span> <span class="k">with</span> <span class="n">sampled</span> <span class="n">crop</span> <span class="n">generator</span> <span class="ow">or</span> <span class="n">online</span> <span class="n">labels</span> <span class="n">crop</span> <span class="n">generator</span> <span class="n">the</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">project_root</span><span class="o">/</span><span class="n">outputs</span><span class="o">/&lt;</span><span class="n">single</span><span class="o">-</span><span class="n">cell</span><span class="o">-</span><span class="n">dataset</span><span class="o">&gt;/</span>
   <span class="o">--</span><span class="n">help</span>              <span class="n">Show</span> <span class="n">this</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span><span class="o">.</span>
 
@@ -581,7 +587,8 @@ conda</label><div class="sd-tab-content docutils">
 </section>
 <section id="troubleshooting">
 <h2><strong>1.5 Troubleshooting</strong><a class="headerlink" href="#troubleshooting" title="Permalink to this headline">#</a></h2>
-<p>Some dependencies need to be manually installed depending on your environment. If you pulled the latest version of DeepProfiler in an existing clone, try reinstalling it again as in step 1.2 to make sure the dependencies are still up to date.</p>
+<p>Some dependencies need to be manually installed depending on your environment. If you pulled the latest version of
+DeepProfiler in an existing clone, try reinstalling it again as in step 1.2 to make sure the dependencies are still up-to-date.</p>
 </section>
 </section>
 

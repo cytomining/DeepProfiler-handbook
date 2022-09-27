@@ -459,9 +459,9 @@ title="Print to PDF"
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Profiling arguments</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">--metadata</span> <span class="pre">index.csv</span></code> parameter points to  a metadata file from /inputs/metadata folder.
-The <code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">filename.json</span></code> parameter points to the name of a file from /inputs/config folder.
-The <code class="docutils literal notranslate"><span class="pre">--exp</span> <span class="pre">experiment_name</span></code> points to a folder in /outputs/ folder.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--metadata</span> <span class="pre">index.csv</span></code> parameter points to a metadata file from the /inputs/metadata folder.
+The <code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">filename.json</span></code> parameter points to the name of a file from the /inputs/config folder.
+The <code class="docutils literal notranslate"><span class="pre">--exp</span> <span class="pre">experiment_name</span></code> points to a folder in the /outputs/ folder.</p>
 </div>
 <p>Profiling parameters are regulated in <em>profile</em> section of your config, the example for self-trained models is below.
 For specific instructions and config examples see further sections.</p>
@@ -473,8 +473,8 @@ For specific instructions and config examples see further sections.</p>
 </pre></div>
 </div>
 <div class="tip admonition">
-<p class="admonition-title">On configureation parameters</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">checkpoint</span></code> parameter points to the name of a file from <code class="docutils literal notranslate"><span class="pre">/outputs/experiment_name/checkpoint/</span></code> folder.
+<p class="admonition-title">On configuration parameters</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">checkpoint</span></code> parameter points to the name of a file from the <code class="docutils literal notranslate"><span class="pre">/outputs/experiment_name/checkpoint/</span></code> folder.
 If your GPU\workstation allows, you can increase <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> to speed up the profiling.</p>
 </div>
 <div class="tip admonition">
@@ -494,7 +494,7 @@ If your GPU\workstation allows, you can increase <code class="docutils literal n
 <h2><strong>6.2 Profiling with Cell Painting CNN model:</strong><a class="headerlink" href="#profiling-with-cell-painting-cnn-model" title="Permalink to this headline">#</a></h2>
 <p>Cell Painting CNN was pre-trained on the diverse dataset (almost 500 treatments and two controls in two different cell lines:
 U2OS and A549) of Cell Painting images and can be used primarily for the processing of new Cell Painting experiments.</p>
-<p><strong>Important :</strong> <em>Cell Painting CNN</em> expects specific order of Cell Painting channels in the input image:</p>
+<p><strong>Important:</strong> <em>Cell Painting CNN</em> expects specific order of Cell Painting channels in the input image:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">DNA</span> <span class="p">(</span><span class="n">Nucleus</span><span class="p">)</span>
 <span class="mf">2.</span> <span class="n">RNA</span> <span class="p">(</span><span class="n">Nucleoli</span><span class="p">,</span> <span class="n">cytoplasmic</span> <span class="n">RNA</span><span class="p">)</span>
 <span class="mf">3.</span> <span class="n">ER</span> <span class="p">(</span><span class="n">Endoplasmic</span> <span class="n">reticulum</span><span class="p">)</span>
@@ -516,8 +516,10 @@ After it, the usage of the model does not differ from self-trained models, a con
 <section id="profiling-with-imagenet-pre-trained-model">
 <h2><strong>6.3 Profiling with ImageNet pre-trained model:</strong><a class="headerlink" href="#profiling-with-imagenet-pre-trained-model" title="Permalink to this headline">#</a></h2>
 <p>Pre-trained ImageNet model is downloaded automatically for EfficientNet or ResNet to the cache folder of Keras.</p>
-<p>The <em>profile</em> section of your config should be adjusted: <code class="docutils literal notranslate"><span class="pre">checkpoint</span></code> field will have <code class="docutils literal notranslate"><span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">use_pretrained_input_size</span></code> is set according to the chosen model.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">crop_generator</span></code> parameter should be set to <code class="docutils literal notranslate"><span class="pre">repeat_channel_crop_generator</span></code>, this crop generator feeds each channel to the model seprately, to match the number of channels of ImageNet, each channel is replcated three times.</p>
+<p>The <em>profile</em> section of your config should be adjusted: the <code class="docutils literal notranslate"><span class="pre">checkpoint</span></code> field will have <code class="docutils literal notranslate"><span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">use_pretrained_input_size</span></code>
+is set according to the chosen model.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">crop_generator</span></code> parameter should be set to <code class="docutils literal notranslate"><span class="pre">repeat_channel_crop_generator</span></code>, this crop generator feeds each channel
+to the model separately, to match the number of channels of ImageNet, each channel is replicated three times.</p>
 <p>Example for <em>EfficientNet-B0</em> model:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;profile&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="s2">&quot;use_pretrained_input_size&quot;</span> <span class="p">:</span> <span class="mi">224</span><span class="p">,</span>

@@ -13,9 +13,9 @@ python3 deepprofiler --root=/home/ubuntu/project/ --config filename.json --metad
 
 ```{admonition} Profiling arguments
 :class: tip
-The `--metadata index.csv` parameter points to  a metadata file from /inputs/metadata folder.
-The `--config filename.json` parameter points to the name of a file from /inputs/config folder.
-The `--exp experiment_name` points to a folder in /outputs/ folder.  
+The `--metadata index.csv` parameter points to a metadata file from the /inputs/metadata folder.
+The `--config filename.json` parameter points to the name of a file from the /inputs/config folder.
+The `--exp experiment_name` points to a folder in the /outputs/ folder.  
 ```
 
 Profiling parameters are regulated in _profile_ section of your config, the example for self-trained models is below.
@@ -29,9 +29,9 @@ For specific instructions and config examples see further sections.
     }
 ```
 
-```{admonition} On configureation parameters
+```{admonition} On configuration parameters
 :class: tip
-The `checkpoint` parameter points to the name of a file from `/outputs/experiment_name/checkpoint/` folder.
+The `checkpoint` parameter points to the name of a file from the `/outputs/experiment_name/checkpoint/` folder.
 If your GPU\workstation allows, you can increase `batch_size` to speed up the profiling.
 ```
 
@@ -57,7 +57,7 @@ In case you want to run another feature extraction for the same experiment, you 
 Cell Painting CNN was pre-trained on the diverse dataset (almost 500 treatments and two controls in two different cell lines: 
 U2OS and A549) of Cell Painting images and can be used primarily for the processing of new Cell Painting experiments.
 
-**Important :** *Cell Painting CNN* expects specific order of Cell Painting channels in the input image:
+**Important:** *Cell Painting CNN* expects specific order of Cell Painting channels in the input image:
 ```
 1. DNA (Nucleus)
 2. RNA (Nucleoli, cytoplasmic RNA)
@@ -81,9 +81,11 @@ After it, the usage of the model does not differ from self-trained models, a con
 
 Pre-trained ImageNet model is downloaded automatically for EfficientNet or ResNet to the cache folder of Keras.  
 
-The _profile_ section of your config should be adjusted: `checkpoint` field will have `None` and `use_pretrained_input_size` is set according to the chosen model.
+The _profile_ section of your config should be adjusted: the `checkpoint` field will have `None` and `use_pretrained_input_size`
+is set according to the chosen model.
 
-The `crop_generator` parameter should be set to `repeat_channel_crop_generator`, this crop generator feeds each channel to the model seprately, to match the number of channels of ImageNet, each channel is replcated three times. 
+The `crop_generator` parameter should be set to `repeat_channel_crop_generator`, this crop generator feeds each channel 
+to the model separately, to match the number of channels of ImageNet, each channel is replicated three times. 
   
 Example for _EfficientNet-B0_ model:
 
