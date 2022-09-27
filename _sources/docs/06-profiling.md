@@ -67,6 +67,8 @@ U2OS and A549) of Cell Painting images and can be used primarily for the process
 4. AGP (F-actin cytoskeleton, Golgi, plasma membrane)
 5. Mito (Mitochondria)
 ```
+The expected shape of the image is `128x128x5`.
+
 To run an experiment, an experiment folder should be created manually in `/outputs/`, for example  `/outputs/experiment/` 
 and then create a checkpoint folder `/outputs/experiment/checkpoint/`. The model should be copied into this folder. 
 After it, the usage of the model does not differ from self-trained models, a configuration example:
