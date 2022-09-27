@@ -50,10 +50,7 @@ These are the minimum columns required in the index file. You can append more co
 experiment as needed, to keep track of other metadata in your project. We recommend that if you do add additional columns, their names should not include any spaces. Notice that the order of columns is not important, as long as these are available. The meaning of the columns can be interpreted differently according to your problem, for instance, instead of plates, you may be interested in subjects or patients. However, the three levels of organization 
 (plate, well, site) are expected, even if you don’t explicitly use them (e.g. set wells to a constant string if it does not apply to your data). The name of certain columns can be changed as well and later associated with the expected information in the configuration file [(Section 5)](../docs/05-config.md).
 
-Click here to see an example [index file](https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv).
-
-
-Example image of an index.csv file:
+Click here to see an example [index file](https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv) (See also {numref}`index-file`)
 
 ```{figure} images/image4.png
 ---
