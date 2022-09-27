@@ -4,8 +4,8 @@ DeepProfiler requires metadata files that provide information about the experime
 
 1. A metadata **index.csv** file (located in `project/inputs/metadata/index.csv`) that relates image files to the experiment 
    structure (e.g., plate and well positions) and includes additional information about replicates and treatments.
-2. A single cell locations file (located in `project/inputs/locations/single-cells.csv`) that provides the XY coordinates 
-    of cell centroids. **Note** that this file is not required if running DeepProfiler in `full_image` mode.
+2. A series of single cell locations files for each site (located in `project/inputs/locations/`) that provide the XY coordinates 
+    of nuclei centroids. **Note** that this file is not required if running DeepProfiler in `full_image` mode.
 
 ## **4.1 The index.csv file**
 
@@ -13,8 +13,8 @@ The index.csv file is critical for running DeepProfiler. It follows a comma-sepa
 contains information about the experiment, and lists all images in your project. DeepProfiler uses this file to guide image
 sampling for running learning algorithms and to find the images that we want to process. This file is expected to contain 
 metadata to identify the context of images in the physical experiment that produced them, for instance, identifiers of plates, 
-wells and fields of view (Figure 3). DeepProfiler assumes that each row in the file represents one (multi-channel) field of 
-view. The following list indicates the columns that the index.csv file is expected to have:
+wells and fields of view (Figure). DeepProfiler assumes that each row in the file represents one (multi-channel) field of 
+view. The following list indicates the minimal columns that the index.csv file is expected to have:
 
 
 1. `Metadata_Plate`: Name or identifier of the plate (i.e., the highest level of experimental organization), e.g. `41744`. The field header cannot be renamed.
@@ -45,8 +45,7 @@ instance, instead of plates, you may be interested in subjects or patients. Howe
 apply to your data). The name of certain columns can be changed as well and later associated with the expected information 
 in the configuration file [(Section 3](#heading=h.5i3187icaj4t)).
 
-Click here to download an example [index file](https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv).
-
+Click here to see an example [index file](https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv).
 
 ```{figure} images/image3.png
 ---
@@ -54,7 +53,6 @@ name: plate-fig
 ---
 Schematic of plates, wells and sites, which are three metadata fields required by DeepProfiler in the index.csv file.
 ```
-
 
 Example of index.csv file:
 

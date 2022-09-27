@@ -412,8 +412,8 @@ title="Print to PDF"
 <ol class="simple">
 <li><p>A metadata <strong>index.csv</strong> file (located in <code class="docutils literal notranslate"><span class="pre">project/inputs/metadata/index.csv</span></code>) that relates image files to the experiment
 structure (e.g., plate and well positions) and includes additional information about replicates and treatments.</p></li>
-<li><p>A single cell locations file (located in <code class="docutils literal notranslate"><span class="pre">project/inputs/locations/single-cells.csv</span></code>) that provides the XY coordinates
-of cell centroids. <strong>Note</strong> that this file is not required if running DeepProfiler in <code class="docutils literal notranslate"><span class="pre">full_image</span></code> mode.</p></li>
+<li><p>A series of single cell locations files for each site (located in <code class="docutils literal notranslate"><span class="pre">project/inputs/locations/</span></code>) that provide the XY coordinates
+of nuclei centroids. <strong>Note</strong> that this file is not required if running DeepProfiler in <code class="docutils literal notranslate"><span class="pre">full_image</span></code> mode.</p></li>
 </ol>
 <section id="the-index-csv-file">
 <h2><strong>4.1 The index.csv file</strong><a class="headerlink" href="#the-index-csv-file" title="Permalink to this headline">#</a></h2>
@@ -421,8 +421,8 @@ of cell centroids. <strong>Note</strong> that this file is not required if runni
 contains information about the experiment, and lists all images in your project. DeepProfiler uses this file to guide image
 sampling for running learning algorithms and to find the images that we want to process. This file is expected to contain
 metadata to identify the context of images in the physical experiment that produced them, for instance, identifiers of plates,
-wells and fields of view (Figure 3). DeepProfiler assumes that each row in the file represents one (multi-channel) field of
-view. The following list indicates the columns that the index.csv file is expected to have:</p>
+wells and fields of view (Figure). DeepProfiler assumes that each row in the file represents one (multi-channel) field of
+view. The following list indicates the minimal columns that the index.csv file is expected to have:</p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Plate</span></code>: Name or identifier of the plate (i.e., the highest level of experimental organization), e.g. <code class="docutils literal notranslate"><span class="pre">41744</span></code>. The field header cannot be renamed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Well</span></code>: Position in the plate, e.g. <code class="docutils literal notranslate"><span class="pre">f21</span></code> (i.e., middle level of organization within plates). The field header cannot be renamed.</p></li>
@@ -451,7 +451,7 @@ instance, instead of plates, you may be interested in subjects or patients. Howe
 (plate, well, site) are expected, even if you don’t explicitly use them (e.g. set wells to a constant string if it does not
 apply to your data). The name of certain columns can be changed as well and later associated with the expected information
 in the configuration file <a class="reference external" href="#heading=h.5i3187icaj4t">(Section 3</a>).</p>
-<p>Click here to download an example <a class="reference external" href="https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv">index file</a>.</p>
+<p>Click here to see an example <a class="reference external" href="https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv">index file</a>.</p>
 <figure class="align-default" id="plate-fig">
 <img alt="../_images/image3.png" src="../_images/image3.png" />
 <figcaption>
