@@ -13,7 +13,7 @@ The index.csv file is critical for running DeepProfiler. It follows a comma-sepa
 contains information about the experiment, and lists all images in your project. DeepProfiler uses this file to guide image
 sampling for running learning algorithms and to find the images that we want to process. This file is expected to contain 
 metadata to identify the context of images in the physical experiment that produced them, for instance, identifiers of plates, 
-wells and fields of view (i.e., sites; see Figure below). 
+wells and fields of view (i.e., sites; see {numref}`plate-fig`). 
 
 ```{figure} images/image3.png
 ---
@@ -47,21 +47,19 @@ view. The following list indicates the minimal columns that the index.csv file i
     example data it is called `pert_name_replicate`.
 
 These are the minimum columns required in the index file. You can append more columns with information specific to your 
-experiment as needed, to keep track of other metadata in your project. Notice that the order of columns is not important, 
-as long as these are available. The meaning of the columns can be interpreted differently according to your problem, for 
-instance, instead of plates, you may be interested in subjects or patients. However, the three levels of organization 
-(plate, well, site) are expected, even if you don’t explicitly use them (e.g. set wells to a constant string if it does not 
-apply to your data). The name of certain columns can be changed as well and later associated with the expected information 
-in the configuration file [(Section 3](#heading=h.5i3187icaj4t)).
+experiment as needed, to keep track of other metadata in your project. We recommend that if you do add additional columns, their names should not include any spaces. Notice that the order of columns is not important, as long as these are available. The meaning of the columns can be interpreted differently according to your problem, for instance, instead of plates, you may be interested in subjects or patients. However, the three levels of organization 
+(plate, well, site) are expected, even if you don’t explicitly use them (e.g. set wells to a constant string if it does not apply to your data). The name of certain columns can be changed as well and later associated with the expected information in the configuration file [(Section 5)](../docs/05-config.md).
 
 Click here to see an example [index file](https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv).
 
 
 Example image of an index.csv file:
 
-```{image} images/image4.png
-:alt: index file
-:align: center
+```{figure} images/image4.png
+---
+name: index-file
+---
+Screenshot of an example index.csv file
 ```
 
 ## **4.2 single-cell locations file**
