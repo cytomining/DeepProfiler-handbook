@@ -120,7 +120,7 @@ The _profile_ section example:
 ## **Optional project-dependent functions:**
 
 
-````{dropdown} **Split index file**:
+````{dropdown} **Split metadata file**:
 
 Create multiple files with parts of the index for parallelization purposes. Parallelization is not automatic, it requires manually launching different DeepProfiler instances using different index files. This function just loads the index and creates separate files without repeating information, so a different machine can be assigned to profile different parts of the dataset.
 

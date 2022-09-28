@@ -350,9 +350,9 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-index-csv-file">
+  <a class="reference internal nav-link" href="#the-metadata-file">
    <strong>
-    4.1 The index.csv file
+    4.1 The metadata file
    </strong>
   </a>
  </li>
@@ -383,9 +383,9 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-index-csv-file">
+  <a class="reference internal nav-link" href="#the-metadata-file">
    <strong>
-    4.1 The index.csv file
+    4.1 The metadata file
    </strong>
   </a>
  </li>
@@ -408,16 +408,19 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="metadata-and-single-cell-locations">
 <h1>4. Metadata and single cell locations<a class="headerlink" href="#metadata-and-single-cell-locations" title="Permalink to this headline">#</a></h1>
-<p>DeepProfiler requires metadata files that provide information about the experiment as well as the locations of single cells (centroids) in your images. These files are stored in <code class="docutils literal notranslate"><span class="pre">project/inputs/</span></code> and there are two main types:</p>
+<p>DeepProfiler requires metadata files that provide information about the experiment as well as the locations of single cells
+(centroids) in your images. These files are stored in <code class="docutils literal notranslate"><span class="pre">project/inputs/</span></code> and there are two main types:</p>
 <ol class="simple">
-<li><p>A metadata <strong>index.csv</strong> file (located in <code class="docutils literal notranslate"><span class="pre">project/inputs/metadata/index.csv</span></code>) that relates image files to the experiment
-structure (e.g., plate and well positions) and includes additional information about replicates and treatments.</p></li>
+<li><p>A metadata file (located in <code class="docutils literal notranslate"><span class="pre">project/inputs/metadata/</span></code>) that relates image files to the experiment
+structure (e.g., plate and well positions) and includes additional information about replicates and treatments.
+The default filename of the metadata file is <code class="docutils literal notranslate"><span class="pre">index.csv</span></code> if the <code class="docutils literal notranslate"><span class="pre">--metadata</span></code> parameter was not explicitly set.
+<code class="docutils literal notranslate"><span class="pre">--metadata</span></code> is the metadata’s filename in <code class="docutils literal notranslate"><span class="pre">project/inputs/metadata/</span></code>.</p></li>
 <li><p>A series of single cell <strong>locations files</strong> for each site (located in <code class="docutils literal notranslate"><span class="pre">project/inputs/locations/</span></code>) that provide the XY coordinates
 of nuclei centroids. <strong>Note</strong> that this file is not required if running DeepProfiler in <code class="docutils literal notranslate"><span class="pre">full_image</span></code> mode.</p></li>
 </ol>
-<section id="the-index-csv-file">
-<h2><strong>4.1 The index.csv file</strong><a class="headerlink" href="#the-index-csv-file" title="Permalink to this headline">#</a></h2>
-<p>The index.csv file is critical for running DeepProfiler. It follows a comma-separated-values (CSV) format with a header,
+<section id="the-metadata-file">
+<h2><strong>4.1 The metadata file</strong><a class="headerlink" href="#the-metadata-file" title="Permalink to this headline">#</a></h2>
+<p>The metadata file is critical for running DeepProfiler. It follows a comma-separated-values (CSV) format with a header,
 contains information about the experiment, and lists all images in your project. DeepProfiler uses this file to guide image
 sampling for running learning algorithms and to find the images that we want to process. This file is expected to contain
 metadata to identify the context of images in the physical experiment that produced them, for instance, identifiers of plates,
@@ -425,11 +428,11 @@ wells and fields of view (i.e., sites; see <a class="reference internal" href="#
 <figure class="align-default" id="plate-fig">
 <img alt="../_images/image3.png" src="../_images/image3.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Schematic of plates, wells and sites, which are three metadata fields required by DeepProfiler in the index.csv file.</span><a class="headerlink" href="#plate-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Schematic of plates, wells and sites, which are three metadata fields required by DeepProfiler in the metadata file.</span><a class="headerlink" href="#plate-fig" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>DeepProfiler assumes that each row in the file represents one (multi-channel) field of
-view. The following list indicates the minimal columns that the index.csv file is expected to have:</p>
+view. The following list indicates the minimal columns that the metadata file is expected to have:</p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Plate</span></code>: Name or identifier of the plate (i.e., the highest level of experimental organization), e.g. <code class="docutils literal notranslate"><span class="pre">41744</span></code>. The field header cannot be renamed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Well</span></code>: Position in the plate, e.g. <code class="docutils literal notranslate"><span class="pre">A21</span></code> (i.e., the middle level of organization within plates). The field header cannot be renamed.</p></li>
@@ -438,7 +441,7 @@ within wells). For instance, sites may cover a 4x4 grid or a 9x9 grid, depending
 The site identifier for each image goes here, e.g. <code class="docutils literal notranslate"><span class="pre">3</span></code>. The field header cannot be renamed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Channel_Name</span></code>: Relative path to the image file of each channel. An experiment may have multiple imaging channels
 (i.e., colors) and DeepProfiler assumes that each channel is stored in a separate image file (all channels stored in
-the same file are not currently supported). Therefore, to put together all the channels of a single image, the index.csv
+the same file are not currently supported). Therefore, to put together all the channels of a single image, the metadata
 file will need to have multiple <em>channel_name</em> columns listed in the configuration file. These columns can be renamed as
 necessary and should point to the corresponding image files using a path relative to the image directory. For example,
 an assay with DNA, RNA, and Mito stains will have three channel columns named accordingly, with entries in each column
@@ -451,7 +454,7 @@ DeepProfiler for training purposes. May have different names.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Replicate</span></code>: Number or identifier indicating which repetition of the treatment an image corresponds to. In the provided
 example data this column is called <code class="docutils literal notranslate"><span class="pre">pert_name_replicate</span></code>.</p></li>
 </ol>
-<p>These are the minimum columns required in the index file. You can append more columns with information specific to your
+<p>These are the minimum columns required in the metadata file. You can append more columns with information specific to your
 experiment as needed, to keep track of other metadata in your project. We recommend that if you do add additional columns,
 their names should not include any spaces. Notice that the order of columns is not important, as long as these are available.
 The meaning of the columns can be interpreted differently according to your problem, for instance, instead of plates, you may be
@@ -459,20 +462,21 @@ interested in subjects or patients. However, the three levels of an organization
 (plate, well, site) are expected, even if you don’t explicitly use them (e.g. set wells to a constant string if it does not
 apply to your data). The name of certain columns can be changed as well and later associated with the expected information
 in the configuration file <a class="reference internal" href="05-config.html"><span class="doc std std-doc">(Section 5)</span></a>.</p>
-<p>Click here to see an example <a class="reference external" href="https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv">index file</a> (See also <a class="reference internal" href="#index-file"><span class="std std-numref">Fig. 3</span></a>)</p>
+<p>Click here to see an example <a class="reference external" href="https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv">metadata file</a> (See also <a class="reference internal" href="#index-file"><span class="std std-numref">Fig. 3</span></a>)</p>
 <figure class="align-default" id="index-file">
 <img alt="../_images/image4.png" src="../_images/image4.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Screenshot of an example index.csv file</span><a class="headerlink" href="#index-file" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Screenshot of an example metadata file</span><a class="headerlink" href="#index-file" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="single-cell-locations-file">
 <h2><strong>4.2 Single-cell locations file</strong><a class="headerlink" href="#single-cell-locations-file" title="Permalink to this headline">#</a></h2>
-<p>DeepProfiler needs the x and y coordinates for the centers of nuclei in your images. There should be one location’s file
+<p>DeepProfiler needs the <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> coordinates for the centers of nuclei in your images. There should be one location’s file
 for each site (i.e., each image) in your experiment. These files need to be stored in a particular structure:
 <code class="docutils literal notranslate"><span class="pre">project/inputs/locations/{Metadata_Plate}/{Metadata_Well}-{Metadata-Site}-Nuclei.csv</span></code>. The <code class="docutils literal notranslate"><span class="pre">Metadata_Plate</span></code>, <code class="docutils literal notranslate"><span class="pre">Metadata_Well</span></code>
-and <code class="docutils literal notranslate"><span class="pre">Metadata_Site</span></code> must match what is in the index.csv file. Here is an example of how to structure the location’s data:</p>
+and <code class="docutils literal notranslate"><span class="pre">Metadata_Site</span></code> must match what is in the metadata you currently use from <code class="docutils literal notranslate"><span class="pre">project/inputs/metadata/</span></code>.
+Here is an example of how to structure the location’s data:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
 └── project/
     └── inputs/

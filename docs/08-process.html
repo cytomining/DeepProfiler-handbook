@@ -447,7 +447,7 @@ Jupyter notebooks, <code class="docutils literal notranslate"><span class="pre">
 analysis notebooks. You can reuse this code to build a custom analysis pipeline.</p>
 <section id="aggregation-of-profiles-and-batch-correction">
 <h2>8.1.1 Aggregation of profiles and batch-correction<a class="headerlink" href="#aggregation-of-profiles-and-batch-correction" title="Permalink to this headline">#</a></h2>
-<p>Aggregation of features can be done with <code class="docutils literal notranslate"><span class="pre">01-create-profiles.ipynb</span></code> Jupyter notebook. The inputs are: <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/04-metadata.html#the-index-csv-file">project metadata
+<p>Aggregation of features can be done with <code class="docutils literal notranslate"><span class="pre">01-create-profiles.ipynb</span></code> Jupyter notebook. The inputs are: <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/04-metadata.html#the-metadata-file">project metadata
 file</a>, ground truth metadata
 with annotations of treatments by the mechanism of action and the <code class="docutils literal notranslate"><span class="pre">.npz</span></code> files with features  organized in
 <code class="docutils literal notranslate"><span class="pre">{Plate}/{Well}/{Site}.npz</span></code> folder structure.</p>
@@ -482,7 +482,8 @@ and treatments that belong to the same mechanism of action as the current treatm
 <h1>8.2 Aggregating and evaluating profiles with Pycytominer<a class="headerlink" href="#aggregating-and-evaluating-profiles-with-pycytominer" title="Permalink to this headline">#</a></h1>
 <p>DeepProfiler single-cell profiles can be aggregated via a <a class="reference external" href="https://github.com/cytomining/pycytominer">Pycytominer</a>
 function called <a class="reference external" href="https://github.com/cytomining/pycytominer/blob/master/pycytominer/cyto_utils/DeepProfiler_processing.py">DeepProfiler_Processing</a>.
-This function reads the output features of DeepProfiler, including the metadata, aggregates, and saves the data in a Pycytominer and Cytominer-eval readable data frame format.</p>
+This function reads the output features of DeepProfiler, including the metadata, aggregates, and saves the data in a Pycytominer
+and Cytominer-eval readable data frame format.</p>
 <p>This code gives an example of how to run the aggregation function:</p>
 <p>Make sure to install this version of pycytominer:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cytomining</span><span class="o">/</span><span class="n">pycytominer</span><span class="nd">@update_agg_TF2</span>
@@ -501,12 +502,12 @@ This function reads the output features of DeepProfiler, including the metadata,
 
 <span class="n">profile_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="n">experiment</span><span class="p">,</span> <span class="s2">&quot;features&quot;</span><span class="p">)</span>
 
-<span class="n">index_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span> <span class="s2">&quot;inputs&quot;</span><span class="p">,</span> <span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="s2">&quot;index.csv&quot;</span><span class="p">)</span>
+<span class="n">metadata_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span> <span class="s2">&quot;inputs&quot;</span><span class="p">,</span> <span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="s2">&quot;index.csv&quot;</span><span class="p">)</span>
 
 <span class="n">output_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_dir</span><span class="p">,</span> <span class="s1">&#39;outputs&#39;</span><span class="p">,</span><span class="n">experiment</span><span class="p">,</span><span class="s1">&#39;aggregated&#39;</span><span class="p">)</span>
 
 <span class="n">well_class</span> <span class="o">=</span> <span class="n">AggregateDeepProfiler</span><span class="p">(</span>
-    <span class="n">index_file</span><span class="o">=</span><span class="n">index_file</span><span class="p">,</span>
+    <span class="n">metadata_file</span><span class="o">=</span><span class="n">metadata_file</span><span class="p">,</span>
     <span class="n">profile_dir</span><span class="o">=</span><span class="n">profile_dir</span><span class="p">,</span>
     <span class="n">aggregate_operation</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">,</span>
     <span class="n">aggregate_on</span><span class="o">=</span><span class="s2">&quot;well&quot;</span><span class="p">,</span>
@@ -517,7 +518,9 @@ This function reads the output features of DeepProfiler, including the metadata,
 <span class="n">df_well</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;aggregated_efficientnet_median.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <a class="reference external" href="https://github.com/cytomining/cytominer-eval">Cytominer-eval</a> repository contains six functions that calculate different quality metrics for perturbation profiling experiments: Precision&#64;K and Recall&#64;K, Enrichment, Hit&#64;k, Replicate reproducibility, MP-value, and Grit.</p>
+<p>The <a class="reference external" href="https://github.com/cytomining/cytominer-eval">Cytominer-eval</a> repository contains six functions that calculate different
+quality metrics for perturbation profiling experiments: Precision&#64;K and Recall&#64;K, Enrichment, Hit&#64;k, Replicate reproducibility,
+MP-value, and Grit.</p>
 </section>
 
     <script type="text/x-thebe-config">

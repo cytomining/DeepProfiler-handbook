@@ -17,7 +17,7 @@ analysis notebooks. You can reuse this code to build a custom analysis pipeline.
 ## 8.1.1 Aggregation of profiles and batch-correction
 
 Aggregation of features can be done with `01-create-profiles.ipynb` Jupyter notebook. The inputs are: [project metadata 
-file](https://cytomining.github.io/DeepProfiler-handbook/docs/04-metadata.html#the-index-csv-file), ground truth metadata 
+file](https://cytomining.github.io/DeepProfiler-handbook/docs/04-metadata.html#the-metadata-file), ground truth metadata 
 with annotations of treatments by the mechanism of action and the `.npz` files with features  organized in 
 `{Plate}/{Well}/{Site}.npz` folder structure. 
 
@@ -48,7 +48,8 @@ obtained in `01-create-profiles.ipynb` as an input.
 
 DeepProfiler single-cell profiles can be aggregated via a [Pycytominer](https://github.com/cytomining/pycytominer) 
 function called [DeepProfiler_Processing](https://github.com/cytomining/pycytominer/blob/master/pycytominer/cyto_utils/DeepProfiler_processing.py). 
-This function reads the output features of DeepProfiler, including the metadata, aggregates, and saves the data in a Pycytominer and Cytominer-eval readable data frame format.
+This function reads the output features of DeepProfiler, including the metadata, aggregates, and saves the data in a Pycytominer 
+and Cytominer-eval readable data frame format.
 
 This code gives an example of how to run the aggregation function:
 
@@ -72,12 +73,12 @@ experiment = 'folder_name'
 
 profile_dir = os.path.join(project_dir, "outputs", experiment, "features")
 
-index_file = os.path.join(project_dir, "inputs", "metadata", "index.csv")
+metadata_file = os.path.join(project_dir, "inputs", "metadata", "index.csv")
 
 output_folder = os.path.join(project_dir, 'outputs',experiment,'aggregated')
 
 well_class = AggregateDeepProfiler(
-    index_file=index_file,
+    metadata_file=metadata_file,
     profile_dir=profile_dir,
     aggregate_operation="median",
     aggregate_on="well",
@@ -88,4 +89,6 @@ df_well = well_class.aggregate_deep()
 df_well.to_csv('aggregated_efficientnet_median.csv')
 ```
 
-The [Cytominer-eval](https://github.com/cytomining/cytominer-eval) repository contains six functions that calculate different quality metrics for perturbation profiling experiments: Precision@K and Recall@K, Enrichment, Hit@k, Replicate reproducibility, MP-value, and Grit.
+The [Cytominer-eval](https://github.com/cytomining/cytominer-eval) repository contains six functions that calculate different 
+quality metrics for perturbation profiling experiments: Precision@K and Recall@K, Enrichment, Hit@k, Replicate reproducibility, 
+MP-value, and Grit.
