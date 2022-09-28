@@ -364,13 +364,18 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-correction-using-sphering-transformation">
+     8.1.2 Batch-correction using sphering transformation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#evaluation-of-profiles">
-     8.1.2 Evaluation of profiles
+     8.1.3 Evaluation of profiles
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#visualize-profiles">
-     8.1.3 Visualize profiles
+     8.1.4 Visualize profiles
     </a>
    </li>
   </ul>
@@ -415,13 +420,18 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-correction-using-sphering-transformation">
+     8.1.2 Batch-correction using sphering transformation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#evaluation-of-profiles">
-     8.1.2 Evaluation of profiles
+     8.1.3 Evaluation of profiles
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#visualize-profiles">
-     8.1.3 Visualize profiles
+     8.1.4 Visualize profiles
     </a>
    </li>
   </ul>
@@ -472,8 +482,26 @@ output file names: <code class="docutils literal notranslate"><span class="pre">
 <li><p>Create a similarity matrix from <code class="docutils literal notranslate"><span class="pre">profiles</span></code>. We use cosine similarity as a similarity metric. Save the matrix to <code class="docutils literal notranslate"><span class="pre">OUTPUT_FILE</span></code>.</p></li>
 </ol>
 </section>
+<section id="batch-correction-using-sphering-transformation">
+<h2>8.1.2 Batch-correction using sphering transformation<a class="headerlink" href="#batch-correction-using-sphering-transformation" title="Permalink to this headline">#</a></h2>
+<p>The sphering transformation aims to reduce unwanted technical variation and recover the phenotypic features of treatments from
+the latent representations of the weakly supervised CNN. We calculate the ZCA-transformation matrix using well-level profiles
+of negative controls. The assumption here is that phenotypic features of negative controls should be neutral, thus the
+difference between them encodes mostly technical and irrelevant variation.</p>
+<p>Sphering transformation can be regularized, the strength of regularization is regulated by <code class="docutils literal notranslate"><span class="pre">REG_PARAM</span></code> in the notebook,
+a good value to start is <code class="docutils literal notranslate"><span class="pre">1e-3</span></code>, though it depends on the data.</p>
+<p>The calсulated ZCA-transformation matrix is used to calculate corrected profiles (both for treated wells and control
+wells). On the UMAP plot, negative control wells are expected to group, and treated wells
+with relatively weak phenotypes are also expected to group with negative control wells.</p>
+<figure class="align-default" id="sphering">
+<img alt="../_images/sphering.png" src="../_images/sphering.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">UMAP of well-level profiles before and after sphering (BBBC037 dataset).</span><a class="headerlink" href="#sphering" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
 <section id="evaluation-of-profiles">
-<h2>8.1.2 Evaluation of profiles<a class="headerlink" href="#evaluation-of-profiles" title="Permalink to this headline">#</a></h2>
+<h2>8.1.3 Evaluation of profiles<a class="headerlink" href="#evaluation-of-profiles" title="Permalink to this headline">#</a></h2>
 <p>Evaluation of profiles can be done with <code class="docutils literal notranslate"><span class="pre">04-downstream-analysis.ipynb</span></code>. This notebook uses the cosine similarity matrix
 obtained in <code class="docutils literal notranslate"><span class="pre">01-create-profiles.ipynb</span></code> as an input.</p>
 <ol class="simple">
@@ -488,9 +516,21 @@ and treatments that belong to the same mechanism of action as the current treatm
 </ol>
 </section>
 <section id="visualize-profiles">
-<h2>8.1.3 Visualize profiles<a class="headerlink" href="#visualize-profiles" title="Permalink to this headline">#</a></h2>
-<p>The visualizations can be done with <code class="docutils literal notranslate"><span class="pre">02-profiles-visualizations.ipynb</span></code> Jupyter notebook. The input is path to well-level
-profiles <code class="docutils literal notranslate"><span class="pre">INPUT_PROFILES</span></code>.</p>
+<h2>8.1.4 Visualize profiles<a class="headerlink" href="#visualize-profiles" title="Permalink to this headline">#</a></h2>
+<p>The visualizations can be done with <code class="docutils literal notranslate"><span class="pre">02-profiles-visualizations.ipynb</span></code> Jupyter notebook. The input is a path to
+well-level profiles and is set in <code class="docutils literal notranslate"><span class="pre">INPUT_PROFILES</span></code>.</p>
+<ol class="simple">
+<li><p>Treatment-level profiles are calculated using mean aggregation.</p></li>
+<li><p>UMAP embeddings are obtained using only well-level profiles.</p></li>
+<li><p>Use transformation from the previous step for treatment level profiles.</p></li>
+<li><p>Plot embeddings both from well and treatment-level profiles (see below).</p></li>
+</ol>
+<figure class="align-default" id="umap-visualization">
+<img alt="docs/images/visulize_profiles.png" src="docs/images/visulize_profiles.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Example of visualization (BBBC037 dataset).</span><a class="headerlink" href="#umap-visualization" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="aggregating-and-evaluating-profiles-with-pycytominer">
