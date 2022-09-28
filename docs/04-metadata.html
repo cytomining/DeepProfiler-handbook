@@ -359,7 +359,7 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#single-cell-locations-file">
    <strong>
-    4.2 single-cell locations file
+    4.2 Single-cell locations file
    </strong>
   </a>
  </li>
@@ -392,7 +392,7 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#single-cell-locations-file">
    <strong>
-    4.2 single-cell locations file
+    4.2 Single-cell locations file
    </strong>
   </a>
  </li>
@@ -432,7 +432,7 @@ wells and fields of view (i.e., sites; see <a class="reference internal" href="#
 view. The following list indicates the minimal columns that the index.csv file is expected to have:</p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Plate</span></code>: Name or identifier of the plate (i.e., the highest level of experimental organization), e.g. <code class="docutils literal notranslate"><span class="pre">41744</span></code>. The field header cannot be renamed.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Well</span></code>: Position in the plate, e.g. <code class="docutils literal notranslate"><span class="pre">A21</span></code> (i.e., middle level of organization within plates). The field header cannot be renamed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Well</span></code>: Position in the plate, e.g. <code class="docutils literal notranslate"><span class="pre">A21</span></code> (i.e., the middle level of organization within plates). The field header cannot be renamed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Metadata_Site</span></code>: A microscope acquires images in different sites within each well (i.e., the lowest level organization
 within wells). For instance, sites may cover a 4x4 grid or a 9x9 grid, depending on resolution and other factors.
 The site identifier for each image goes here, e.g. <code class="docutils literal notranslate"><span class="pre">3</span></code>. The field header cannot be renamed.</p></li>
@@ -449,11 +449,16 @@ data, it is called <code class="docutils literal notranslate"><span class="pre">
 or condition of cells observed in the images. This column must be a biologically meaningful label that could be used by
 DeepProfiler for training purposes. May have different names.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Replicate</span></code>: Number or identifier indicating which repetition of the treatment an image corresponds to. In the provided
-example data it is called <code class="docutils literal notranslate"><span class="pre">pert_name_replicate</span></code>.</p></li>
+example data this column is called <code class="docutils literal notranslate"><span class="pre">pert_name_replicate</span></code>.</p></li>
 </ol>
 <p>These are the minimum columns required in the index file. You can append more columns with information specific to your
-experiment as needed, to keep track of other metadata in your project. We recommend that if you do add additional columns, their names should not include any spaces. Notice that the order of columns is not important, as long as these are available. The meaning of the columns can be interpreted differently according to your problem, for instance, instead of plates, you may be interested in subjects or patients. However, the three levels of organization
-(plate, well, site) are expected, even if you don’t explicitly use them (e.g. set wells to a constant string if it does not apply to your data). The name of certain columns can be changed as well and later associated with the expected information in the configuration file <a class="reference internal" href="05-config.html"><span class="doc std std-doc">(Section 5)</span></a>.</p>
+experiment as needed, to keep track of other metadata in your project. We recommend that if you do add additional columns,
+their names should not include any spaces. Notice that the order of columns is not important, as long as these are available.
+The meaning of the columns can be interpreted differently according to your problem, for instance, instead of plates, you may be
+interested in subjects or patients. However, the three levels of an organization
+(plate, well, site) are expected, even if you don’t explicitly use them (e.g. set wells to a constant string if it does not
+apply to your data). The name of certain columns can be changed as well and later associated with the expected information
+in the configuration file <a class="reference internal" href="05-config.html"><span class="doc std std-doc">(Section 5)</span></a>.</p>
 <p>Click here to see an example <a class="reference external" href="https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv">index file</a> (See also <a class="reference internal" href="#index-file"><span class="std std-numref">Fig. 3</span></a>)</p>
 <figure class="align-default" id="index-file">
 <img alt="../_images/image4.png" src="../_images/image4.png" />
@@ -463,8 +468,11 @@ experiment as needed, to keep track of other metadata in your project. We recomm
 </figure>
 </section>
 <section id="single-cell-locations-file">
-<h2><strong>4.2 single-cell locations file</strong><a class="headerlink" href="#single-cell-locations-file" title="Permalink to this headline">#</a></h2>
-<p>DeepProfiler needs the x and y coordinates for the centers of nuclei in your images. There should be one locations file for each site (i.e., each image) in your experiment. These files need to be stored in a particular structure: <code class="docutils literal notranslate"><span class="pre">project/inputs/locations/{Metadata_Plate}/{Metadata_Well}-{Metadata-Site}-Nuclei.csv</span></code>. The <code class="docutils literal notranslate"><span class="pre">Metadata_Plate</span></code>, <code class="docutils literal notranslate"><span class="pre">Metadata_Well</span></code> and <code class="docutils literal notranslate"><span class="pre">Metadata_Site</span></code> must match what is in the index.csv file. Here is an example of how to structure the locations data:</p>
+<h2><strong>4.2 Single-cell locations file</strong><a class="headerlink" href="#single-cell-locations-file" title="Permalink to this headline">#</a></h2>
+<p>DeepProfiler needs the x and y coordinates for the centers of nuclei in your images. There should be one location’s file
+for each site (i.e., each image) in your experiment. These files need to be stored in a particular structure:
+<code class="docutils literal notranslate"><span class="pre">project/inputs/locations/{Metadata_Plate}/{Metadata_Well}-{Metadata-Site}-Nuclei.csv</span></code>. The <code class="docutils literal notranslate"><span class="pre">Metadata_Plate</span></code>, <code class="docutils literal notranslate"><span class="pre">Metadata_Well</span></code>
+and <code class="docutils literal notranslate"><span class="pre">Metadata_Site</span></code> must match what is in the index.csv file. Here is an example of how to structure the location’s data:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
 └── project/
     └── inputs/
@@ -475,14 +483,15 @@ experiment as needed, to keep track of other metadata in your project. We recomm
                 ...
 </pre></div>
 </div>
-<p>The contents of each locations csv file for a particular site should be just two columns headed with <code class="docutils literal notranslate"><span class="pre">Nuclei_Location_Center_X</span></code> and <code class="docutils literal notranslate"><span class="pre">Nuclei_Location_Center_Y</span></code>. The pixel coordinates of centers for each nucleus should be listed in these columns (see below):</p>
+<p>The contents of each location’s CSV file for a particular site should be just two columns headed with <code class="docutils literal notranslate"><span class="pre">Nuclei_Location_Center_X</span></code>
+and <code class="docutils literal notranslate"><span class="pre">Nuclei_Location_Center_Y</span></code>. The pixel coordinates of centers for each nucleus should be listed in these columns (see below):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Nuclei_Location_Center_X</span><span class="p">,</span><span class="n">Nuclei_Location_Center_Y</span>
 <span class="mi">219</span><span class="p">,</span><span class="mi">34</span>
 <span class="mi">175</span><span class="p">,</span><span class="mi">45</span>
 <span class="mi">1065</span><span class="p">,</span><span class="mi">51</span>
 </pre></div>
 </div>
-<p>These coordinates can be generated by a program like CellProfiler if you segment nuclei with a module like IdentifyPrimaryObjects.</p>
+<p>These coordinates can be generated by a program like CellProfiler if you segment nuclei with a module like <code class="docutils literal notranslate"><span class="pre">IdentifyPrimaryObjects</span></code>.</p>
 </section>
 </section>
 

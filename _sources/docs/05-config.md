@@ -1,22 +1,28 @@
 # 5. Configuration file and examples 
 
-The configuration file is a text file in JSON format that organizes various settings for one experiment. If you need to test different configurations, you can create different configuration files and run DeepProfiler with each. DeepProfiler searches for the configuration file in the `inputs/config/` directory, which you can use to store various configuration files. Note that the `--config` flag does not need you to specify the full path of the file, just the name as it is assumed to be stored in the `inputs/config/` directory.
+The configuration file is a text file in JSON format that organizes various settings for one experiment. If you need to 
+test different configurations, you can create different configuration files and run DeepProfiler with each. DeepProfiler 
+searches for the configuration file in the `inputs/config/` directory, which you can use to store various configuration files. 
+Note that the `--config` flag does not need you to specify the full path of the file, just the name as it is assumed to be 
+stored in the `inputs/config/` directory.
 
 ## 5.1 Configuration File Organization
-The configuration file is organized into four main sections as follows. We’ve included specific recommendations where possible. For more details, check out our paper (link). For generating this config file for your own project, look at the descriptions below together with the provided examples of index.csv and config.json files.
+The configuration file is organized into four main sections as follows. We’ve included specific recommendations where possible. 
+For more details, check out our paper (link). For generating this config file for your project, look at the descriptions 
+below together with the provided examples of index.csv and config.json files.
 
 ### 1. `dataset`: description of your image collection with basic general information
 
   * `metadata`
       * `label_field`: _(string)_ column in the index.csv file corresponding to the treatments or biologically relevant labels of images.
-      * `control_value` : _(string)_ identifier or name of control samples in the column above (used to gather illumination statistics).
+      * `control_value`: _(string)_ identifier or name of control samples in the column above (used to gather illumination statistics).
   * `images`
       * `channels`: _(array of strings)_ list of image channels used for profiling. The list contains the names of columns in the index.csv file that hold the location of images for each channel. DeepProfiler assumes each channel is stored as a separate image, and also that the path listed in the index.csv file is relative to the input/images directory (instead of absolute paths). This facilitates moving the project to another machine in a different location.
       * `file_format`: _(string)_ extension of image files, e.g. tiff, tif, png.
       * `bits`: _(int)_ pixel bit depth. Not necessary for any analysis, only used for compression purposes. 8-bit and 16-bit images are currently supported.
       * `width`: _(int)_ width of the input image in pixels
       * `height`: _(int)_ height of the input image in pixels
-  * `locations`: parameterize the way in which DeepProfiler will search for single cells in images for training and for profiling.
+  * `locations`: parameterize how DeepProfiler will search for single cells in images for training and profiling.
       * `mode`: _(string)_ this field indicates if images will be processed at single cell resolution or in full image mode. It only accepts two strings: `single_cells` - activates single-cell analysis mode, thus, requiring cell locations to be stored in the `inputs/locations/` folder (Section XXX); `full_image` - activates full image analysis (no need for locations files).
       * `box_size`: _(int)_ specifies the size in pixels of the bounding box used to crop single cells out of images. The value is used for both the width and the height of the box (a square box). This value is used even in `full_image` mode, in which case the image will be resized to these dimensions. Note that DeepProfiler enforces a fixed input size because that is what neural network models usually expect. The box size should be selected to fully cover a typical cell in the experiment. It is OK if large cells are cut a bit, as long as this is relatively rare compared to the normal cell size. Also, it is OK if cells appear with neighboring cells in the same box, which we call “single cells in context” or can be fixed by masking (see below).
       * `view_size`: _(int)_ useful only in `full_image` mode, specifies the size in pixels of the region of the image to be covered by cropping before resizing to the dimensions configured in `box_size`.
@@ -31,7 +37,7 @@ The command `prepare` then runs illumination correction and compression, useful 
       * `median_filter_size`: _(int)_ size in pixels of the smoothing operator applied before aggregation of the illumination correction function. Usually set to 24 for images of 1024x1024 pixels.
   * `compression`:
       * `implement`: _(bool)_ true or false, whether compression is used for training and profiling. If true, other DeepProfiler commands will use the compressed images in the `output/compressed/` directory instead of the original images in the `input/images/` directory.
-      * `scaling_factor`: _(float)_ make images a fraction of what they are. 1.0 means no scaling, 0.8 means resizing to 80% of the current size in x and y. Re-scaling images results in smaller files that are faster to read during training, but loses spatial resolution, which is generally not recommended. Use a value different to 1.0 only if there is a good experimental reason.
+      * `scaling_factor`: _(float)_ make images a fraction of what they are. 1.0 means no scaling, 0.8 means resizing to 80% of the current size in `x` and `y`. Re-scaling images results in smaller files that are faster to read during training, but loses spatial resolution, which is generally not recommended. Use a value different to 1.0 only if there is a good experimental reason.
 
 ### 3. <code>profile</code>: parameters to run an existing model on images to extract features or obtain classification outputs.
 

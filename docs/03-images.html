@@ -451,7 +451,7 @@ as follows:</p>
 </section>
 <section id="masking-cells">
 <h2><strong>3.2 Masking cells</strong><a class="headerlink" href="#masking-cells" title="Permalink to this headline">#</a></h2>
-<p>The pixels that belong to cells in an image can be identified using can be identified using segmentation algorithms, such
+<p>The pixels that belong to cells in an image can be identified using segmentation algorithms, such
 as those available in <a class="reference external" href="https://cellprofiler.org/">CellProfiler</a>. The segmentation boundaries can be stored as binary images
 with the outlines of cells in white on a black background. These outlines are the format used in DeepProfiler to mask cells
 and isolate the content of single cells for training neural networks and computing features. Masking cells is optional,
@@ -462,7 +462,7 @@ cell context for your study, we recommend skipping cell masking. Otherwise, you 
 described below.</p>
 <p>To mask cells, you first need to segment them using an external tool like <a class="reference external" href="https://cellprofiler.org/">CellProfiler</a> or
 <a class="reference external" href="https://www.ilastik.org/">Ilastik</a> and save the binary image of their outlines (see example figure). Save these images
-in the <code class="docutils literal notranslate"><span class="pre">input/outlines</span></code> directory. Next, you need to create a csv file with the list of the outline images with three
+in the <code class="docutils literal notranslate"><span class="pre">input/outlines</span></code> directory. Next, you need to create a CSV file with the list of the outline images with three
 additional columns: plate, well and site. Save this file in the <code class="docutils literal notranslate"><span class="pre">input/metadata</span></code> directory. The final step is to update
 the configuration file (<a class="reference external" href="#heading=h.5i3187icaj4t">Section 3</a>) to let DeepProfiler know that you want to use these outlines
 for masking the cells. Specifically, the <code class="docutils literal notranslate"><span class="pre">mask_objects</span> </code>setting under <code class="docutils literal notranslate"><span class="pre">locations</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">true</span></code> in the configuration
