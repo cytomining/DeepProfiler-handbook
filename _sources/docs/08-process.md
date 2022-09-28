@@ -44,12 +44,14 @@ The calсulated ZCA-transformation matrix is used to calculate corrected profile
 wells). On the UMAP plot, negative control wells are expected to group, and treated wells 
 with relatively weak phenotypes are also expected to group with negative control wells.
 
-```{figure} images/sphering.png
+![UMAP of well-level profiles before and after sphering (BBBC037 dataset).](./images/sphering.png)
+
+:::{figure-md} images/sphering.png
 ---
 name: Sphering
 ---
-UMAP of well-level profiles before and after sphering (BBBC037 dataset). 
-```
+
+:::
 ````
 
 ## 8.1.2 Evaluation of profiles
