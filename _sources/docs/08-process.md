@@ -72,7 +72,7 @@ The visualizations can be done with `02-profiles-visualizations.ipynb` Jupyter n
 well-level profiles and is set in `INPUT_PROFILES`. 
 
 1. Treatment-level profiles are calculated using mean aggregation.
-2. UMAP embeddings are obtained using only well-level profiles.
+2. The UMAP transformation is obtained using only well-level profiles. Get embeddings for well-level profiles.
 3. Use transformation from the previous step for treatment level profiles.
 4. Plot embeddings both from well and treatment-level profiles (see below).
 
