@@ -75,7 +75,7 @@ well-level profiles and is set in `INPUT_PROFILES`.
 3. Use transformation from the previous step for treatment level profiles.
 4. Plot embeddings both from well and treatment-level profiles (see below).
 
-```{figure} images/visulize_profiles.png
+```{figure} images/visualize_profiles.png
 ---
 name: UMAP visualization
 ---
@@ -89,7 +89,7 @@ function called [DeepProfiler_Processing](https://github.com/cytomining/pycytomi
 This function reads the output features of DeepProfiler, including the metadata, aggregates, and saves the data in a Pycytominer 
 and Cytominer-eval readable data frame format.
 
-Make sure to install this version of pycytominer:
+Make sure to install this version of Pycytominer:
 
 
 ```
