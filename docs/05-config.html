@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="6. Profile cells with DeepProfiler" href="06-profiling.html" />
-    <link rel="prev" title="4. Metadata and single cell locations" href="04-metadata.html" />
+    <link rel="prev" title="4. Metadata and single-cell locations" href="04-metadata.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -132,7 +132,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04-metadata.html">
-   4. Metadata and single cell locations
+   4. Metadata and single-cell locations
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -518,7 +518,7 @@ below together with the provided examples of metadata and configuration files.</
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">locations</span></code>: parameterize how DeepProfiler will search for single cells in images for training and profiling.</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: <em>(string)</em> this field indicates if images will be processed at single cell resolution or in full image mode. It only accepts two strings: <code class="docutils literal notranslate"><span class="pre">single_cells</span></code> - activates single-cell analysis mode, thus, requiring cell locations to be stored in the <code class="docutils literal notranslate"><span class="pre">inputs/locations/</span></code> folder (Section XXX); <code class="docutils literal notranslate"><span class="pre">full_image</span></code> - activates full image analysis (no need for locations files).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: <em>(string)</em> this field indicates if images will be processed at single-cell resolution or in full image mode. It only accepts two strings: <code class="docutils literal notranslate"><span class="pre">single_cells</span></code> - activates single-cell analysis mode, thus, requiring cell locations to be stored in the <code class="docutils literal notranslate"><span class="pre">inputs/locations/</span></code> folder (Section XXX); <code class="docutils literal notranslate"><span class="pre">full_image</span></code> - activates full image analysis (no need for locations files).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">box_size</span></code>: <em>(int)</em> specifies the size in pixels of the bounding box used to crop single cells out of images. The value is used for both the width and the height of the box (a square box). This value is used even in <code class="docutils literal notranslate"><span class="pre">full_image</span></code> mode, in which case the image will be resized to these dimensions. Note that DeepProfiler enforces a fixed input size because that is what neural network models usually expect. The box size should be selected to fully cover a typical cell in the experiment. It is OK if large cells are cut a bit, as long as this is relatively rare compared to the normal cell size. Also, it is OK if cells appear with neighboring cells in the same box, which we call “single cells in context” or can be fixed by masking (see below).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">view_size</span></code>: <em>(int)</em> useful only in <code class="docutils literal notranslate"><span class="pre">full_image</span></code> mode, specifies the size in pixels of the region of the image to be covered by cropping before resizing to the dimensions configured in <code class="docutils literal notranslate"><span class="pre">box_size</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">mask_objects</span></code>: <em>(bool)</em> true or false, indicates whether cells should be masked using the cell outlines in <code class="docutils literal notranslate"><span class="pre">input/outlines</span></code>. Optional, the recommended value at the moment is false (see more information below).</p></li>
@@ -675,7 +675,7 @@ It does not differ much from the previous one, only the name of the checkpoint f
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">4. Metadata and single cell locations</p>
+            <p class="prev-next-title">4. Metadata and single-cell locations</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="06-profiling.html" title="next page">

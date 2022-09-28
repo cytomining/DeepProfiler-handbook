@@ -1,4 +1,4 @@
-# 4. Metadata and single cell locations
+# 4. Metadata and single-cell locations
 
 DeepProfiler requires metadata files that provide information about the experiment as well as the locations of single cells 
 (centroids) in your images. These files are stored in `project/inputs/` and there are two main types: 
@@ -7,7 +7,7 @@ DeepProfiler requires metadata files that provide information about the experime
    structure (e.g., plate and well positions) and includes additional information about replicates and treatments. 
    The default filename of the metadata file is `index.csv` if the `--metadata` parameter was not explicitly set.
    `--metadata` is the metadata's filename in `project/inputs/metadata/`.
-2. A series of single cell **locations files** for each site (located in `project/inputs/locations/`) that provide the XY coordinates 
+2. A series of single-cell **locations files** for each site (located in `project/inputs/locations/`) that provide the XY coordinates 
     of nuclei centroids. **Note** that this file is not required if running DeepProfiler in `full_image` mode.
 
 ## **4.1 The metadata file**

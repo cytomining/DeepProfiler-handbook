@@ -137,7 +137,7 @@ Options:
 
 
 Commands:
-  export-sc export crops of single-cells for training
+  export-sc export crops of single cells for training
   prepare   run illumination correction and compression
   profile   run feature extraction
   setup     initialize folder structure of DeepProfiler project

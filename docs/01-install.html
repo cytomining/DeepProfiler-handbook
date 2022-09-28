@@ -132,7 +132,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04-metadata.html">
-   4. Metadata and single cell locations
+   4. Metadata and single-cell locations
   </a>
  </li>
  <li class="toctree-l1">
@@ -481,30 +481,30 @@ or <a class="reference external" href="https://docs.conda.io/projects/conda/en/l
 </summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">First, install your environment manager of choice:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="b19941fc-c8bd-42fd-90b7-8356cebefd72" name="6fa7f602-0246-4d7d-9725-c465c7b1c028" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key1" for="b19941fc-c8bd-42fd-90b7-8356cebefd72">
+<input checked="checked" id="a074d65f-a594-4a34-b9d8-32eb0f61ebb3" name="d4e0d975-214f-4663-819f-078e5efd6353" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key1" for="a074d65f-a594-4a34-b9d8-32eb0f61ebb3">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">virtualenv</span>
 </pre></div>
 </div>
 </div>
-<input id="f5f655b0-3efc-4660-954b-9b45a3399dc6" name="6fa7f602-0246-4d7d-9725-c465c7b1c028" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key2" for="f5f655b0-3efc-4660-954b-9b45a3399dc6">
+<input id="e1fbc6f1-25a2-4d7a-87cb-6f7fc2457471" name="d4e0d975-214f-4663-819f-078e5efd6353" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key2" for="e1fbc6f1-25a2-4d7a-87cb-6f7fc2457471">
 conda</label><div class="sd-tab-content docutils">
 <p class="sd-card-text">See <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html">conda documentation</a> for installation details.</p>
 </div>
 </div>
 <p class="sd-card-text">Next, create a virtual environment for DeepProfiler in the current directory:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="be19bee1-112c-4642-ac41-e79966cad952" name="f9fc9542-6b72-4adc-83bf-ce00f096032a" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key1" for="be19bee1-112c-4642-ac41-e79966cad952">
+<input checked="checked" id="6bd6add3-966e-424e-991b-7740bd276c98" name="62fd9b19-dc26-4bc3-bdce-b4067c15f9cb" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key1" for="6bd6add3-966e-424e-991b-7740bd276c98">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">virtualenv</span> <span class="o">-</span><span class="n">p</span> <span class="n">python3</span> <span class="n">deepprofenv</span>
 </pre></div>
 </div>
 </div>
-<input id="b5490c36-2247-4437-84b9-7d11f05e1bd0" name="f9fc9542-6b72-4adc-83bf-ce00f096032a" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key2" for="b5490c36-2247-4437-84b9-7d11f05e1bd0">
+<input id="8e738313-79cc-43b1-9946-680237d6fdda" name="62fd9b19-dc26-4bc3-bdce-b4067c15f9cb" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key2" for="8e738313-79cc-43b1-9946-680237d6fdda">
 conda</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">deepprofenv</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span> 
 </pre></div>
@@ -513,15 +513,15 @@ conda</label><div class="sd-tab-content docutils">
 </div>
 <p class="sd-card-text">Finally, activate your virtual environment:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="b6a3a572-0393-4119-ae34-f823b6d41887" name="d33ec763-6707-4d85-bf1e-29cbd8b6f2a0" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key1" for="b6a3a572-0393-4119-ae34-f823b6d41887">
+<input checked="checked" id="f8064fbd-b1d1-4586-b353-caf95d78ed4c" name="76877bbd-0e85-42ef-9945-41f8a8be1632" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key1" for="f8064fbd-b1d1-4586-b353-caf95d78ed4c">
 virtualenv</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">./</span><span class="n">deepprofenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 </pre></div>
 </div>
 </div>
-<input id="a66a1ffd-d414-4536-af73-2e980360b9c5" name="d33ec763-6707-4d85-bf1e-29cbd8b6f2a0" type="radio">
-</input><label class="sd-tab-label" data-sync-id="key2" for="a66a1ffd-d414-4536-af73-2e980360b9c5">
+<input id="dbab4110-e667-41dc-86b7-3328ea1cebbc" name="76877bbd-0e85-42ef-9945-41f8a8be1632" type="radio">
+</input><label class="sd-tab-label" data-sync-id="key2" for="dbab4110-e667-41dc-86b7-3328ea1cebbc">
 conda</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">deepprofenv</span>
 </pre></div>
@@ -575,7 +575,7 @@ create runnable packages in your clone.</p>
 
 
 <span class="n">Commands</span><span class="p">:</span>
-  <span class="n">export</span><span class="o">-</span><span class="n">sc</span> <span class="n">export</span> <span class="n">crops</span> <span class="n">of</span> <span class="n">single</span><span class="o">-</span><span class="n">cells</span> <span class="k">for</span> <span class="n">training</span>
+  <span class="n">export</span><span class="o">-</span><span class="n">sc</span> <span class="n">export</span> <span class="n">crops</span> <span class="n">of</span> <span class="n">single</span> <span class="n">cells</span> <span class="k">for</span> <span class="n">training</span>
   <span class="n">prepare</span>   <span class="n">run</span> <span class="n">illumination</span> <span class="n">correction</span> <span class="ow">and</span> <span class="n">compression</span>
   <span class="n">profile</span>   <span class="n">run</span> <span class="n">feature</span> <span class="n">extraction</span>
   <span class="n">setup</span>     <span class="n">initialize</span> <span class="n">folder</span> <span class="n">structure</span> <span class="n">of</span> <span class="n">DeepProfiler</span> <span class="n">project</span>

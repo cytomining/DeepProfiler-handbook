@@ -132,7 +132,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04-metadata.html">
-   4. Metadata and single cell locations
+   4. Metadata and single-cell locations
   </a>
  </li>
  <li class="toctree-l1">
@@ -352,7 +352,7 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#export-single-cells">
    <strong>
-    7.1 Export single-cells
+    7.1 Export single cells
    </strong>
   </a>
  </li>
@@ -385,7 +385,7 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#export-single-cells">
    <strong>
-    7.1 Export single-cells
+    7.1 Export single cells
    </strong>
   </a>
  </li>
@@ -409,13 +409,13 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="training-models-with-deepprofiler">
 <h1>7. Training models with DeepProfiler<a class="headerlink" href="#training-models-with-deepprofiler" title="Permalink to this headline">#</a></h1>
 <section id="export-single-cells">
-<h2><strong>7.1 Export single-cells</strong><a class="headerlink" href="#export-single-cells" title="Permalink to this headline">#</a></h2>
+<h2><strong>7.1 Export single cells</strong><a class="headerlink" href="#export-single-cells" title="Permalink to this headline">#</a></h2>
 <p>Imagine you already have a dataset of full images and you would like to train a model. Models are trained with single-cell crops,
-so the single-cells of the dataset should be exported separately.
+so the single cells of the dataset should be exported separately.
 If the dataset consists of 16-bit TIFF images, it is <strong>strongly</strong> recommended to
 <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/03-images.html#dataset-compression-and-illumination-correction">pre-process the dataset</a> first.</p>
 <p>The single-cell export tool requires single cells to be identified and segmented ahead of time (see Section 3). Then,
-this tool will generate an image for each existing single cell in the locations file with the channels concatenated in
+this tool will generate an image for each existing single-cell in the locations file with the channels concatenated in
 horizontal order (see example image below). The basic command for export is as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">deepprofiler</span> <span class="o">--</span><span class="n">root</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">project</span><span class="o">/</span> <span class="o">--</span><span class="n">config</span><span class="o">=</span><span class="n">export</span><span class="o">.</span><span class="n">json</span> <span class="o">--</span><span class="n">metadata</span><span class="o">=</span><span class="n">index</span><span class="o">.</span><span class="n">csv</span> <span class="o">--</span><span class="n">single</span><span class="o">-</span><span class="n">cells</span><span class="o">=</span><span class="n">single_cells_dataset</span> <span class="n">export</span><span class="o">-</span><span class="n">sc</span>
 </pre></div>
