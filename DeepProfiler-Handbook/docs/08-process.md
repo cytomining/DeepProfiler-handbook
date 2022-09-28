@@ -30,8 +30,8 @@ with annotations of treatments by the mechanism of action and the `.npz` files w
 6. Aggregate well-level profiles to treatment-level profiles. Only treatments with ground truth annotations are aggregated and stored in `profiles` dataframe.
 7. Create a similarity matrix from `profiles`. We use cosine similarity as a similarity metric. Save the matrix to `OUTPUT_FILE`.
 
-```{dropdown} Batch-correction using sphering transformation
-:class: dropdown
+## 8.1.2 Batch-correction using sphering transformation
+
 The sphering transformation aims to reduce unwanted technical variation and recover the phenotypic features of treatments from
 the latent representations of the weakly supervised CNN. We calculate the ZCA-transformation matrix using well-level profiles 
 of negative controls. The assumption here is that phenotypic features of negative controls should be neutral, thus the 
@@ -44,16 +44,15 @@ The calсulated ZCA-transformation matrix is used to calculate corrected profile
 wells). On the UMAP plot, negative control wells are expected to group, and treated wells 
 with relatively weak phenotypes are also expected to group with negative control wells.
 
-:::{figure-md} images/sphering.png
-<img src="images/sphering.png" alt="sphering">
 
+```{figure} images/sphering.png
+---
+name: Sphering
+---
 UMAP of well-level profiles before and after sphering (BBBC037 dataset).
-:::
-
-
 ```
 
-## 8.1.2 Evaluation of profiles
+## 8.1.3 Evaluation of profiles
 
 Evaluation of profiles can be done with `04-downstream-analysis.ipynb`. This notebook uses the cosine similarity matrix 
 obtained in `01-create-profiles.ipynb` as an input. 
@@ -66,10 +65,22 @@ obtained in `01-create-profiles.ipynb` as an input.
 4. Calculate mean Average Precision, and area under interpolated Precision-Recall curve and plot it. 
 5. Save results to the `.csv` table and `pickle` (contains Python dictionary and can be loaded with Python).
 
-## 8.1.3 Visualize profiles
+## 8.1.4 Visualize profiles
 
-The visualizations can be done with `02-profiles-visualizations.ipynb` Jupyter notebook. The input is path to well-level
-profiles `INPUT_PROFILES`. 
+The visualizations can be done with `02-profiles-visualizations.ipynb` Jupyter notebook. The input is a path to 
+well-level profiles and is set in `INPUT_PROFILES`. 
+
+1. Treatment-level profiles are calculated using mean aggregation.
+2. UMAP embeddings are obtained using only well-level profiles.
+3. Use transformation from the previous step for treatment level profiles.
+4. Plot embeddings both from well and treatment-level profiles (see below).
+
+```{figure} images/visulize_profiles.png
+---
+name: UMAP visualization
+---
+Example of visualization (BBBC037 dataset).
+```
 
 # 8.2 Aggregating and evaluating profiles with Pycytominer
 
