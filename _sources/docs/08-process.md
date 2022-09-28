@@ -49,7 +49,8 @@ with relatively weak phenotypes are also expected to group with negative control
 ---
 name: Sphering
 ---
-UMAP of well-level profiles before and after sphering (BBBC037 dataset).
+UMAP of well-level profiles before and after sphering (BBBC037 dataset). Red point are control wells, gray points are
+treated wells and blue points are treatments.
 ```
 
 ## 8.1.3 Evaluation of profiles
