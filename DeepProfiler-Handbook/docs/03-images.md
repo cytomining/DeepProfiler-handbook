@@ -34,7 +34,7 @@ python3 deepprofiler --root=/home/ubuntu/project/ --config filename.json prepare
 
 ## **3.2 Masking cells**
 
-The pixels that belong to cells in an image can be identified using can be identified using segmentation algorithms, such
+The pixels that belong to cells in an image can be identified using segmentation algorithms, such
 as those available in [CellProfiler](https://cellprofiler.org/). The segmentation boundaries can be stored as binary images
 with the outlines of cells in white on a black background. These outlines are the format used in DeepProfiler to mask cells
 and isolate the content of single cells for training neural networks and computing features. Masking cells is optional,
@@ -47,7 +47,7 @@ described below.
 
 To mask cells, you first need to segment them using an external tool like [CellProfiler](https://cellprofiler.org/) or 
 [Ilastik](https://www.ilastik.org/) and save the binary image of their outlines (see example figure). Save these images
-in the `input/outlines` directory. Next, you need to create a csv file with the list of the outline images with three
+in the `input/outlines` directory. Next, you need to create a CSV file with the list of the outline images with three
 additional columns: plate, well and site. Save this file in the `input/metadata` directory. The final step is to update
 the configuration file ([Section 3](#heading=h.5i3187icaj4t)) to let DeepProfiler know that you want to use these outlines
 for masking the cells. Specifically, the `mask_objects `setting under `locations` must be set to `true` in the configuration
