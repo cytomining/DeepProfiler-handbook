@@ -30,8 +30,8 @@ with annotations of treatments by the mechanism of action and the `.npz` files w
 6. Aggregate well-level profiles to treatment-level profiles. Only treatments with ground truth annotations are aggregated and stored in `profiles` dataframe.
 7. Create a similarity matrix from `profiles`. We use cosine similarity as a similarity metric. Save the matrix to `OUTPUT_FILE`.
 
-````{dropdown} Batch-correction using sphering transformation
-:class: tip
+```{dropdown} Batch-correction using sphering transformation
+:class: dropdown
 The sphering transformation aims to reduce unwanted technical variation and recover the phenotypic features of treatments from
 the latent representations of the weakly supervised CNN. We calculate the ZCA-transformation matrix using well-level profiles 
 of negative controls. The assumption here is that phenotypic features of negative controls should be neutral, thus the 
@@ -44,15 +44,14 @@ The calсulated ZCA-transformation matrix is used to calculate corrected profile
 wells). On the UMAP plot, negative control wells are expected to group, and treated wells 
 with relatively weak phenotypes are also expected to group with negative control wells.
 
-![UMAP of well-level profiles before and after sphering (BBBC037 dataset).](./images/sphering.png)
-
 :::{figure-md} images/sphering.png
----
-name: Sphering
----
+<img src="images/sphering.png" alt="sphering">
 
+UMAP of well-level profiles before and after sphering (BBBC037 dataset).
 :::
-````
+
+
+```
 
 ## 8.1.2 Evaluation of profiles
 
