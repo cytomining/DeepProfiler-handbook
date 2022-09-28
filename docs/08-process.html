@@ -368,6 +368,11 @@ title="Print to PDF"
      8.1.2 Evaluation of profiles
     </a>
    </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-profiles">
+     8.1.3 Visualize profiles
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -414,6 +419,11 @@ title="Print to PDF"
      8.1.2 Evaluation of profiles
     </a>
    </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-profiles">
+     8.1.3 Visualize profiles
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -452,7 +462,7 @@ file</a>, ground truth metadata
 with annotations of treatments by the mechanism of action and the <code class="docutils literal notranslate"><span class="pre">.npz</span></code> files with features  organized in
 <code class="docutils literal notranslate"><span class="pre">{Plate}/{Well}/{Site}.npz</span></code> folder structure.</p>
 <ol class="simple">
-<li><p>Define the parameters: project path and experiment folder name as in DeepProfiler, sphering regularization parameter and
+<li><p>Define the parameters: project path and experiment folder name as in DeepProfiler, sphering regularization parameter <code class="docutils literal notranslate"><span class="pre">REG_PARAM</span></code> and
 output file names: <code class="docutils literal notranslate"><span class="pre">OUTPUT_FILE</span></code> - output file that will contain well-level profiles after sphering and <code class="docutils literal notranslate"><span class="pre">MATRIX_FILE</span></code> that will contain similarity matrix of treatments.</p></li>
 <li><p>Load single-cell data by passing through metadata and reading files with features. It might require a significant amount of RAM (depending on the size of the dataset).</p></li>
 <li><p>Aggregate features of single-cells by site with median aggregation. <code class="docutils literal notranslate"><span class="pre">sites</span></code> Pandas dataframe will contain those aggregated profiles.</p></li>
@@ -477,6 +487,11 @@ and treatments that belong to the same mechanism of action as the current treatm
 <li><p>Save results to the <code class="docutils literal notranslate"><span class="pre">.csv</span></code> table and <code class="docutils literal notranslate"><span class="pre">pickle</span></code> (contains Python dictionary and can be loaded with Python).</p></li>
 </ol>
 </section>
+<section id="visualize-profiles">
+<h2>8.1.3 Visualize profiles<a class="headerlink" href="#visualize-profiles" title="Permalink to this headline">#</a></h2>
+<p>The visualizations can be done with <code class="docutils literal notranslate"><span class="pre">02-profiles-visualizations.ipynb</span></code> Jupyter notebook. The input is path to well-level
+profiles <code class="docutils literal notranslate"><span class="pre">INPUT_PROFILES</span></code>.</p>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="aggregating-and-evaluating-profiles-with-pycytominer">
 <h1>8.2 Aggregating and evaluating profiles with Pycytominer<a class="headerlink" href="#aggregating-and-evaluating-profiles-with-pycytominer" title="Permalink to this headline">#</a></h1>
@@ -484,11 +499,12 @@ and treatments that belong to the same mechanism of action as the current treatm
 function called <a class="reference external" href="https://github.com/cytomining/pycytominer/blob/master/pycytominer/cyto_utils/DeepProfiler_processing.py">DeepProfiler_Processing</a>.
 This function reads the output features of DeepProfiler, including the metadata, aggregates, and saves the data in a Pycytominer
 and Cytominer-eval readable data frame format.</p>
-<p>This code gives an example of how to run the aggregation function:</p>
 <p>Make sure to install this version of pycytominer:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cytomining</span><span class="o">/</span><span class="n">pycytominer</span><span class="nd">@update_agg_TF2</span>
-
-<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+<p>This code gives an example of how to run the aggregation function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 

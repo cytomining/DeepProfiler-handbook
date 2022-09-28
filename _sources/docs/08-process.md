@@ -21,7 +21,7 @@ file](https://cytomining.github.io/DeepProfiler-handbook/docs/04-metadata.html#t
 with annotations of treatments by the mechanism of action and the `.npz` files with features  organized in 
 `{Plate}/{Well}/{Site}.npz` folder structure. 
 
-1. Define the parameters: project path and experiment folder name as in DeepProfiler, sphering regularization parameter and 
+1. Define the parameters: project path and experiment folder name as in DeepProfiler, sphering regularization parameter `REG_PARAM` and 
    output file names: `OUTPUT_FILE` - output file that will contain well-level profiles after sphering and `MATRIX_FILE` that will contain similarity matrix of treatments.
 2. Load single-cell data by passing through metadata and reading files with features. It might require a significant amount of RAM (depending on the size of the dataset).
 3. Aggregate features of single-cells by site with median aggregation. `sites` Pandas dataframe will contain those aggregated profiles.
@@ -30,6 +30,27 @@ with annotations of treatments by the mechanism of action and the `.npz` files w
 6. Aggregate well-level profiles to treatment-level profiles. Only treatments with ground truth annotations are aggregated and stored in `profiles` dataframe.
 7. Create a similarity matrix from `profiles`. We use cosine similarity as a similarity metric. Save the matrix to `OUTPUT_FILE`.
 
+````{dropdown} Batch-correction using sphering transformation
+:class: tip
+The sphering transformation aims to reduce unwanted technical variation and recover the phenotypic features of treatments from
+the latent representations of the weakly supervised CNN. We calculate the ZCA-transformation matrix using well-level profiles 
+of negative controls. The assumption here is that phenotypic features of negative controls should be neutral, thus the 
+difference between them encodes mostly technical and irrelevant variation.
+
+Sphering transformation can be regularized, the strength of regularization is regulated by `REG_PARAM` in the notebook, 
+a good value to start is `1e-3`, though it depends on the data. 
+
+The calсulated ZCA-transformation matrix is used to calculate corrected profiles (both for treated wells and control
+wells). On the UMAP plot, negative control wells are expected to group, and treated wells 
+with relatively weak phenotypes are also expected to group with negative control wells.
+
+```{figure} images/sphering.png
+---
+name: Sphering
+---
+UMAP of well-level profiles before and after sphering (BBBC037 dataset). 
+```
+````
 
 ## 8.1.2 Evaluation of profiles
 
@@ -42,7 +63,12 @@ obtained in `01-create-profiles.ipynb` as an input.
 2. Calculate the precision metrics: `Average precision` and `Precision @ top 1%`. 
 3. Calculate the recall metrics: `Recall` and `Average Recall at top 10%` (a different cut-off was used on purpose). 
 4. Calculate mean Average Precision, and area under interpolated Precision-Recall curve and plot it. 
-5. Save results to the `.csv` table and `pickle` (contains Python dictionary and can be loaded with Python). 
+5. Save results to the `.csv` table and `pickle` (contains Python dictionary and can be loaded with Python).
+
+## 8.1.3 Visualize profiles
+
+The visualizations can be done with `02-profiles-visualizations.ipynb` Jupyter notebook. The input is path to well-level
+profiles `INPUT_PROFILES`. 
 
 # 8.2 Aggregating and evaluating profiles with Pycytominer
 
@@ -51,14 +77,15 @@ function called [DeepProfiler_Processing](https://github.com/cytomining/pycytomi
 This function reads the output features of DeepProfiler, including the metadata, aggregates, and saves the data in a Pycytominer 
 and Cytominer-eval readable data frame format.
 
-This code gives an example of how to run the aggregation function:
-
 Make sure to install this version of pycytominer:
 
 
 ```
 pip install git+git://github.com/cytomining/pycytominer@update_agg_TF2
+```
 
+This code gives an example of how to run the aggregation function:
+```
 import os
 import numpy as np
 import pandas as pd
