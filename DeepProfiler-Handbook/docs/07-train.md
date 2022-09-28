@@ -1,15 +1,15 @@
 # 7. Training models with DeepProfiler
 
 
-## **7.1 Export single-cells**
+## **7.1 Export single cells**
 
 Imagine you already have a dataset of full images and you would like to train a model. Models are trained with single-cell crops, 
-so the single-cells of the dataset should be exported separately.
+so the single cells of the dataset should be exported separately.
 If the dataset consists of 16-bit TIFF images, it is **strongly** recommended to 
 [pre-process the dataset](https://cytomining.github.io/DeepProfiler-handbook/docs/03-images.html#dataset-compression-and-illumination-correction) first. 
 
 The single-cell export tool requires single cells to be identified and segmented ahead of time (see Section 3). Then, 
-this tool will generate an image for each existing single cell in the locations file with the channels concatenated in
+this tool will generate an image for each existing single-cell in the locations file with the channels concatenated in
 horizontal order (see example image below). The basic command for export is as follows:
 
 ```
