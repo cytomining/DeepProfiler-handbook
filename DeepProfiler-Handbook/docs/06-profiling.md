@@ -102,6 +102,19 @@ Example for _EfficientNet-B0_ model:
     }
 ```
 
+```{admonition} Features are ordered by channels
+:class: tip
+As each channel is passed through a model separately in this setup, the output feature vectors are concatenated to 
+produce one feature vector for an image. The channel order in the concatenated vector matches the order of channels in
+the configuration. This is valid **only** for pre-trained (with ImageNet) models used with repeat_channel_crop_generator. 
+
+**Example:**
+Features are extracted for an image with channels ['DNA', 'RNA', 'ER'] (as in configuration)
+using pre-trained EfficientNet and avg_pool layer. The size of this layer is 1280, thus for three channels the final 
+feature vector is going to be 3840 and the first 1280 elements will correspond to the 'DNA' channel, the next 1280 to 'RNA' 
+and final 1280 to 'ER'. 
+```
+
 ## **6.4 Profiling with self-trained model:**
 
 After training your model, you can profile your data using the checkpoints from the training:
