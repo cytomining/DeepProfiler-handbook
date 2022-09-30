@@ -531,6 +531,17 @@ to the model separately, to match the number of channels of ImageNet, each chann
     <span class="p">}</span>
 </pre></div>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Features are ordered by channels</p>
+<p>As each channel is passed through a model separately in this setup, the output feature vectors are concatenated to
+produce one feature vector for an image. The channel order in the concatenated vector matches the order of channels in
+the configuration. This is valid <strong>only</strong> for pre-trained (with ImageNet) models used with repeat_channel_crop_generator.</p>
+<p><strong>Example:</strong>
+Features are extracted for an image with channels [‘DNA’, ‘RNA’, ‘ER’] (as in configuration)
+using pre-trained EfficientNet and avg_pool layer. The size of this layer is 1280, thus for three channels the final
+feature vector is going to be 3840 and the first 1280 elements will correspond to the ‘DNA’ channel, the next 1280 to ‘RNA’
+and final 1280 to ‘ER’.</p>
+</div>
 </section>
 <section id="profiling-with-self-trained-model">
 <h2><strong>6.4 Profiling with self-trained model:</strong><a class="headerlink" href="#profiling-with-self-trained-model" title="Permalink to this headline">#</a></h2>
