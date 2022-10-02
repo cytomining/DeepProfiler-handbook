@@ -16,8 +16,8 @@ analysis notebooks. You can reuse this code to build a custom analysis pipeline.
 
 ## 8.1.1 Aggregation of profiles and batch-correction
 
-Aggregation of features can be done with `01-create-profiles.ipynb` Jupyter notebook. The inputs are: [project metadata 
-file](https://cytomining.github.io/DeepProfiler-handbook/docs/04-metadata.html#the-metadata-file), ground truth metadata 
+Aggregation of features can be done with [`01-create-profiles.ipynb`](https://github.com/broadinstitute/DeepProfilerExperiments/blob/master/ta-orf/01-create-profiles.ipynb)
+Jupyter notebook. The inputs are: [project metadata file](https://cytomining.github.io/DeepProfiler-handbook/docs/04-metadata.html#the-metadata-file), ground truth metadata 
 with annotations of treatments by the mechanism of action and the `.npz` files with features  organized in 
 `{Plate}/{Well}/{Site}.npz` folder structure. 
 
@@ -32,7 +32,8 @@ with annotations of treatments by the mechanism of action and the `.npz` files w
 
 ## 8.1.2 Batch-correction using sphering transformation
 
-The sphering transformation aims to reduce unwanted technical variation and recover the phenotypic features of treatments from
+The sphering transformation ([implementation](https://github.com/broadinstitute/DeepProfilerExperiments/blob/master/profiling/profiling.py#L5)) 
+aims to reduce unwanted technical variation and recover the phenotypic features of treatments from
 the latent representations of the weakly supervised CNN. We calculate the ZCA-transformation matrix using well-level profiles 
 of negative controls. The assumption here is that phenotypic features of negative controls should be neutral, thus the 
 difference between them encodes mostly technical and irrelevant variation.
@@ -55,8 +56,8 @@ treated wells and blue points are treatments.
 
 ## 8.1.3 Evaluation of profiles
 
-Evaluation of profiles can be done with `04-downstream-analysis.ipynb`. This notebook uses the cosine similarity matrix 
-obtained in `01-create-profiles.ipynb` as an input. 
+Evaluation of profiles can be done with [`04-downstream-analysis.ipynb`](https://github.com/broadinstitute/DeepProfilerExperiments/blob/master/ta-orf/04-downstream-analysis.ipynb). This notebook uses the cosine similarity matrix 
+obtained in [`01-create-profiles.ipynb`](https://github.com/broadinstitute/DeepProfilerExperiments/blob/master/ta-orf/01-create-profiles.ipynb) as an input. 
 1. First parts (*Load similarity matrix* and *MOA matching*) of the notebook perform input pre-processing. `moa_matches` 
    is a binary matrix of size `n x n`, where `n` is the number of treatments in the similarity matrix. This matrix is symmetrical 
    and each row (column) relates is a treatment, and values are `True` in each row (column) for the current treatment (diagonal) 
@@ -68,8 +69,8 @@ obtained in `01-create-profiles.ipynb` as an input.
 
 ## 8.1.4 Visualize profiles
 
-The visualizations can be done with `02-profiles-visualizations.ipynb` Jupyter notebook. The input is a path to 
-well-level profiles and is set in `INPUT_PROFILES`. 
+The visualizations can be done with [`02-profiles-visualizations.ipynb`](https://github.com/broadinstitute/DeepProfilerExperiments/blob/master/ta-orf/02-profiles-visualizations.ipynb) 
+Jupyter notebook. The input is a path to well-level profiles and is set in `INPUT_PROFILES`. 
 
 1. Treatment-level profiles are calculated using mean aggregation.
 2. The UMAP transformation is obtained using only well-level profiles. Get embeddings for well-level profiles.
