@@ -115,7 +115,7 @@ feature vector is going to be 3840 and the first 1280 elements will correspond t
 and final 1280 to 'ER'. 
 ```
 
-## **6.4 Profiling with self-trained model:**
+## **6.4 Profiling with your own trained model:**
 
 After training your model, you can profile your data using the checkpoints from the training:
 
