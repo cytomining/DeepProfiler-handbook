@@ -23,10 +23,12 @@ profiles of cell populations. The single-cell feature embeddings need to be proc
 corresponding downstream analysis, using tools such as [pycytominer](https://github.com/cytomining/pycytominer).
 
 ## Cell Painting CNN
-If you are profiling [Cell Painting images](https://www.nature.com/articles/nprot.2016.105), you can now use our 
-[_**Cell Painting CNN pre-trained model**_](https://doi.org/10.5281/zenodo.7114558) model to profile your experiments out of the box! 
-No need to train a separate model for Cell Painting. [Our analysis](https://www.biorxiv.org/content/10.1101/2022.08.12.503783v1.full) 
-indicates that the Cell Painting CNN generalizes better to new treatments because it has been trained at a large scale with 
-diverse phenotypic data. You can follow the instructions for 
-[profiling](https://cytomining.github.io/DeepProfiler-handbook/docs/06-profiling.html#profiling-with-cell-painting-cnn-model) 
-in this guide to get started.
+
+```{figure} images/CellPaintingCNN.png
+---
+name: cp-cnn
+---
+The Cell Painting CNN can process the 5 image channels together to produce single-cell features.
+```
+
+If you are profiling [Cell Painting images](https://www.nature.com/articles/nprot.2016.105), you can now use our _**Cell Painting CNN**_ model to profile your experiments out of the box! No need to train a separate model for Cell Painting. [Our analysis](https://www.biorxiv.org/content/10.1101/2022.08.12.503783v1.full) indicates that the Cell Painting CNN generalizes better to new treatments because it has been trained at large scale with diverse phenotypic data. You can download the [pre-trained model]() and follow the instructions for [profiling]() in this guide to get started.
