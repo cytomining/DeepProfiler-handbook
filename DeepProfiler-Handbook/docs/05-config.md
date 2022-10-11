@@ -8,7 +8,7 @@ stored in the `inputs/config/` directory.
 
 ## 5.1 Configuration File Organization
 The configuration file is organized into four main sections as follows. We’ve included specific recommendations where possible. 
-For more details, check out our paper (link). For generating this config file for your project, look at the descriptions 
+For more details, check out our [preprint](https://www.biorxiv.org/content/10.1101/2022.08.12.503783v2). For generating this config file for your project, look at the descriptions 
 below together with the provided examples of metadata and configuration files.
 
 ### 1. `dataset`: description of your image collection with basic general information
