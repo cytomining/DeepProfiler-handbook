@@ -18,7 +18,7 @@ single-cell feature embeddings for the images listed in the metadata file.
 
 What DeepProfiler does not do: 1) it does not identify the location of single cells or segment cells from the images. 
 These locations need to be obtained using other software, such as [CellProfiler](https://cellprofiler.org/), 
-[Ilastik](https://www.ilastik.org/), or Cellpose (https://www.cellpose.org/). 2) DeepProfiler does not create aggregated
+[Ilastik](https://www.ilastik.org/), or [Cellpose](https://www.cellpose.org/). 2) DeepProfiler does not create aggregated
 profiles of cell populations. The single-cell feature embeddings need to be processed separately to perform the 
 corresponding downstream analysis, using tools such as [pycytominer](https://github.com/cytomining/pycytominer).
 
