@@ -98,15 +98,9 @@ This section was based on **Cell-Painting-Documentation-Internal**.
     ```
     NAME    	MAJ:MIN 	RM   	SIZE 	RO 	TYPE MOUNTPOINT
     xvda    		202:0    	0     	8G  	0 	disk
-    â””â”€xvda1 	202:1    	0    	 8G  	0 	part /
+    --xvda1 	202:1    	0    	 8G  	0 	part /
     xvdb    		202:80   	0   	100G  	0 	disk 
     ```
-
-    :::{tip}    
-    There may be other items in the table, like â€˜loops.â€™ 
-    These are normal and can be ignored.  
-    The final name (that corresponds to the 100G disk in this example) is the new EBS volume name.
-    :::
 
     To see if you have a file system on your harddrive:
     ```
