@@ -1,48 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>8. Downstream analysis &#8212; Handbook</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -50,61 +61,93 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/08-process';</script>
     <link rel="shortcut icon" href="../_static/favicon_32.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="7. Training models with DeepProfiler" href="07-train.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="00-welcome.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/banner.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Handbook</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/banner.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/banner.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -114,364 +157,268 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-install.html">
-   1. Install DeepProfiler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02-structure.html">
-   2. Project structure
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-images.html">
-   3. Images and segmentation masks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-metadata.html">
-   4. Metadata and single-cell locations
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="05-config.html">
-   5. Configuration file and examples
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-profiling.html">
-   6. Profile cells with DeepProfiler
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-train.html">
-   7. Training models with DeepProfiler
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   8. Downstream analysis
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-install.html">1. Install DeepProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-structure.html">2. Project structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-images.html">3. Images and segmentation masks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-metadata.html">4. Metadata and single-cell locations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-config.html">5. Configuration file and examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-profiling.html">6. Profile cells with DeepProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-train.html">7. Training models with DeepProfiler</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Downstream analysis</a></li>
+
+
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cytomining/DeepProfiler-handbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cytomining/DeepProfiler-handbook/edit/main/DeepProfiler-Handbook/docs/08-process.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cytomining/DeepProfiler-handbook/issues/new?title=Issue%20on%20page%20%2Fdocs/08-process.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/08-process.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/cytomining/DeepProfiler-handbook"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/cytomining/DeepProfiler-handbook/issues/new?title=Issue%20on%20page%20%2Fdocs/08-process.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/cytomining/DeepProfiler-handbook/edit/main/DeepProfiler-Handbook/docs/08-process.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/docs/08-process.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   8. Downstream analysis
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#aggregating-and-evaluating-profiles-with-profiling-notebooks">
-   8.1 Aggregating and evaluating profiles with profiling notebooks
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#aggregation-of-profiles-and-batch-correction">
-     8.1.1 Aggregation of profiles and batch-correction
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#batch-correction-using-sphering-transformation">
-     8.1.2 Batch-correction using sphering transformation
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#evaluation-of-profiles">
-     8.1.3 Evaluation of profiles
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualize-profiles">
-     8.1.4 Visualize profiles
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#aggregating-and-evaluating-profiles-with-pycytominer">
-   8.2 Aggregating and evaluating profiles with Pycytominer
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>8. Downstream analysis</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   8. Downstream analysis
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#aggregating-and-evaluating-profiles-with-profiling-notebooks">
-   8.1 Aggregating and evaluating profiles with profiling notebooks
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#aggregation-of-profiles-and-batch-correction">
-     8.1.1 Aggregation of profiles and batch-correction
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#batch-correction-using-sphering-transformation">
-     8.1.2 Batch-correction using sphering transformation
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#evaluation-of-profiles">
-     8.1.3 Evaluation of profiles
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualize-profiles">
-     8.1.4 Visualize profiles
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#aggregating-and-evaluating-profiles-with-pycytominer">
-   8.2 Aggregating and evaluating profiles with Pycytominer
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>8. Downstream analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8. Downstream analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregating-and-evaluating-profiles-with-profiling-notebooks">8.1 Aggregating and evaluating profiles with profiling notebooks</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-of-profiles-and-batch-correction">8.1.1 Aggregation of profiles and batch-correction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-correction-using-sphering-transformation">8.1.2 Batch-correction using sphering transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-of-profiles">8.1.3 Evaluation of profiles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-profiles">8.1.4 Visualize profiles</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregating-and-evaluating-profiles-with-pycytominer">8.2 Aggregating and evaluating profiles with Pycytominer</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="downstream-analysis">
-<h1>8. Downstream analysis<a class="headerlink" href="#downstream-analysis" title="Permalink to this headline">#</a></h1>
+<h1>8. Downstream analysis<a class="headerlink" href="#downstream-analysis" title="Permalink to this heading">#</a></h1>
 <p>After aggregating, profiles are typically processed before being used for analysis purposes.
 Data-processing approaches for profiles extracted with CellProfiler were described in the paper
 “<a class="reference external" href="https://doi.org/10.1038/nmeth.4397">Data analysis strategies for image-based profiling</a>”.
 Some of those approaches were used for features extracted with DeepProfiler.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="aggregating-and-evaluating-profiles-with-profiling-notebooks">
-<h1>8.1 Aggregating and evaluating profiles with profiling notebooks<a class="headerlink" href="#aggregating-and-evaluating-profiles-with-profiling-notebooks" title="Permalink to this headline">#</a></h1>
+<h1>8.1 Aggregating and evaluating profiles with profiling notebooks<a class="headerlink" href="#aggregating-and-evaluating-profiles-with-profiling-notebooks" title="Permalink to this heading">#</a></h1>
 <p>To analyse benchmark datasets <a class="reference external" href="https://www.biorxiv.org/content/10.1101/2022.08.12.503783v1.full">analysis paper</a> we created
 Jupyter notebooks, which are available in <a class="reference external" href="https://github.com/broadinstitute/DeepProfilerExperiments">DeepProfilerExperiments Github repository</a>.
 Folders <code class="docutils literal notranslate"><span class="pre">ta-orf</span></code> (BBBC037 dataset), <code class="docutils literal notranslate"><span class="pre">bbbc022</span></code> and <code class="docutils literal notranslate"><span class="pre">cdrp</span></code> (BBBC036 dataset) correspond to benchmark datasets and contain
 Jupyter notebooks, <code class="docutils literal notranslate"><span class="pre">profiling</span></code> folder contains utility functions. Next, we are going to go through the most important
 analysis notebooks. You can reuse this code to build a custom analysis pipeline.</p>
 <section id="aggregation-of-profiles-and-batch-correction">
-<h2>8.1.1 Aggregation of profiles and batch-correction<a class="headerlink" href="#aggregation-of-profiles-and-batch-correction" title="Permalink to this headline">#</a></h2>
+<h2>8.1.1 Aggregation of profiles and batch-correction<a class="headerlink" href="#aggregation-of-profiles-and-batch-correction" title="Permalink to this heading">#</a></h2>
 <p>Aggregation of features can be done with <a class="reference external" href="https://github.com/broadinstitute/DeepProfilerExperiments/blob/master/ta-orf/01-create-profiles.ipynb"><code class="docutils literal notranslate"><span class="pre">01-create-profiles.ipynb</span></code></a>
 Jupyter notebook. The inputs are: <a class="reference external" href="https://cytomining.github.io/DeepProfiler-handbook/docs/04-metadata.html#the-metadata-file">project metadata file</a>, ground truth metadata
 with annotations of treatments by the mechanism of action and the <code class="docutils literal notranslate"><span class="pre">.npz</span></code> files with features  organized in
 <code class="docutils literal notranslate"><span class="pre">{Plate}/{Well}/{Site}.npz</span></code> folder structure.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Define the parameters: project path and experiment folder name as in DeepProfiler, sphering regularization parameter <code class="docutils literal notranslate"><span class="pre">REG_PARAM</span></code> and
 output file names: <code class="docutils literal notranslate"><span class="pre">OUTPUT_FILE</span></code> - output file that will contain well-level profiles after sphering and <code class="docutils literal notranslate"><span class="pre">MATRIX_FILE</span></code> that will contain similarity matrix of treatments.</p></li>
 <li><p>Load single-cell data by passing through metadata and reading files with features. It might require a significant amount of RAM (depending on the size of the dataset).</p></li>
@@ -483,7 +430,7 @@ output file names: <code class="docutils literal notranslate"><span class="pre">
 </ol>
 </section>
 <section id="batch-correction-using-sphering-transformation">
-<h2>8.1.2 Batch-correction using sphering transformation<a class="headerlink" href="#batch-correction-using-sphering-transformation" title="Permalink to this headline">#</a></h2>
+<h2>8.1.2 Batch-correction using sphering transformation<a class="headerlink" href="#batch-correction-using-sphering-transformation" title="Permalink to this heading">#</a></h2>
 <p>The sphering transformation (<a class="reference external" href="https://github.com/broadinstitute/DeepProfilerExperiments/blob/master/profiling/profiling.py#L5">implementation</a>)
 aims to reduce unwanted technical variation and recover the phenotypic features of treatments from
 the latent representations of the weakly supervised CNN. We calculate the ZCA-transformation matrix using well-level profiles
@@ -503,10 +450,10 @@ treated wells and blue points are treatments.</span><a class="headerlink" href="
 </figure>
 </section>
 <section id="evaluation-of-profiles">
-<h2>8.1.3 Evaluation of profiles<a class="headerlink" href="#evaluation-of-profiles" title="Permalink to this headline">#</a></h2>
+<h2>8.1.3 Evaluation of profiles<a class="headerlink" href="#evaluation-of-profiles" title="Permalink to this heading">#</a></h2>
 <p>Evaluation of profiles can be done with <a class="reference external" href="https://github.com/broadinstitute/DeepProfilerExperiments/blob/master/ta-orf/04-downstream-analysis.ipynb"><code class="docutils literal notranslate"><span class="pre">04-downstream-analysis.ipynb</span></code></a>. This notebook uses the cosine similarity matrix
 obtained in <a class="reference external" href="https://github.com/broadinstitute/DeepProfilerExperiments/blob/master/ta-orf/01-create-profiles.ipynb"><code class="docutils literal notranslate"><span class="pre">01-create-profiles.ipynb</span></code></a> as an input.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>First parts (<em>Load similarity matrix</em> and <em>MOA matching</em>) of the notebook perform input pre-processing. <code class="docutils literal notranslate"><span class="pre">moa_matches</span></code>
 is a binary matrix of size <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">x</span> <span class="pre">n</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of treatments in the similarity matrix. This matrix is symmetrical
 and each row (column) relates is a treatment, and values are <code class="docutils literal notranslate"><span class="pre">True</span></code> in each row (column) for the current treatment (diagonal)
@@ -518,10 +465,10 @@ and treatments that belong to the same mechanism of action as the current treatm
 </ol>
 </section>
 <section id="visualize-profiles">
-<h2>8.1.4 Visualize profiles<a class="headerlink" href="#visualize-profiles" title="Permalink to this headline">#</a></h2>
+<h2>8.1.4 Visualize profiles<a class="headerlink" href="#visualize-profiles" title="Permalink to this heading">#</a></h2>
 <p>The visualizations can be done with <a class="reference external" href="https://github.com/broadinstitute/DeepProfilerExperiments/blob/master/ta-orf/02-profiles-visualizations.ipynb"><code class="docutils literal notranslate"><span class="pre">02-profiles-visualizations.ipynb</span></code></a>
 Jupyter notebook. The input is a path to well-level profiles and is set in <code class="docutils literal notranslate"><span class="pre">INPUT_PROFILES</span></code>.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Treatment-level profiles are calculated using mean aggregation.</p></li>
 <li><p>The UMAP transformation is obtained using only well-level profiles. Get embeddings for well-level profiles.</p></li>
 <li><p>Use transformation from the previous step for treatment level profiles.</p></li>
@@ -536,7 +483,7 @@ Jupyter notebook. The input is a path to well-level profiles and is set in <code
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="aggregating-and-evaluating-profiles-with-pycytominer">
-<h1>8.2 Aggregating and evaluating profiles with Pycytominer<a class="headerlink" href="#aggregating-and-evaluating-profiles-with-pycytominer" title="Permalink to this headline">#</a></h1>
+<h1>8.2 Aggregating and evaluating profiles with Pycytominer<a class="headerlink" href="#aggregating-and-evaluating-profiles-with-pycytominer" title="Permalink to this heading">#</a></h1>
 <p>DeepProfiler single-cell profiles can be aggregated via a <a class="reference external" href="https://github.com/cytomining/pycytominer">Pycytominer</a>
 function called <a class="reference external" href="https://github.com/cytomining/pycytominer/blob/master/pycytominer/cyto_utils/DeepProfiler_processing.py">DeepProfiler_Processing</a>.
 This function reads the output features of DeepProfiler, including the metadata, aggregates, and saves the data in a Pycytominer
@@ -593,7 +540,7 @@ MP-value, and Grit.</p>
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./docs"
         },
         predefinedOutput: true
@@ -601,43 +548,105 @@ MP-value, and Grit.</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="07-train.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">7. Training models with DeepProfiler</p>
-        </div>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Michael Bornholdt, Juan Caicedo, Yu Han, Nikita Moshkov, Rebecca Senft (in alphabetical order)<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
 
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07-train.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">7. Training models with DeepProfiler</p>
       </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8. Downstream analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregating-and-evaluating-profiles-with-profiling-notebooks">8.1 Aggregating and evaluating profiles with profiling notebooks</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-of-profiles-and-batch-correction">8.1.1 Aggregation of profiles and batch-correction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-correction-using-sphering-transformation">8.1.2 Batch-correction using sphering transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-of-profiles">8.1.3 Evaluation of profiles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-profiles">8.1.4 Visualize profiles</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregating-and-evaluating-profiles-with-pycytominer">8.2 Aggregating and evaluating profiles with Pycytominer</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michael Bornholdt, Juan Caicedo, Yu Han, Nikita Moshkov, Rebecca Senft (in alphabetical order)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

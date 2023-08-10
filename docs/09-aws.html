@@ -1,0 +1,1154 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>9. Run profiling in AWS (EC2 instance) &#8212; Handbook</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/09-aws';</script>
+    <link rel="shortcut icon" href="../_static/favicon_32.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="00-welcome.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/banner.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/banner.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00-welcome.html">
+                    Welcome to DeepProfiler
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-install.html">1. Install DeepProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-structure.html">2. Project structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-images.html">3. Images and segmentation masks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-metadata.html">4. Metadata and single-cell locations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-config.html">5. Configuration file and examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-profiling.html">6. Profile cells with DeepProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-train.html">7. Training models with DeepProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-process.html">8. Downstream analysis</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cytomining/DeepProfiler-handbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cytomining/DeepProfiler-handbook/edit/main/DeepProfiler-Handbook/docs/09-aws.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cytomining/DeepProfiler-handbook/issues/new?title=Issue%20on%20page%20%2Fdocs/09-aws.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/09-aws.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>9. Run profiling in AWS (EC2 instance)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">9. Run profiling in AWS (EC2 instance)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>9.1 Requirements</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-instance"><strong>9.2 Create an instance</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-for-profiling"><strong>9.3 Prepare for profiling</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-deepprofiler"><strong>9.4 Install DeepProfiler</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-necessary-files"><strong>9.5 Create necessary files</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-profiling"><strong>9.6 Run profiling</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sync-features-to-s3-bucket"><strong>9.7 Sync features to S3 bucket</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-volume"><strong>9.8 Delete volume</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-creating-an-ami-for-deepprofiler">Appendix: Creating an AMI for DeepProfiler</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="run-profiling-in-aws-ec2-instance">
+<h1>9. Run profiling in AWS (EC2 instance)<a class="headerlink" href="#run-profiling-in-aws-ec2-instance" title="Permalink to this heading">#</a></h1>
+<section id="requirements">
+<h2><strong>9.1 Requirements</strong><a class="headerlink" href="#requirements" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Make sure your images and database (.sqlite) files from CellProfiler analysis are located within the S3 bucket (this is important because we will need to copy all your files to an EC2 instance before running profiling);</p></li>
+<li><p>This protocol is built to use with data that was analyzed previously using CellProfiler, where a nuclei object was identified. In the scripts used in this protocol, we assume that you have a .sqlite file that has information about the location of the cells (‘Nuclei_Location_Center_X’ and ‘Nuclei_Location_Center_Y’), as well as FileName, Metadata_Plate, Metadata_Well, Metadata_Site columns.</p></li>
+</ol>
+</section>
+<section id="create-an-instance">
+<h2><strong>9.2 Create an instance</strong><a class="headerlink" href="#create-an-instance" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Follow the next steps to create an instance using an AMI that’s located at broad-imaging-cimini account. If you need to create your own AMI, follow the steps at the end <strong>Appendix: Creating an AMI for DeepProfiler</strong>.</p></li>
+</ol>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">partition</span></code>:</p>
+<ul>
+<li><p>EC2 =&gt; Instances =&gt; Launch Instance</p></li>
+<li><p>Name and Tags:</p>
+<ul>
+<li><p>Name: YOURNAME_DeepProfiler</p></li>
+</ul>
+</li>
+<li><p>Add additional tags:</p>
+<ul>
+<li><p>Key: User, Value: YOURBROADUSERNAME (e.g. fossa)</p></li>
+<li><p>Make sure both sets of tags are applied to both the instance and the volume(s)</p></li>
+</ul>
+</li>
+<li><p>Application and OS Images:</p>
+<ul>
+<li><p>MyAMIs:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">DeepProfiler_p2xlarge_cuda_tensorflow253</span> <span class="pre">ami-08e9d2839d316fb51(broad-imaging-cimini)</span></code></p></li>
+</ul>
+</li>
+<li><p>Instance type:</p>
+<ul>
+<li><p><strong>p2.xlarge</strong></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Key pair (login):</p>
+<ul>
+<li><p>select your key pair</p></li>
+</ul>
+</li>
+<li><p>Network settings: (for broad-imaging-cimini)</p>
+<ul>
+<li><p>VPC: default</p></li>
+<li><p>Subnet: any</p></li>
+<li><p>Firewall (security groups): select existing security group: ssh</p></li>
+<li><p>Auto-assign Public IP: Enable</p></li>
+</ul>
+</li>
+<li><p>Configure storage:</p>
+<ul>
+<li><p><strong>40 GiB</strong></p></li>
+</ul>
+</li>
+<li><p>Advanced details:</p>
+<ul>
+<li><p>IAM instance profile:</p></li>
+<li><p>ecsInstanceRole (for broad-imaging-cimini)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Create an alarm using AWS instructions for <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UsingAlarmActions.html">creating a stop actions to Amazon CloudWatch alarms</a> to stop your instance that’s no longer in use.</p></li>
+<li><p>Follow the AWS instructions for <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html#console">creating</a> and <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html#console">attaching</a> an external EBS volume that will be used just for this batch.</p></li>
+</ol>
+<div class="important admonition">
+<p class="admonition-title">Critical to create a volume</p>
+<p>The volume must be created in the same subnet as your backend creation machine (<code class="docutils literal notranslate"><span class="pre">us-east-1a</span></code>), and should be 2X the size as the analysis files in your batch.
+Determine your analysis size by navigating to the analysis folder on S3 web console and selecting <strong>Actions</strong> =&gt; <strong>Calculate total size</strong>.
+(Note: The HD actually needs to be 2X the size of analysis files that will be running in parallel - most of the time this is your whole batch but if youâ€™re working on a very large dataset, it will be smaller).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your dataset is large, consider using <a class="reference external" href="https://github.com/DistributedScience/Distributed-DeepProfiler">Distributed-DeepProfiler</a> instead of this protocol.</p>
+</div>
+</section>
+<section id="prepare-for-profiling">
+<h2><strong>9.3 Prepare for profiling</strong><a class="headerlink" href="#prepare-for-profiling" title="Permalink to this heading">#</a></h2>
+<p>This section was based on <strong>Cell-Painting-Documentation-Internal</strong>.</p>
+<ol class="arabic">
+<li><p><strong>Connect to your DeepProfiler EC2 computer</strong></p>
+<ul class="simple">
+<li><p><strong>AWS</strong> =&gt; <strong>Services</strong> =&gt; <strong>EC2</strong> =&gt; <strong>Instances</strong> =&gt; <strong>YOURFIRSTNAME_DeepProfiler</strong></p></li>
+<li><p><strong>Instance State</strong> =&gt; <strong>Start</strong> <em>or</em> right-click =&gt; <strong>Start Instance</strong></p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you see no running instances, check the upper right corner.
+It should have your location as us-east-1 N. Virginia.</p>
+</div>
+<ul class="simple">
+<li><p>Log into your EC2 machine.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ssh -i ~/.ssh/$YOUR_KEY_NAME.pem ubuntu@LOGIN_ADDRESS
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>With your computer selected, LOGIN_ADDRESS can be found in the Description tab as Public DNS (Ipv4).</p></li>
+<li><p>You will get an authenticity warning the first time you log in. Say <code class="docutils literal notranslate"><span class="pre">yes</span></code>.</p></li>
+<li><p>Create or attach a tmux.<br />
+To create new tmux:<code class="docutils literal notranslate"> <span class="pre">tmux</span> <span class="pre">new</span> <span class="pre">-s</span> <span class="pre">NEWNAME</span></code><br />
+To see existing tmux sessions: <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">list-sessions</span></code><br />
+To attach an old tmux: <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">a</span> <span class="pre">-t</span> <span class="pre">EXISTINGNAME</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>a=attach t=target s=session.<br />
+Name your tmux simply based on the project title or step e.g. <code class="docutils literal notranslate"><span class="pre">cmqtl</span></code> or <code class="docutils literal notranslate"><span class="pre">backends</span></code>.</p>
+</div>
+</li>
+<li><p><strong>Install AWS CLI</strong><br />
+If you have not previously used AWS CLI on your machine, you may need to install AWS CLI by following <a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">these instructions</a>.</p></li>
+<li><p><strong>Create a temp directory</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">~/</span><span class="n">ebs_tmp</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Mount your volume to your EC2 machine</strong><br />
+You will need to mount your external EBS volume every time that you turn your EC2 instance on/off, though you will only need to create the file system once.</p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">lsblk</span></code> to find the name of the volume.
+It will return something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NAME</span>    	<span class="n">MAJ</span><span class="p">:</span><span class="n">MIN</span> 	<span class="n">RM</span>   	<span class="n">SIZE</span> 	<span class="n">RO</span> 	<span class="n">TYPE</span> <span class="n">MOUNTPOINT</span>
+<span class="n">xvda</span>    		<span class="mi">202</span><span class="p">:</span><span class="mi">0</span>    	<span class="mi">0</span>     	<span class="mi">8</span><span class="n">G</span>  	<span class="mi">0</span> 	<span class="n">disk</span>
+<span class="o">--</span><span class="n">xvda1</span> 	<span class="mi">202</span><span class="p">:</span><span class="mi">1</span>    	<span class="mi">0</span>    	 <span class="mi">8</span><span class="n">G</span>  	<span class="mi">0</span> 	<span class="n">part</span> <span class="o">/</span>
+<span class="n">xvdb</span>    		<span class="mi">202</span><span class="p">:</span><span class="mi">80</span>   	<span class="mi">0</span>   	<span class="mi">100</span><span class="n">G</span>  	<span class="mi">0</span> 	<span class="n">disk</span> 
+</pre></div>
+</div>
+<p>To see if you have a file system on your harddrive:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">file</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">VOLUMENAME</span>
+</pre></div>
+</div>
+<ul>
+<li><p>If you get <code class="docutils literal notranslate"><span class="pre">/dev/VOLUMENAME:</span> <span class="pre">data</span></code>   in response, create the file system, mount it, and change file permissions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mkfs</span> <span class="o">-</span><span class="n">t</span> <span class="n">ext4</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">VOLUMENAME</span>
+</pre></div>
+</div>
+</li>
+<li><p>If you get <code class="docutils literal notranslate"><span class="pre">/dev/VOLUMENAME:</span> <span class="pre">Linux</span> <span class="pre">rev</span> <span class="pre">1.0</span> <span class="pre">ext4</span> <span class="pre">filesystem</span></code> in response, you are good to go.</p></li>
+</ul>
+<p>Run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">VOLUMENAME</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">ebs_tmp</span>
+<span class="n">sudo</span> <span class="n">chmod</span> <span class="mi">777</span> <span class="o">~/</span><span class="n">ebs_tmp</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Run <code class="docutils literal notranslate"><span class="pre">lsblk</span></code> again and check that the volume now has a mountpoint.
+It will return something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    NAME    	MAJ:MIN 	RM   	SIZE 	RO 	TYPE MOUNTPOINT
+    xvda    		202:0    	0     	8G  	0 	disk
+    â””â”€xvda1 	202:1    	0     	8G  	0 	part /
+    xvdb    		202:16   	0   	110G  	0 	disk /home/ubuntu/ebs_tmp
+</pre></div>
+</div>
+</li>
+<li><p><strong>Define environment variables</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROJECT_NAME</span><span class="o">=&lt;</span><span class="n">Project_Name</span> <span class="ow">in</span> <span class="n">AWS</span><span class="o">&gt;</span>
+<span class="n">BATCH_ID</span><span class="o">=&lt;</span><span class="n">Batch_folder</span> <span class="n">inside</span> <span class="n">Project_Name</span><span class="o">&gt;</span>
+<span class="n">BUCKET</span><span class="o">=</span><span class="n">imaging</span><span class="o">-</span><span class="n">platform</span><span class="o">-</span><span class="n">ssf</span> <span class="p">(</span><span class="n">name</span> <span class="n">of</span> <span class="n">your</span> <span class="n">S3</span> <span class="n">bucket</span><span class="p">)</span>
+<span class="n">EXPERIMENT_NAME</span><span class="o">=&lt;</span><span class="n">Name</span> <span class="n">this</span> <span class="n">DeepProfiler</span> <span class="n">experiment</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To check the content of a variable: <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$PROJECT_NAME</span></code></p>
+</div>
+</li>
+</ol>
+</section>
+<section id="install-deepprofiler">
+<h2><strong>9.4 Install DeepProfiler</strong><a class="headerlink" href="#install-deepprofiler" title="Permalink to this heading">#</a></h2>
+<ol class="arabic">
+<li><p>Create folders inside ~/ebs_tmp:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/{deepprofiler,software,backend}
+</pre></div>
+</div>
+</li>
+<li><p>Run the next commands to clone the DeepProfiler repository, checkout to an specific commit and install it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/software
+git clone https://github.com/broadinstitute/DeepProfiler.git
+cd DeepProfiler/
+git checkout 779bd4cffe5dd8a39cf981f616af6f95f73b7088
+pip install .
+</pre></div>
+</div>
+</li>
+<li><p>Test if DeepProfiler is working. See <a class="reference internal" href="01-install.html"><span class="doc std std-doc">1.4 Run DeepProfiler to check it works</span></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">deepprofiler</span> 
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="create-necessary-files">
+<h2><strong>9.5 Create necessary files</strong><a class="headerlink" href="#create-necessary-files" title="Permalink to this heading">#</a></h2>
+<ol class="arabic">
+<li><p>Create folders using DeepProfiler setup:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID}
+python3 deepprofiler --root=/home/ubuntu/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID} setup
+</pre></div>
+</div>
+</li>
+<li><p>Create configuration file:</p></li>
+</ol>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">partition</span></code>:</p>
+<ul>
+<li><p>Execute the next command to create the profiling.json file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID}/inputs/config
+nano profiling.json
+</pre></div>
+</div>
+</li>
+<li><p>With the profiling.json open, paste the example configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;label_field&quot;</span><span class="p">:</span> <span class="s2">&quot;Metadata_Plate&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;control_value&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;images&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;channels&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;DNA&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;RNA&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ER&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;AGP&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Mito&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;file_format&quot;</span><span class="p">:</span> <span class="s2">&quot;tif&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;bits&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+            <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">1224</span><span class="p">,</span>
+            <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">904</span>
+        <span class="p">},</span>
+    <span class="s2">&quot;locations&quot;</span><span class="p">:{</span>
+        <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;single_cells&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;area_coverage&quot;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span>
+        <span class="s2">&quot;box_size&quot;</span><span class="p">:</span> <span class="mi">128</span><span class="p">,</span>
+        <span class="s2">&quot;mask_objects&quot;</span><span class="p">:</span> <span class="n">false</span>
+    <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;prepare&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;illumination_correction&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;down_scale_factor&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+            <span class="s2">&quot;median_filter_size&quot;</span><span class="p">:</span> <span class="mi">24</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;compression&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;implement&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+            <span class="s2">&quot;scaling_factor&quot;</span><span class="p">:</span> <span class="mf">1.0</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;partition&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;targets&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;Metadata_Plate&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;split_field&quot;</span><span class="p">:</span> <span class="s2">&quot;Split&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;training&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s2">&quot;validation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;efficientnet&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;crop_generator&quot;</span><span class="p">:</span> <span class="s2">&quot;sampled_crop_generator&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;augmentations&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+            <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="s2">&quot;top_k&quot;</span><span class="p">,</span> <span class="s2">&quot;average_class_precision&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;epochs&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="s2">&quot;initialization&quot;</span><span class="p">:</span><span class="s2">&quot;ImageNet&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;label_smoothing&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span>
+                <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span>
+                <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+                <span class="s2">&quot;conv_blocks&quot;</span><span class="p">:</span> <span class="mi">0</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;sampling&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;factor&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;workers&quot;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;validation&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;frequency&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+            <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="s2">&quot;val&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sample_first_crops&quot;</span><span class="p">:</span> <span class="n">true</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;profile&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;feature_layer&quot;</span><span class="p">:</span> <span class="s2">&quot;block6a_activation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;checkpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;Cell_Painting_CNN_v1.hdf5&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">32</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>The “prepare” and “train” arguments must stay so the software runs; you don’t have to change anything there, just copy.</p></li>
+<li><p>These are the parameters you should change depending on your dataset:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">images</span></code>: file_format, bits, width, and height of the images;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: change the checkpoint if you use another model than <code class="docutils literal notranslate"><span class="pre">Cell_Painting_CNN_v1.hdf5</span></code>.</p></li>
+</ul>
+</li>
+<li><p>For more details check <a class="reference internal" href="05-config.html"><span class="doc std std-doc">5. Configuration file and examples</span></a>.</p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic" start="3">
+<li><p>Download the CNN Cell Painting model to your EC2 instance:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID}/outputs/${EXPERIMENT_NAME}/checkpoint
+wget https://zenodo.org/record/7114558/files/Cell_Painting_CNN_v1.hdf5
+</pre></div>
+</div>
+</li>
+<li><p>Download the backend/database (.sqlite) files from S3 bucket.
+This command will download all the plates inside your <code class="docutils literal notranslate"><span class="pre">BATCH_ID</span></code> folder.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>aws s3 sync s3://${BUCKET}/projects/${PROJECT_NAME}/workspace/backend/${BATCH_ID} ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/backend/${BATCH_ID} --exclude=&quot;*&quot; --include=&quot;*.sqlite&quot;
+</pre></div>
+</div>
+</li>
+<li><p>Get list of plates and define plate variable</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/scratch/${BATCH_ID}/
+PLATES=$(readlink -f ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/scratch/${BATCH_ID}/plates_to_process.txt)
+aws s3 ls s3://${BUCKET}/projects/${PROJECT_NAME}/workspace/analysis/${BATCH_ID}/ |cut -d &quot; &quot; -f29 | cut -d &quot;/&quot; -f1 &gt;&gt; ${PLATES}
+</pre></div>
+</div>
+<p>Check the contents of PLATES and confirm that the plate names have parsed correctly and there are the correct number.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>nano $PLATES
+</pre></div>
+</div>
+</li>
+<li><p>Create the locations file</p></li>
+</ol>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">partition</span></code>:</p>
+<ul>
+<li><p>Paste the following to create a .py file that, when we run, will get the locations of the single cells, as well as the FileName and Metadata info and create an index file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID}/inputs/locations
+nano extract_locations.py
+</pre></div>
+</div>
+</li>
+<li><p>Paste the following into the extract_locations.py new blank file. Change the name of the “FileName_” columns if your columns are named otherwise. Then <code class="docutils literal notranslate"><span class="pre">Control-o.</span> <span class="pre">Enter.</span> <span class="pre">Control-x.</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Script to extract locations and index from CellProfiler</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">makedirs</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Extract Metadata and Filenames from SQLite database generated by CellProfiler, to latter usage in DeepProfiler.&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;dbpath&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;main path to sqlite files&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s1">&#39;locdir&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;destination folder to write locations files in csv format&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s1">&#39;csvdir&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;destination folder to write index file in csv format&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s1">&#39;plate&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;plates list in a txt file, use it to run this code for the plates in a loop&#39;</span><span class="p">)</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="n">QUERY</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">SELECT</span>
+<span class="s1">    Metadata_Plate,</span>
+<span class="s1">    Metadata_Well,</span>
+<span class="s1">    Metadata_Site,</span>
+<span class="s1">    FileName_OrigER AS ER,</span>
+<span class="s1">    FileName_OrigRNA AS RNA,</span>
+<span class="s1">    FileName_OrigAGP AS AGP,</span>
+<span class="s1">    FileName_OrigMito AS Mito,</span>
+<span class="s1">    FileName_OrigDNA as DNA,</span>
+<span class="s1">    CAST(Nuclei_Location_Center_X AS INTEGER),</span>
+<span class="s1">    CAST(Nuclei_Location_Center_Y AS INTEGER)</span>
+<span class="s1">FROM</span>
+<span class="s1">    Nuclei</span>
+<span class="s1">JOIN Image ON</span>
+<span class="s1">    Image.TableNumber = Nuclei.TableNumber</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">mainpath</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">dbpath</span>
+<span class="n">plate</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">plate</span>
+<span class="n">dbfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mainpath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">plate</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">plate</span><span class="si">}</span><span class="s2">.sqlite&quot;</span><span class="p">)</span>
+
+<span class="n">locations</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="c1">#extract and save to a dict</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="n">csv_index</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">plate</span><span class="si">}</span><span class="s1">_index.csv&#39;</span>
+<span class="k">with</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dbfile</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">QUERY</span><span class="p">):</span>
+        <span class="n">plate_id</span><span class="p">,</span> <span class="n">well_id</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="n">er</span><span class="p">,</span> <span class="n">rna</span><span class="p">,</span> <span class="n">agp</span><span class="p">,</span> <span class="n">mito</span><span class="p">,</span> <span class="n">dna</span><span class="p">,</span> <span class="n">xpos</span><span class="p">,</span> <span class="n">ypos</span> <span class="o">=</span> <span class="n">row</span>
+        <span class="n">csvfile</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">well_id</span><span class="si">}</span><span class="s1">-</span><span class="si">{</span><span class="n">site_id</span><span class="si">}</span><span class="s1">-Nuclei.csv&#39;</span>
+        <span class="n">locations</span><span class="p">[</span><span class="n">csvfile</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">xpos</span><span class="p">,</span> <span class="n">ypos</span><span class="p">))</span>
+        <span class="n">index</span><span class="p">[</span><span class="n">csv_index</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">plate_id</span><span class="p">,</span> <span class="n">well_id</span><span class="p">,</span> <span class="n">site_id</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">plate_id</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">er</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">plate_id</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">rna</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">plate_id</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">agp</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">plate_id</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">mito</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">plate_id</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">dna</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">))</span>
+
+<span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">locdir</span><span class="p">,</span> <span class="n">plate</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+<span class="n">header</span> <span class="o">=</span> <span class="s1">&#39;Nuclei_Location_Center_X&#39;</span><span class="p">,</span> <span class="s1">&#39;Nuclei_Location_Center_Y&#39;</span>
+<span class="k">for</span> <span class="n">csvfile</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">locations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">csvpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">locdir</span><span class="p">,</span> <span class="n">plate</span><span class="p">,</span> <span class="n">csvfile</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csvpath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fpointer</span><span class="p">:</span>
+        <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">fpointer</span><span class="p">)</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+<span class="n">csv_indexpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">csvdir</span><span class="p">,</span> <span class="n">csv_index</span><span class="p">)</span>
+<span class="n">makedirs</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">csvdir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+<span class="n">header_index</span> <span class="o">=</span> <span class="s1">&#39;Metadata_Plate&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_Well&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_Site&#39;</span><span class="p">,</span> <span class="s1">&#39;ER&#39;</span><span class="p">,</span> <span class="s1">&#39;RNA&#39;</span><span class="p">,</span> <span class="s1">&#39;AGP&#39;</span><span class="p">,</span> <span class="s1">&#39;Mito&#39;</span><span class="p">,</span> <span class="s1">&#39;DNA&#39;</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">index</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_indexpath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">npointer</span><span class="p">:</span>
+        <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">npointer</span><span class="p">)</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">header_index</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the next command to execute the script. Location and metadata files will be saved inside ~/inputs/locations and ~/inputs/metadata:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>parallel \
+python extract_locations.py  ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/backend/${BATCH_ID} ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID}/inputs/locations ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID}/inputs/metadata :::: ${PLATES}
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<ol class="arabic" start="7">
+<li><p>Create one index.csv file to process all plates at the same time:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">partition</span></code>:</p>
+<ul>
+<li><p>Run the following to create a join_csv.py file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID}/inputs/metadata
+nano join_csv.py
+</pre></div>
+</div>
+</li>
+<li><p>Paste the content inside the file. Then <code class="docutils literal notranslate"><span class="pre">Control-o.</span> <span class="pre">Enter.</span> <span class="pre">Control-x.</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Aggregate csvs to create index metadata file for DeepProfiler.&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s1">&#39;indexdir&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;input folder where all index csv files are&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s1">&#39;plate&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;plates list in a txt file, use it to run this code for the plates in a loop&#39;</span><span class="p">)</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="c1"># Get list of files</span>
+<span class="n">plate</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">plate</span>
+<span class="n">plates</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">plate</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">plates</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">))</span>
+<span class="n">list_files</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">_index.csv&quot;</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+
+<span class="c1"># Create the header</span>
+<span class="n">header_index</span> <span class="o">=</span> <span class="s1">&#39;Metadata_Plate&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_Well&#39;</span><span class="p">,</span> <span class="s1">&#39;Metadata_Site&#39;</span><span class="p">,</span> <span class="s1">&#39;ER&#39;</span><span class="p">,</span> <span class="s1">&#39;RNA&#39;</span><span class="p">,</span> <span class="s1">&#39;AGP&#39;</span><span class="p">,</span> <span class="s1">&#39;Mito&#39;</span><span class="p">,</span> <span class="s1">&#39;DNA</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;index.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header_index</span><span class="p">))</span>   
+<span class="c1"># Open the csvs and save them into one final csv</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">list_files</span><span class="p">:</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">indexdir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">open_csv</span><span class="p">:</span>
+        <span class="n">first_row</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">open_csv</span><span class="p">:</span>
+            <span class="c1"># Ignore the header row</span>
+            <span class="k">if</span> <span class="n">first_row</span><span class="p">:</span>
+                <span class="n">first_row</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">continue</span>
+            <span class="c1"># Add all the rest of the CSV data to the output file</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+<span class="c1"># Close the output file</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the next to create one single <code class="docutils literal notranslate"><span class="pre">index.csv</span></code> files for all your plates:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>python join_csv.py ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID}/inputs/metadata ${PLATES}
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Copy images to your instance:
+The next script creates the directory with the plate name and download images from AWS to the inputs/images/PLATE folder, based on the list of folder names we provide.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">partition</span></code>:</p>
+<ul>
+<li><p>Run the following to create a load_images.py file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID}/inputs/images
+nano load_images.py
+</pre></div>
+</div>
+</li>
+<li><p>Paste the script. Then <code class="docutils literal notranslate"><span class="pre">Control-o.</span> <span class="pre">Enter.</span> <span class="pre">Control-x.</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Script to provide plate names</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">subprocess</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">makedirs</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Extract Metadata and Filenames from SQLite database generated by CellProfiler, to latter usage in DeepProfiler.&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s1">&#39;plate&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;plates list in a txt file, use it to run this code for the plates in a loop&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s1">&#39;bucket&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;plates list in a txt file, use it to run this code for the plates in a loop&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s1">&#39;project_name&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;plates list in a txt file, use it to run this code for the plates in a loop&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+    <span class="s1">&#39;batch_id&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;plates list in a txt file, use it to run this code for the plates in a loop&#39;</span><span class="p">)</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="c1"># Get list of files</span>
+<span class="n">plate</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">plate</span>
+<span class="n">plates</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">plate</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">plates</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">))</span>
+<span class="n">list_files</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">pl</span> <span class="ow">in</span> <span class="n">list_files</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mkdir -p </span><span class="si">{</span><span class="n">pl</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;aws s3 sync s3://</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">bucket</span><span class="si">}</span><span class="s2">/projects/</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">project_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">batch_id</span><span class="si">}</span><span class="s2">/images/</span><span class="si">{</span><span class="n">pl</span><span class="si">}</span><span class="s2">/images ~/ebs_tmp/work/projects/</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">project_name</span><span class="si">}</span><span class="s2">/workspace/deepprofiler/</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">batch_id</span><span class="si">}</span><span class="s2">/inputs/images/</span><span class="si">{</span><span class="n">pl</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the command to create the folders and download the images. This may take a while:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>python load_images.py ${PLATES} ${BUCKET} ${PROJECT_NAME} ${BATCH_ID}
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="run-profiling">
+<h2><strong>9.6 Run profiling</strong><a class="headerlink" href="#run-profiling" title="Permalink to this heading">#</a></h2>
+<p>Run the next command to run the profiling with DeepProfiler:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/software/DeepProfiler
+python3 deepprofiler --root=/home/ubuntu/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID} --config profiling.json --metadata index.csv --exp ${EXPERIMENT_NAME} profile
+</pre></div>
+</div>
+</section>
+<section id="sync-features-to-s3-bucket">
+<h2><strong>9.7 Sync features to S3 bucket</strong><a class="headerlink" href="#sync-features-to-s3-bucket" title="Permalink to this heading">#</a></h2>
+<p>You can sync the outputs folder to your S3 bucket project folder by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>aws s3 sync ~/ebs_tmp/work/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID}/outputs/${EXPERIMENT_NAME}/ s3://${BUCKET}/projects/${PROJECT_NAME}/workspace/deepprofiler/${BATCH_ID}/outputs/${EXPERIMENT_NAME}/results/
+</pre></div>
+</div>
+</section>
+<section id="delete-volume">
+<h2><strong>9.8 Delete volume</strong><a class="headerlink" href="#delete-volume" title="Permalink to this heading">#</a></h2>
+<p>Check if all the features were synced to your S3 bucket. Now, <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-deleting-volume.html">delete the temporary volume</a> associated with your instance.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="appendix-creating-an-ami-for-deepprofiler">
+<h1>Appendix: Creating an AMI for DeepProfiler<a class="headerlink" href="#appendix-creating-an-ami-for-deepprofiler" title="Permalink to this heading">#</a></h1>
+<ol class="arabic">
+<li><p>To create the instance, use the same configurations as above (<strong>9.2 Create an instance</strong>), but use a Quick Start AMI:</p>
+<ul class="simple">
+<li><p>Use an Ubuntu AMI (for example, use Quick Start AMIs &gt; Ubuntu &gt; Ubuntu Server 18.04)</p></li>
+</ul>
+</li>
+<li><p>Connect to the instance:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">i</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">YOUR_KEY_NAME</span><span class="o">.</span><span class="n">pem</span> <span class="n">ubuntu</span><span class="nd">@LOGIN_ADDRESS</span>
+</pre></div>
+</div>
+</li>
+<li><p>Then, to update the Nvidia driver of a p2.xlarge machine, follow the next instructions:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">partition</span></code>:</p>
+<ul>
+<li><p>Run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">upgrade</span>
+</pre></div>
+</div>
+</li>
+<li><p>Reboot the instance by running</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">reboot</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>(The putty session will become inactive as the instance reboots. It might take a few minutes before you can connect through a new session)</p></li>
+</ul>
+</li>
+<li><p>Run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">xorg</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">nvidia</span><span class="o">-</span><span class="n">driver</span><span class="o">-</span><span class="mi">460</span>
+</pre></div>
+</div>
+</li>
+<li><p>Reboot again:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">reboot</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run to verify that the GPU is now installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span> 
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Proceed with this protocol. Save this AMI to use later.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">9. Run profiling in AWS (EC2 instance)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><strong>9.1 Requirements</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-instance"><strong>9.2 Create an instance</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-for-profiling"><strong>9.3 Prepare for profiling</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-deepprofiler"><strong>9.4 Install DeepProfiler</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-necessary-files"><strong>9.5 Create necessary files</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-profiling"><strong>9.6 Run profiling</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sync-features-to-s3-bucket"><strong>9.7 Sync features to S3 bucket</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-volume"><strong>9.8 Delete volume</strong></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-creating-an-ami-for-deepprofiler">Appendix: Creating an AMI for DeepProfiler</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michael Bornholdt, Juan Caicedo, Yu Han, Nikita Moshkov, Rebecca Senft (in alphabetical order)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
