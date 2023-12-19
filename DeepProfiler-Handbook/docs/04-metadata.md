@@ -38,15 +38,19 @@ view. The following list indicates the minimal columns that the metadata file is
     (i.e., colors) and DeepProfiler assumes that each channel is stored in a separate image file (all channels stored in 
     the same file are not currently supported). Therefore, to put together all the channels of a single image, the metadata
     file will need to have multiple _channel_name_ columns listed in the configuration file. These columns can be renamed as 
-    necessary and should point to the corresponding image files using a path relative to the image directory. For example, 
-    an assay with DNA, RNA, and Mito stains will have three channel columns named accordingly, with entries in each column 
+    necessary and should point to the corresponding image files using a path relative to the image directory. For example, an assay with DNA, RNA, and Mito stains will have three
+    channel columns named accordingly, with entries in each column
     pointing to the corresponding image file. The field may have different names.
-5. `Treatment`: We assume that cells in a well have been treated in a biologically meaningful way or represent different 
+
+   - **Image path (default)**: The images can be located in the default DeepProfiler folder (which is `inputs/images`) so no specific path needs to be defined here, only the Plate/FileName, as shown in the [metadata file example](https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv).
+   - **Image path (customized)**: If the user cannot move the images to the default location, images can also be located in a specific folder inside the user's machine instead of the default. For example, a user can specify the location of the DNA image to be `C:\Users\User1\images\41744\taoe005-u2os-72h-cp-a-au00044859_f21_s1_w159ff0023-3fa4-4acb-a277-af596b4e9e25.tif`. 
+   
+6. `Treatment`: We assume that cells in a well have been treated in a biologically meaningful way or represent different 
     experimental conditions. This column keeps track of that information, which may have other names (in the provided example 
     data, it is called `pert_name`). It is useful as an identifier of the type of biological experiment, treatment, perturbation 
     or condition of cells observed in the images. This column must be a biologically meaningful label that could be used by 
     DeepProfiler for training purposes. May have different names.
-6. `Replicate`: Number or identifier indicating which repetition of the treatment an image corresponds to. In the provided 
+7. `Replicate`: Number or identifier indicating which repetition of the treatment an image corresponds to. In the provided 
     example data this column is called `pert_name_replicate`.
 
 These are the minimum columns required in the metadata file. You can append more columns with information specific to your 
