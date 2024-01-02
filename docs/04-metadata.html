@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -77,6 +78,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -130,9 +140,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="00-welcome.html">
+  
   
   
   
@@ -142,8 +154,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/banner.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/banner.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/banner.png" class="logo__image only-light" alt="Handbook - Home"/>
+    <script>document.write(`<img src="../_static/banner.png" class="logo__image only-dark" alt="Handbook - Home"/>`);</script>
   
   
 </a></div>
@@ -338,20 +350,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -428,9 +442,14 @@ The site identifier for each image goes here, e.g. <code class="docutils literal
 (i.e., colors) and DeepProfiler assumes that each channel is stored in a separate image file (all channels stored in
 the same file are not currently supported). Therefore, to put together all the channels of a single image, the metadata
 file will need to have multiple <em>channel_name</em> columns listed in the configuration file. These columns can be renamed as
-necessary and should point to the corresponding image files using a path relative to the image directory. For example,
-an assay with DNA, RNA, and Mito stains will have three channel columns named accordingly, with entries in each column
-pointing to the corresponding image file. The field may have different names.</p></li>
+necessary and should point to the corresponding image files using a path relative to the image directory. For example, an assay with DNA, RNA, and Mito stains will have three
+channel columns named accordingly, with entries in each column
+pointing to the corresponding image file. The field may have different names.</p>
+<ul class="simple">
+<li><p><strong>Image path (default)</strong>: The images can be located in the default DeepProfiler folder (which is <code class="docutils literal notranslate"><span class="pre">inputs/images</span></code>) so no specific path needs to be defined here, only the Plate/FileName, as shown in the <a class="reference external" href="https://github.com/cytomining/DeepProfiler-handbook/blob/00f3b41e753a40a1e3854a75bd491b7c1864a4da/DeepProfiler-Handbook/assets/index.csv">metadata file example</a>.</p></li>
+<li><p><strong>Image path (customized)</strong>: If the user cannot move the images to the default location, images can also be located in a specific folder inside the user’s machine instead of the default. For example, a user can specify the location of the DNA image to be <code class="docutils literal notranslate"><span class="pre">C:\Users\User1\images\41744\taoe005-u2os-72h-cp-a-au00044859_f21_s1_w159ff0023-3fa4-4acb-a277-af596b4e9e25.tif</span></code>.</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Treatment</span></code>: We assume that cells in a well have been treated in a biologically meaningful way or represent different
 experimental conditions. This column keeps track of that information, which may have other names (in the provided example
 data, it is called <code class="docutils literal notranslate"><span class="pre">pert_name</span></code>). It is useful as an identifier of the type of biological experiment, treatment, perturbation
@@ -509,11 +528,10 @@ and <code class="docutils literal notranslate"><span class="pre">Nuclei_Location
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="03-images.html"
@@ -533,10 +551,7 @@ and <code class="docutils literal notranslate"><span class="pre">Nuclei_Location
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -574,6 +589,7 @@ By Michael Bornholdt, Juan Caicedo, Yu Han, Nikita Moshkov, Rebecca Senft (in al
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -600,8 +616,8 @@ By Michael Bornholdt, Juan Caicedo, Yu Han, Nikita Moshkov, Rebecca Senft (in al
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>
